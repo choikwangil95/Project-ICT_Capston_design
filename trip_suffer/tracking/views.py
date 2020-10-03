@@ -1,3 +1,4 @@
 from django.shortcuts import render
 
-# Create your views here.
+def tracking(request):
+    return render(request, 'tracking.html')

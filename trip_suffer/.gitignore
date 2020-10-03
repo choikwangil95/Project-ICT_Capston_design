@@ -1,0 +1,16 @@
+# Django
+*.log
+*.pot
+*.pyc
+__pycache__/
+/static
+db.sqlite3
+media
+myvenv
+venv
+.DS_Store
+
+# Migrations
+**/migrations/**
+!**/migrations
+!**/migrations/__init__.py
