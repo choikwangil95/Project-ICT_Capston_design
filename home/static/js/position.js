@@ -7,8 +7,6 @@ position.addEventListener("click", getLocation);
 function getLocation() {
   if (navigator.geolocation) { // GPS를 지원하면
     navigator.geolocation.getCurrentPosition(function(position) {
-      console.log(position.coords.latitude);
-      console.log(position.coords.longitude);
       let longitudeValue = position.coords.latitude;
       let latitudeValue = position.coords.longitude;
       longitude.innerHTML = longitudeValue;
