@@ -4,10 +4,46 @@
 <html>
   <head>
     <link href="{% sass_src 'css/home.scss' %}" rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
     <div class="container">
-      햐이
+      <header>
+        <div class="title">
+          <h3>Trip Suffer</h3>
+        </div>
+      </header>
+      <div class="main">
+        <div class="main__container">
+          <div class="position">
+            <div class="position__container">
+              <div class="location">
+                <div class="location__long">
+    
+                </div>
+                <div class="location__lat">
+      
+                </div>
+              </div>
+              <button class="button__position">
+                <img src="{% static 'img/position.png' %}">
+              </button>
+            </div>
+          </div>
+          <div id="map">
+            <h2>지도</h2>
+          </div>
+          <div class="tracking">
+            <button class="button__start">
+              <h3>Start</h3>
+            </button>
+          </div>
+        </div>
+      </div>
+      <footer>
+        <h3>g</h3>
+      </footer>
     </div>
   </body>
+  <script type="text/javascript" src="{% static 'js/position.js' %}"></script>
 </html>
