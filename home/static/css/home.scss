@@ -1,3 +1,114 @@
+@import './setup/reset.scss';
+@import './setup/_variables.scss';
+
 .container{
-  background-color: red;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+header{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  border-bottom: 1px solid $border-line;
+
+  .title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 50px;
+  }
+}
+
+.main{
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+
+  &__container{
+    display: flex;
+    flex-direction: column;
+
+    .position{
+      display: flex;
+      justify-content: center;
+      width: 700px;
+      height: 50px;
+
+      &__container{
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+
+        .location{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: row;
+          height: 30px;
+          border: 1px solid black;
+          margin-right: 10px;
+          width: 500px;
+
+          &__address{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 400px;
+            height: 30px;
+          }
+        }
+      }
+    }
+  
+    #map{
+      width: 700px;
+      height: 400px;
+      border: 1px solid black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .tracking{
+      height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+footer{
+  width: 100%;
+  height: 200px;
+  border-top: 1px solid $border-line;
+}
+
+.button{
+  &__position{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img{
+      width: 30px;
+      height: 30px;  
+    }
+  }
+
+  &__start{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    border: 1px solid black;
+  }
 }

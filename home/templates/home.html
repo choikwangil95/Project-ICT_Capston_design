@@ -3,11 +3,40 @@
 {% load sass_tags %}
 <html>
   <head>
+    <meta charset="utf-8">
     <link href="{% sass_src 'css/home.scss' %}" rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Home</title>
   </head>
   <body>
     <div class="container">
-      햐이
+      <header>
+        <div class="title">
+          <h1>Trip Suffer</h1>
+        </div>
+      </header>
+      <div class="main">
+        <div class="main__container">
+          <div class="position">
+            <div class="position__container">
+              <div class="location">
+                <div class="location__address"></div>
+              </div>
+              <button class="button__position"><img src="{% static 'img/position.png' %}"></button>
+            </div>
+          </div>
+          <div id="map"></div>
+          <div class="tracking">
+            <button class="button__start"><h3>Start</h3></button>
+          </div>
+        </div>
+      </div>
+      <footer>
+      </footer>
     </div>
   </body>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDd4jvxbs2P8Ak0JooTliUo_4E3QrnTykk&callback=initMap&region=kr"></script>
+  <script type="text/javascript" src="{% static 'js/map.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/position.js' %}"></script>
 </html>
