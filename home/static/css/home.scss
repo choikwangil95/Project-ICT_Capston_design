@@ -110,5 +110,27 @@ footer{
     height: 50px;
     border-radius: 50px;
     border: 1px solid black;
+    margin-right: 25px;
+  }
+
+  &__test1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    border: 1px solid black;
+    margin-right: 25px;
+  }
+
+  &__test2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    border: 1px solid black;
   }
 }
