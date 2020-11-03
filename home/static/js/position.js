@@ -7,9 +7,8 @@ position.addEventListener("click", getLocation);
 testPosition1.addEventListener("click", paintLine1);
 testPosition2.addEventListener("click", paintLine2);
 
-let markers = []; // 지도에 표시되는 marker list -> 각 marker setmap 용도
-let latlng;
 let latlngs = [];
+let markers = [];
 
 function getLocation() {
   if (navigator.geolocation) { // GPS를 지원하면
@@ -17,7 +16,7 @@ function getLocation() {
       let lngitudeValue = position.coords.longitude;
       let latitudeValue = position.coords.latitude;
 
-      latlng = { lat: latitudeValue, lng: lngitudeValue };
+      let latlng = { lat: latitudeValue, lng: lngitudeValue };
       latlngs.push(latlng);
 
       axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitudeValue},${lngitudeValue}&key=AIzaSyDbM2ILxG_n0ScqaBRFcf40fCalno5QX90`)
@@ -73,38 +72,34 @@ function paintLine1(){
   map.setZoom(16);
   map.panTo(testPosition1);
 
-  if (markers[markers.length-1] != testMarker1){
+  if (markers[1] == null){
+    latlngs.push(newLatlng);
     markers.push(testMarker1);
-    let markerIndex = markers.indexOf(testMarker1);
-    markers[markerIndex].setMap(map);
+    testMarker1.setMap(map);
+
+    // polyline
+    let path = new google.maps.Polyline({
+      path: latlngs,
+      geodesic: true,
+      strokeColor: "#000000",
+      strokeOpacity: 1.0,
+      strokeWeight: 2,
+    });
+    path.setMap(map);
   }
   
-  for (let i=0; i<latlngs.length; i++){
-    if(latlngs[i] == newLatlng){
-      break;
-    }else if(i == latlngs.length-1){
-      latlngs.push(newLatlng);
-    }
+  // 출발 marker 및 line 생성된 latlngs 삭제
+  if(markers.length == 2){
+    markers.shift();
+    latlngs.shift();
   }
-
-  console.log(latlngs);
-
-  let path = new google.maps.Polyline({
-    path: latlngs,
-    geodesic: true,
-    strokeColor: "#FF0000",
-    strokeOpacity: 1.0,
-    strokeWeight: 2,
-  });
-  path.setMap(map);
-
 }
 
 function paintLine2() {
   
   let lngitudeTest2 = 127.043553;
   let latitudeTest2 = 37.289013;
-  latlng = { lat: latitudeTest2, lng: lngitudeTest2 };
+  newlatlng2 = { lat: latitudeTest2, lng: lngitudeTest2 };
 
   let testPosition2 = new google.maps.LatLng(latitudeTest2, lngitudeTest2);
   let testMarker2 = new google.maps.Marker({
@@ -113,32 +108,29 @@ function paintLine2() {
   });
 
   map.setZoom(14);
-
-  if (markers[markers.length] != testMarker2){
-    markers.push(testMarker2);
-    let markerIndex = markers.indexOf(testMarker2);
-    markers[markerIndex].setMap(map);
-  }
-  
   map.panTo(testPosition2);
 
-  latlngs.push(latlng);
-  console.log(latlngs);
+  if (markers[1] == null){
+    latlngs.push(newlatlng2);
+    markers.push(testMarker2);
+    testMarker2.setMap(map);
 
-  let path = new google.maps.Polyline({
-    path: latlngs,
-    geodesic: true,
-    strokeColor: "#FF0000",
-    strokeOpacity: 1.0,
-    strokeWeight: 2,
-  });
-  path.setMap(map);
+    // polyline
+    let path = new google.maps.Polyline({
+      path: latlngs,
+      geodesic: true,
+      strokeColor: "#000000",
+      strokeOpacity: 1.0,
+      strokeWeight: 2,
+    });
+    path.setMap(map);
+  }
+
+  console.log(markers);
+
+  // marker 및 line 생성된 latlngs 삭제
+  if(markers.length == 2){
+    markers.shift();
+    latlngs.shift();
+  }
 }
-
-// @ To do
-let list = [];
-list.push(1);
-console.log(list);
-let test = list.top();
-console.log(test);
-console.log(list);
