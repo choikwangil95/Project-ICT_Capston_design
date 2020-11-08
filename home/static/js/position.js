@@ -13,6 +13,24 @@ function getLocation() {
           let result = res.data.results[0].formatted_address.slice(5);
           address.innerHTML = result;
       });
+      axios.defaults.xsrfCookieName = 'csrftoken'
+      axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
+
+      axios({
+        method:"POST",
+        url: 'now/',
+        data:{
+          "lngitudeValue" : lngitudeValue,
+          "latitudevalue" : latitudeValue
+        },
+      }).then(res => {
+        console.log(res.data)
+        alert("res has been caught");
+      })
+      .catch(error=>{
+        console.log(error);
+        alrert("connection has error");
+      })
 
       let currentPosition = new google.maps.LatLng(latitudeValue, lngitudeValue);
       let currentMarker = new google.maps.Marker({
