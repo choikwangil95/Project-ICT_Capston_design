@@ -1,5 +1,3 @@
-// let lngitudeValue = position.coords.longitude;
-// let latitudeValue = position.coords.latitude;
 let position = document.getElementsByClassName("button__position")[0];
 let address = document.getElementsByClassName("location__address")[0];
 position.addEventListener("click", getLocation, changeMap);
