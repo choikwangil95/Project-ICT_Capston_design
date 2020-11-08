@@ -1,8 +1,11 @@
+// let lngitudeValue = position.coords.longitude;
+// let latitudeValue = position.coords.latitude;
 let position = document.getElementsByClassName("button__position")[0];
 let address = document.getElementsByClassName("location__address")[0];
 position.addEventListener("click", getLocation, changeMap);
 
 function getLocation() {
+  
   if (navigator.geolocation) { // GPS를 지원하면
     navigator.geolocation.getCurrentPosition(function(position) {
       let lngitudeValue = position.coords.longitude;
@@ -21,11 +24,11 @@ function getLocation() {
         url: 'now/',
         data:{
           "lngitudeValue" : lngitudeValue,
-          "latitudevalue" : latitudeValue
+          "latitudeValue" : latitudeValue
         },
       }).then(res => {
         console.log(res.data)
-        alert("res has been caught");
+        alert("res request success");
       })
       .catch(error=>{
         console.log(error);
