@@ -1,7 +1,7 @@
 let start = document.getElementsByClassName("button__start")[0];
 let end = document.getElementsByClassName("button__end")[0];
 
-start.addEventListener("click", startwatch);
+start.addEventListener("click", checkBeforeStart);
 end.addEventListener("click", endwatch);
 let lngitudeValue;
 let latitudeValue;
@@ -10,6 +10,28 @@ var lastLng = firstlngitudeValue;
 var lastLat = firstlatitudeValue;
 var lastResult = result;
 var intervalobj;
+
+
+function checkBeforeStart() {
+    var empty = IsTitleEmpty();
+    if (!empty) {
+        startwatch();
+    }
+    else {
+        //제목 입력안했으면 
+    }
+
+}
+
+function IsTitleEmpty() {
+    var title = document.getElementById("title__input").value;
+    if (!title) {
+        alert("제목을 입력하세요!");
+        return false;
+    }
+    else return true;
+
+}
 
 function startwatch() {
     intervalobj = window.setInterval('watchLocation()', 10000);
