@@ -28,17 +28,37 @@ function watchLocation() {
                 .then((res) => {
                     result = res.data.results[0].formatted_address.slice(5);
                     console.log(res.data.results);
-                    if (lastResult != result) {
-                        lastResult = result;
-                        address.innerHTML = result;
-                        lat.innerHTML = latitudeValue;
-                        lng.innerHTML = lngitudeValue;
-                    }
-                });
-            // axios.post('http://127.0.0.1:8000/saveLocation/')
-            //     .then((res) => {
 
-            //     });
+                });
+
+            if (lastResult != result) {
+                lastResult = result;
+                address.innerHTML = lastResult;
+                lastLng = lngitudeValue;
+                lastLat = latitudeValue;
+                lat.innerHTML = lastLat;
+                lng.innerHTML = lastLng;
+
+                axios.defaults.xsrfCookieName = 'csrftoken'
+                axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
+
+                axios({
+                    method: "POST",
+                    url: 'now/',
+                    data: {
+                        "lngitudeValue": lastLng,
+                        "latitudeValue": lastLat
+                    },
+                }).then(res => {
+                    console.log(res.data)
+                    alert("res request success");
+                })
+                    .catch(error => {
+                        console.log(error);
+                        alrert("connection has error");
+                    })
+            }
+
 
         });
     }
@@ -47,19 +67,6 @@ function watchLocation() {
     }
 }
 
-
-// function changeMap() {
-//     map = new google.maps.Map(document.getElementById('map'), {
-//         zoom: 5,
-//         center: currentPosition,
-//     });
-
-//     new google.maps.Marker({
-//         position: currentPosition,
-//         map: map,
-//         label: "here"
-//     });
-// }
 
 function endwatch() {
     clearInterval(intervalobj);
