@@ -18,26 +18,6 @@ function getLocation() {
           address.innerHTML = result;
         });
 
-      axios.defaults.xsrfCookieName = 'csrftoken'
-      axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
-
-      axios({
-        method: "POST",
-        url: 'now/',
-        data: {
-          "lngitudeValue": firstlngitudeValue,
-          "latitudeValue": firstlatitudeValue
-        },
-      }).then(res => {
-        console.log(res.data)
-        alert("res request success");
-      })
-        .catch(error => {
-          console.log(error);
-          alrert("connection has error");
-        })
-
-
 
 
 
