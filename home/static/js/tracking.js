@@ -1,7 +1,6 @@
 let start = document.getElementsByClassName("button__start")[0];
 let end = document.getElementsByClassName("button__end")[0];
-var lat = document.getElementById("lat");
-var lng = document.getElementById("lng");
+
 start.addEventListener("click", startwatch);
 end.addEventListener("click", endwatch);
 let lngitudeValue;
@@ -36,8 +35,7 @@ function watchLocation() {
                 address.innerHTML = lastResult;
                 lastLng = lngitudeValue;
                 lastLat = latitudeValue;
-                lat.innerHTML = lastLat;
-                lng.innerHTML = lastLng;
+
 
                 axios.defaults.xsrfCookieName = 'csrftoken'
                 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
@@ -70,6 +68,5 @@ function watchLocation() {
 
 function endwatch() {
     clearInterval(intervalobj);
-    lng.innerHTML = "종료";
-    lat.innerHTML = "종료";
+
 }

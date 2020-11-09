@@ -21,46 +21,110 @@ header{
     align-items: center;
     justify-content: center;
     width: 100px;
-    height: 50px;
+    color: rgb(84,100,138);
+    font-weight: bold;
+  }
+
+  .title__img{
+    border: 1px solid black;
+    width: 30px;
+    height: 30px;
+  }
+  .new__route{
+    color: rgb(84,100,138);
+    font-weight: bold;
+    margin-left: 50px;
+    text-decoration:none;
+
+  }
+  .show__route{
+    color: rgb(84,100,138);
+    font-weight: bold;
+    margin-left: 50px;
+    text-decoration:none;
+
   }
 }
 
 .main{
   display: flex;
   justify-content: center;
-  margin: 10px 0;
+  background-image: linear-gradient(to right, #88a2c7, rgba(181, 214, 190, 0.92));
 
   &__container{
     display: flex;
     flex-direction: column;
+    margin-top: 20px;
+
+    .title{
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      height: 50px;
+
+      &__main{
+        width: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        color: rgb(84,100,138);
+
+
+      }
+
+      &__map{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        border: 3px solid rgb(84,100,138);
+        
+        border-radius: 10px;
+
+        #title__input{
+          margin:0px 10px;
+          width: 100%;
+          height: 90%;
+          border: 0px;
+          background-color:transparent;
+          color: rgb(84,100,138);
+        }
+      }
+    }
 
     .position{
       display: flex;
       justify-content: center;
-      width: 700px;
+      width: 100%;
       height: 50px;
 
       &__container{
         display: flex;
         align-items: center;
         flex-direction: row;
+        width: 100%;
 
         .location{
           display: flex;
           align-items: center;
           justify-content: center;
           flex-direction: row;
-          height: 30px;
-          border: 1px solid black;
+          height: 40px;
           margin-right: 10px;
-          width: 500px;
+          width: 100%;
+          background-color: rgb(84,100,138);
+          border-radius: 10px;
 
           &__address{
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 400px;
-            height: 30px;
+            width: 100%;
+            height: 100%;
+            color: white;
+            text-align: center;
+
           }
         }
       }
@@ -80,6 +144,7 @@ header{
       display: flex;
       justify-content: center;
       align-items: center;
+
     }
   }
 }
@@ -109,7 +174,9 @@ footer{
     width: 50px;
     height: 50px;
     border-radius: 50px;
-    border: 1px solid black;
+    margin-right: 40px;
+    background-color: rgb(84,100,138);
+    color: white;
   }
   &__end{
     display: flex;
@@ -117,7 +184,9 @@ footer{
     align-items: center;
     width: 50px;
     height: 50px;
+    margin-left: 40px;
     border-radius: 50px;
-    border: 1px solid black;
+    background-color: rgb(84,100,138);
+    color: white;
   }
 }
