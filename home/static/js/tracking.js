@@ -11,7 +11,6 @@ var lastLat = firstlatitudeValue;
 var lastResult = result;
 var intervalobj;
 
-
 function checkBeforeStart() {
     var empty = IsTitleEmpty();
     if (!empty) {
