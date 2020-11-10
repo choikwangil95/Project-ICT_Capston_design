@@ -14,11 +14,11 @@
 <body>
   <div class="container">
     <header>
-      <div class="title">
+      <div class="service">
         <h1>Trip Suffer</h1>
       </div>
-      <div class="title__img">
-        <img src="" alt="">
+      <div class="service__logo">
+        <img src="{% static 'img/logo.png' %}">
       </div>
       <a class="new__route" href="">새 여행 경로 생성</a>
       <a class="show__route" href="">여행 경로 목록</a>
@@ -41,7 +41,6 @@
         <div class="tracking">
           <button class="button__start"><h3>Start</h3></button>
           <button class="button__end"><h3>End</h3></button>
-          <button class="button__start">Start</button>
           <button class="button__test1">Test1</button>
           <button class="button__test2">Test2</button>
         </div>
@@ -52,8 +51,7 @@
   </footer>
   </div>
 </body>
-<script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDd4jvxbs2P8Ak0JooTliUo_4E3QrnTykk&callback=initMap&region=kr"></script>
+<script async defe src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDd4jvxbs2P8Ak0JooTliUo_4E3QrnTykk&callback=initMap&region=kr"></script>
 <script type="text/javascript" src="{% static 'js/map.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/position.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/tracking.js' %}"></script>

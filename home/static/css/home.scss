@@ -16,20 +16,26 @@ header{
   height: 50px;
   border-bottom: 1px solid $border-line;
 
-  .title{
+  .service{
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100px;
     color: rgb(84,100,138);
     font-weight: bold;
+    font-size: 25px;
+
+    &__logo{
+      width: 30px;
+      height: 30px;
+
+      img{
+        width: 30px;
+        height: 30px;
+      }
+    }
   }
 
-  .title__img{
-    border: 1px solid black;
-    width: 30px;
-    height: 30px;
-  }
   .new__route{
     color: rgb(84,100,138);
     font-weight: bold;
@@ -69,8 +75,6 @@ header{
         align-items: center;
         font-weight: bold;
         color: rgb(84,100,138);
-
-
       }
 
       &__map{
@@ -180,8 +184,17 @@ footer{
   }
   
   &__end{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: 1px solid black;
+    background-color: rgb(84,100,138);
+    color: white;
     margin-right: 25px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    margin-right: 40px;
   }
 
   &__test1 {
@@ -195,7 +208,6 @@ footer{
     background-color: rgb(84,100,138);
     color: white;
     border-radius: 50px;
-    border: 1px solid black;
     margin-right: 25px;
   }
 
@@ -206,6 +218,7 @@ footer{
     width: 50px;
     height: 50px;
     border-radius: 50px;
-    border: 1px solid black;
+    color: white;
+    background-color: rgb(84,100,138);
   }
 }

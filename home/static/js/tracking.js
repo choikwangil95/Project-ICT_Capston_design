@@ -1,8 +1,8 @@
 let start = document.getElementsByClassName("button__start")[0];
 let end = document.getElementsByClassName("button__end")[0];
-
 start.addEventListener("click", checkBeforeStart);
 end.addEventListener("click", endwatch);
+
 let lngitudeValue;
 let latitudeValue;
 var geoId;
@@ -19,7 +19,6 @@ function checkBeforeStart() {
     else {
         //제목 입력안했으면 
     }
-
 }
 
 function IsTitleEmpty() {
@@ -29,7 +28,6 @@ function IsTitleEmpty() {
         return false;
     }
     else return true;
-
 }
 
 function startwatch() {
@@ -48,7 +46,6 @@ function watchLocation() {
                 .then((res) => {
                     result = res.data.results[0].formatted_address.slice(5);
                     console.log(res.data.results);
-
                 });
 
             if (lastResult != result) {
@@ -56,7 +53,6 @@ function watchLocation() {
                 address.innerHTML = lastResult;
                 lastLng = lngitudeValue;
                 lastLat = latitudeValue;
-
 
                 axios.defaults.xsrfCookieName = 'csrftoken'
                 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
@@ -75,10 +71,8 @@ function watchLocation() {
                     .catch(error => {
                         console.log(error);
                         alrert("connection has error");
-                    })
+                })
             }
-
-
         });
     }
     else {

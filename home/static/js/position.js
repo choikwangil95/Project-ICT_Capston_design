@@ -4,7 +4,6 @@ let result;
 let firstlngitudeValue;
 let firstlatitudeValue;
 
-position.addEventListener("click", getLocation, changeMap);
 let testPosition1 = document.getElementsByClassName("button__test1")[0];
 let testPosition2 = document.getElementsByClassName("button__test2")[0];
 
@@ -36,13 +35,12 @@ function getLocation() {
     navigator.geolocation.getCurrentPosition(function(position) {
       firstlngitudeValue = position.coords.longitude;
       firstlatitudeValue = position.coords.latitude;
-      latlng = { lat: latitudeValue, lng: lngitudeValue };
+      latlng = { lat: firstlatitudeValue, lng: firstlngitudeValue };
       markersLength=markers.length;
-      console.log(markersLength);
 
-      getAddress(latitudeValue, lngitudeValue); // 도로명 주소 가져오기
+      getAddress(firstlatitudeValue, firstlngitudeValue); // 도로명 주소 가져오기
       initMarker.setMap(null);  // default marker 삭제
-      setMarker(latitudeValue, lngitudeValue, latlng ,markersLength);  // 현재 위치 마커 생성 및 지도에 등록
+      setMarker(firstlatitudeValue, firstlngitudeValue, latlng ,markersLength);  // 현재 위치 마커 생성 및 지도에 등록
     }, function(error) {
       console.error(error);
     }, {
@@ -57,12 +55,10 @@ function getLocation() {
     */
     alert('GPS를 지원하지 않습니다');
   }
-  console.log(markers);
 }
 
 // 마커 생성 및 지도에 등록
 function setMarker(lat, lng, latlng, num){
-
   // @To do 1
   // 위치 변경 시 이전 위치였던 0번째 index marker 삭제
   if(markers[0]!=null){
@@ -86,7 +82,6 @@ function setMarker(lat, lng, latlng, num){
     latlngs.push(latlng);
     markers[num].setMap(map);
   }
-  console.log(latlngs);
 }
 // 도로명 주소 가져오기
 function getAddress(lat, lng){
@@ -101,7 +96,6 @@ function getAddress(lat, lng){
 function paintLine1(){
   latlng = { lat: latitudeTest1, lng: lngitudeTest1 };
   markersLength=markers.length;
-  console.log(markersLength);
   getAddress(latitudeTest1, lngitudeTest1);
   setMarker(latitudeTest1, lngitudeTest1, latlng, markersLength);
 
@@ -112,17 +106,15 @@ function paintLine1(){
     strokeColor: "#000000",
     strokeOpacity: 1.0,
     strokeWeight: 1,
-    });
+  });
   path.setMap(map);
 
   // 출발 marker 및 line 생성된 latlngs 삭제
   markersLength=markers.length;
-  console.log(markersLength);
   if(markersLength==2){
     markers.shift();
     latlngs.shift();  
   }
-  console.log(latlngs);
 }
 
 function paintLine2() {
