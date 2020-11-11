@@ -3,8 +3,7 @@ let end = document.getElementsByClassName("button__end")[0];
 start.addEventListener("click", checkBeforeStart);
 end.addEventListener("click", endwatch);
 
-let lngitudeValue;  // 현재 위도
-let latitudeValue;  // 현재 경도
+let lngitudeValue, latitudeValue;  // 현재 위도, 경도
 var geoId; // ?
 var lastLng = firstlngitudeValue;   // 이전 경도
 var lastLat = firstlatitudeValue;   // 이전 위도
@@ -67,13 +66,13 @@ function startWatch() {
 function watchLocation() {
     if (lastResult != result) {
         lastResult = result;
-        address.innerHTML = result;
         getAddress(latitudeValue, lngitudeValue);
         postLatlng(latitudeValue, lngitudeValue);
         setMarker(latitudeValue, lngitudeValue);
         paintLine(latitudeValue, lngitudeValue);
     }
     latlngsLength=latlngs.length;
+    markersLength=markers.length;
 }
 
 function endwatch() {

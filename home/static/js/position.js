@@ -3,23 +3,10 @@ let address = document.getElementsByClassName("location__address")[0];
 let result; // 현재 위치
 let firstlngitudeValue;
 let firstlatitudeValue;
-
-let testPosition1 = document.getElementsByClassName("button__test1")[0];
-let testPosition2 = document.getElementsByClassName("button__test2")[0];
-
-// 테스트 위도, 경도
-let lngitudeTest1 = 127.046553; 
-let latitudeTest1 = 37.280003;
-let lngitudeTest2 = 127.043553;
-let latitudeTest2 = 37.289013;
-
 let markers=[]; 
 let latlngs=[];
-let markersLength;
-let latlngsLength;
-let latlng, addressResult;
-let path;
-let Position, Marker;
+let markersLength, latlngsLength;
+let latlng, path, Position, Marker;
 
 position.addEventListener("click", getLocation);
 
@@ -61,7 +48,6 @@ function getLocation() {
     alert('GPS를 지원하지 않습니다');
   }
 }
-
 // 마커 생성 및 지도에 등록
 function setMarker(lat, lng){
   // @To do 1
@@ -100,7 +86,6 @@ function getAddress(lat, lng){
     address.innerHTML = result;
   });
 }
-
 // 현재 위치 위도 경도 저장
 function postLatlng(lat, lng){
   // 403 Error를 위한 처리 
@@ -120,7 +105,6 @@ function postLatlng(lat, lng){
     console.log(error);
   })
 }
-
 // 현재 위치와 이동 위치의 선 그어주기
 function paintLine(lat, lng){
   latlng = { lat: lat, lng: lng };
