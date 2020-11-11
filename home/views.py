@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Gps
 import json
+from django.views.decorators.csrf import ensure_csrf_cookie
+@ensure_csrf_cookie
 
 def home(request):
     return render(request, 'home.html')
