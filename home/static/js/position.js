@@ -39,11 +39,14 @@ function getLocation() {
       firstlngitudeValue = position.coords.longitude;
       firstlatitudeValue = position.coords.latitude;
       latlng = { lat: firstlatitudeValue, lng: firstlngitudeValue };
+      console.log(latlng);
       markersLength=markers.length;
+      latlngsLength=latlngs.length;
+      console.log(markersLength);
       result = getAddress(firstlatitudeValue, firstlngitudeValue); // 도로명 주소 가져오기 
       address.innerHTML = result;
       initMarker.setMap(null);  // default marker 삭제
-      setMarker(firstlatitudeValue, firstlngitudeValue, markersLength);  // 현재 위치 마커 생성 및 지도에 등록
+      setMarker(firstlatitudeValue, firstlngitudeValue);  // 현재 위치 마커 생성 및 지도에 등록
       postLatlng(firstlatitudeValue, firstlngitudeValue)
     }, function(error) {
       console.error(error);
@@ -62,7 +65,7 @@ function getLocation() {
 }
 
 // 마커 생성 및 지도에 등록
-function setMarker(lat, lng, num){
+function setMarker(lat, lng){
   // @To do 1
   // 위치 변경 시 이전 위치였던 0번째 index marker 삭제
   if(markers[0]!=null){
@@ -81,12 +84,13 @@ function setMarker(lat, lng, num){
   map.setZoom(15);
   map.panTo(Position);
   // 현재 위치 marker가 있으면 marker 추가 X
-  if(markers[num]==null){
+  if(markers[1]==null){
     markers.push(Marker);
-    markers[num].setMap(map);
+    markers[1].setMap(map);
+    markers.shift();
   }
 
-  if(latlngs[num]==null){
+  if(latlngs[latlngsLength]==null){
     latlngs.push(latlng);
   }
 }
@@ -123,6 +127,7 @@ function postLatlng(lat, lng){
 // 현재 위치와 이동 위치의 선 그어주기
 function paintLine(lat, lng){
   latlng = { lat: lat, lng: lng };
+  latlngs.push(latlng);
   
   // draw polyline
   path = new google.maps.Polyline({
@@ -135,10 +140,8 @@ function paintLine(lat, lng){
   path.setMap(map);
 
   // 출발 marker 및 line 생성된 latlngs 삭제
-  markersLength=markers.length;
-  console.log(markersLength);
-  if(markersLength==2){
-    markers.shift();
+  latlngsLength=latlngsLength;
+  if(latlngsLength==2){
     latlngs.shift();  
   }
 }
