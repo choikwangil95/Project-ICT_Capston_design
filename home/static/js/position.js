@@ -16,7 +16,7 @@ let latitudeTest2 = 37.289013;
 let markers=[]; 
 let latlngs=[];
 let markersLength;
-let latlngsLenght;
+let latlngsLength;
 let latlng;
 let path;
 let Position, Marker;
@@ -40,8 +40,7 @@ function getLocation() {
       firstlatitudeValue = position.coords.latitude;
       latlng = { lat: firstlatitudeValue, lng: firstlngitudeValue };
       markersLength=markers.length;
-
-      getAddress(firstlatitudeValue, firstlngitudeValue); // 도로명 주소 가져오기
+      result = getAddress(firstlatitudeValue, firstlngitudeValue); // 도로명 주소 가져오기 
       address.innerHTML = result;
       initMarker.setMap(null);  // default marker 삭제
       setMarker(firstlatitudeValue, firstlngitudeValue, latlng ,markersLength);  // 현재 위치 마커 생성 및 지도에 등록
@@ -86,7 +85,7 @@ function setMarker(lat, lng){
     markers.push(Marker);
     markers[markersLength].setMap(map);
   }
-  latlngsLenght = latlngs.length;
+  latlngsLength = latlngs.length;
   if(latlngs[latlngsLength]==null){
     latlngs.push(latlng);
   }
@@ -97,6 +96,8 @@ function getAddress(lat, lng){
   .then((res) => {
     result = res.data.results[0].formatted_address.slice(5);
   });
+
+  return result;
 }
 
 // 현재 위치 위도 경도 저장
