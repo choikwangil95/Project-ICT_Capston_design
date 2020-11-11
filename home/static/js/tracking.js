@@ -38,7 +38,6 @@ function watchLocation() {
     navigator.geolocation.getCurrentPosition( function(position) {
         lngitudeValue = position.coords.longitude;
         latitudeValue = position.coords.latitude;
-        getAddress(latitudeValue, lngitudeValue);
     }, function(error) {
         console.error(error);
     }, {
@@ -49,6 +48,7 @@ function watchLocation() {
 
     if (lastResult != result) {
         lastResult = result;
+        getAddress(latitudeValue, lngitudeValue);
         setMarker(latitudeValue, lngitudeValue);
         paintLine(latitudeValue, lngitudeValue);    
         postLatlng(latitudeValue, lngitudeValue);
