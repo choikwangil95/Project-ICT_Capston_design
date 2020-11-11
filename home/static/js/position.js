@@ -66,8 +66,6 @@ function getLocation() {
 function setMarker(lat, lng){
   // @To do 1
   // 위치 변경 시 이전 위치였던 0번째 index marker 삭제
-  
-   
   if(markers[0]!=null){
     markers[0].setMap(null);
   }
@@ -88,7 +86,7 @@ function setMarker(lat, lng){
     markers.push(Marker);
     markers[markersLength].setMap(map);
   }
-
+  latlngsLenght = latlngs.length;
   if(latlngs[latlngsLength]==null){
     latlngs.push(latlng);
   }
