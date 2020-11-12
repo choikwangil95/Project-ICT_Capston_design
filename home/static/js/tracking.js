@@ -12,10 +12,10 @@ var intervalobj;
 let t=0;
 
 /* @To do
-* 1. 도로명 주소로 위치 변화 확인 시 위치 변화가 어떻게 일어나는지 확인
+* Test case 1) 도로명 주소로 위치 변화 확인 시 위치 변화가 어떻게 일어나는지 확인
 * Test0 -> 소수점 3번째 자리 변화에 따라 도로명 주소로 위치 변화 확인
 * 
-* 2. 위치 변화가 미세하게 일어날 때 지도에 선이 어떻게 그어지는지 확인
+* Test case 2) 위치 변화가 미세하게 일어날 때 지도에 선이 어떻게 그어지는지 확인
 * Test1, Test2 -> 변화가 미세하게 일어나도 선이 깔끔하게 표현됨
 */
 
@@ -51,12 +51,15 @@ function IsTitleEmpty() {
 }
 
 function test(){
-    latitudeValue = lat0[t];
-    lngitudeValue = lng0[t];
+    latitudeValue = lat1[t];
+    lngitudeValue = lng1[t];
     watchLocation();
     lastlng = lngitudeValue;
     lastLat = latitudeValue
     t++;
+    if(t==7){
+        clearInterval(intervalobj);
+    }
 }
 
 function startWatch() {
@@ -70,6 +73,7 @@ function watchLocation() {
         postLatlng(latitudeValue, lngitudeValue);
         setMarker(latitudeValue, lngitudeValue);
         paintLine(latitudeValue, lngitudeValue);
+
     }
     latlngsLength=latlngs.length;
     markersLength=markers.length;
