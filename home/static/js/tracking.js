@@ -73,7 +73,6 @@ function watchLocation() {
         postLatlng(latitudeValue, lngitudeValue);
         setMarker(latitudeValue, lngitudeValue);
         paintLine(latitudeValue, lngitudeValue);
-
     }
     latlngsLength=latlngs.length;
     markersLength=markers.length;
