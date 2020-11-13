@@ -12,7 +12,7 @@
 2 여행 종료 후에 서비스에 사진을 업로드 하게 되면 사진의 메타데이터를 추출하여<br/>
 3 여행 이동 경로가 선으로 나타난 지도 위에 사진이 찍힌 장소를 표시해준다.
 
-## 2 Teams
+## 2 Teams & Role
 - 규리 : Server & Database
 - 광일 : Ajax & E2E Test
 - 유림 : Ajax & GUI Test
