@@ -25,7 +25,7 @@
 - AWS EC2, RDS
 - PostgreDB
 
-## Branch Stratgy
+## Branch Strategy
 github flow에서 해당 프로젝트에 맞게 수정<br/>
 #### feature -> test -> predev - develop -> master
 - master : 배포용
