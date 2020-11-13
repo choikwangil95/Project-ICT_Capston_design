@@ -1,4 +1,4 @@
-# Trip Suffer
+# ICT Capston Design
 
 ## Objects
 #### 여행이 끝나고 남는 것은 사진 뿐이라는 말이 있다.
