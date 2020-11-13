@@ -27,12 +27,16 @@
 - [X] Release 1 : 실시간 이동 경로 트래킹 기능 개발 & 배포
   - [X] 1차 Sprint : google 지도에 현재 위치 표시
   - [X] 2차 Sprint : 실시간 이동 경로를 google 지도에 선으로 표시
+  
 <br/>
-- [] Release 2 : 사진 메타데이터 추출 및 지도 위에 사진 표시 & 배포
-  - [] 1차 sprint : 사진 메타데이터 추출 및 사진 업로드, DB 저장
-  - [] 2차 sprint : 지도 위에 사진 표시 및 사용성 Test
+
+- [ ] Release 2 : 사진 메타데이터 추출 및 지도 위에 사진 표시 & 배포<br/>
+  - [ ] 1차 sprint : 사진 메타데이터 추출 및 사진 업로드, DB 저장<br/>
+  - [ ] 2차 sprint : 지도 위에 사진 표시 및 사용성 Test<br/>
+  
 <br/>
-- [] Release 3 : 회원가입 및 로그인과 CRUD 기능 개발
-  - [] 1차 sprint
-  - [] 2차 sprint
-  - [] 사용자 시나리오를 통한 Test
+
+- [ ] Release 3 : 회원가입 및 로그인과 CRUD 기능 개발<br/>
+  - [ ] 1차 sprint<br/>
+  - [ ] 2차 sprint<br/>
+  - [ ] 사용자 시나리오를 통한 Test<br/>
