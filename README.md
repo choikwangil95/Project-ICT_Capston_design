@@ -14,8 +14,8 @@
 
 ## Teams
 규리 : Server & Database<br/>
-광일 : Ajax<br/>
-유림 : Ajax<br/>
+광일 : Ajax & E2E Test<br/>
+유림 : Ajax & GUI Test<br/>
 
 ## Tech Stack
 - Django
@@ -24,7 +24,15 @@
 - Google Maps API
 
 ## Progress
-- [X] Release 1
-  - [X] 1차 Sprint
-  - [X] 2차 Sprint
-- [X] 
+- [X] Release 1 : 실시간 이동 경로 트래킹 기능 개발 & 배포
+  - [X] 1차 Sprint : google 지도에 현재 위치 표시
+  - [X] 2차 Sprint : 실시간 이동 경로를 google 지도에 선으로 표시
+<br/>
+- [] Release 2 : 사진 메타데이터 추출 및 지도 위에 사진 표시 & 배포
+  - [] 1차 sprint : 사진 메타데이터 추출 및 사진 업로드, DB 저장
+  - [] 2차 sprint : 지도 위에 사진 표시 및 사용성 Test
+<br/>
+- [] Release 3 : 회원가입 및 로그인과 CRUD 기능 개발
+  - [] 1차 sprint
+  - [] 2차 sprint
+  - [] 사용자 시나리오를 통한 Test
