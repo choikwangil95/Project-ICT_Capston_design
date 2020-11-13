@@ -22,6 +22,8 @@
 - Javascript
 - Axios API
 - Google Maps API
+- AWS EC2, RDS
+- PostgreDB
 
 ## Progress
 - [X] Release 1 : 실시간 이동 경로 트래킹 기능 개발 & 배포
