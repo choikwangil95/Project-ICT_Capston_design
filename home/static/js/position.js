@@ -3,7 +3,6 @@ let address = document.getElementsByClassName("location__address")[0];
 let result; // 현재 위치
 let firstlngitudeValue;
 let firstlatitudeValue;
-let markers=[]; 
 let latlngs=[];
 let markersLength, latlngsLength;
 let latlng, path, Position, Marker;

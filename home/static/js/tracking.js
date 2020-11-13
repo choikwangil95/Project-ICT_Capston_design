@@ -51,8 +51,8 @@ function IsTitleEmpty() {
 }
 
 function test(){
-    latitudeValue = lat1[t];
-    lngitudeValue = lng1[t];
+    latitudeValue = lat0[t];
+    lngitudeValue = lng0[t];
     watchLocation();
     lastlng = lngitudeValue;
     lastLat = latitudeValue
