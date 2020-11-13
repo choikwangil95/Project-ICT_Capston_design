@@ -1,6 +1,6 @@
 # ICT Capston Design
 
-## Objects
+## 1 Objects
 #### 여행이 끝나고 남는 것은 사진 뿐이라는 말이 있다.
 실제로 여행중에 찍은 사진들은 여행이 끝나고 난 뒤, 무분별하게 사진첩에 저장된다.<br/>
 해당 문제를 해결해 주기위해 여행중 찍은 사진들이 언제, 어디서 찍었는지 한눈에 알아볼 수 있도록<br/>
@@ -12,12 +12,12 @@
 2 여행 종료 후에 서비스에 사진을 업로드 하게 되면 사진의 메타데이터를 추출하여<br/>
 3 여행 이동 경로가 선으로 나타난 지도 위에 사진이 찍힌 장소를 표시해준다.
 
-## Teams
+## 2 Teams
 규리 : Server & Database<br/>
 광일 : Ajax & E2E Test<br/>
 유림 : Ajax & GUI Test<br/>
 
-## Tech Stack
+## 3 Tech Stack
 - Django
 - Javascript
 - Axios API
@@ -25,7 +25,7 @@
 - AWS EC2, RDS
 - PostgreDB
 
-## Progress
+## 4 Progress
 - [X] Release 1 : 실시간 이동 경로 트래킹 기능 개발 & 배포
   - [X] 1차 Sprint : google 지도에 현재 위치 표시
   - [X] 2차 Sprint : 실시간 이동 경로를 google 지도에 선으로 표시
