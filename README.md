@@ -13,9 +13,9 @@
 3 여행 이동 경로가 선으로 나타난 지도 위에 사진이 찍힌 장소를 표시해준다.
 
 ## 2 Teams
-규리 : Server & Database<br/>
-광일 : Ajax & E2E Test<br/>
-유림 : Ajax & GUI Test<br/>
+- 규리 : Server & Database
+- 광일 : Ajax & E2E Test
+- 유림 : Ajax & GUI Test
 
 ## 3 Tech Stack
 - Django
