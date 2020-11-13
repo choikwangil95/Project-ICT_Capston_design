@@ -25,7 +25,7 @@
 - AWS EC2, RDS
 - PostgreDB
 
-## Branch Strategy
+## 4 Branch Strategy
 github flow에서 해당 프로젝트에 맞게 수정<br/>
 #### feature -> test -> predev - develop -> master
 - master : 배포용
@@ -34,7 +34,7 @@ github flow에서 해당 프로젝트에 맞게 수정<br/>
 - test : Test case를 통한 단위 기능의 통합테스트 코드
 - feature : 기능 개발 및 단위테스트 
 
-## 4 Progress
+## 5 Progress
 - [X] Release 1 : 실시간 이동 경로 트래킹 기능 개발 & 배포
   - [X] 1차 Sprint : google 지도에 현재 위치 표시
   - [X] 2차 Sprint : 실시간 이동 경로를 google 지도에 선으로 표시
