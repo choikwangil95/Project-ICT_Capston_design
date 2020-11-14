@@ -1,9 +1,3 @@
-const seoulLat = 37.5642135;
-const seoulLng = 127.0016985;
-let defaultPosition;
-let map;
-let initMarker;
-
 function initMap() {
   defaultPosition = new google.maps.LatLng(seoulLat, seoulLng);
 

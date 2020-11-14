@@ -1,14 +1,3 @@
-let position = document.getElementsByClassName("button__position")[0];
-let address = document.getElementsByClassName("location__address")[0];
-let result; // 현재 위치
-let firstlngitudeValue;
-let firstlatitudeValue;
-let latlngs=[];
-let markersLength, latlngsLength;
-let latlng, path, Position, Marker;
-
-position.addEventListener("click", getLocation);
-
 /* @To do
 * 1. 현재 위치만 마커 등록하고 위치 변경 시 해당 마커 삭제 (done)
 * 2. 현재 위치 마커는 custom 해서 변경  (done)
@@ -17,6 +6,7 @@ position.addEventListener("click", getLocation);
 * 5. 사용자가 실수로 GPS 위치 허용 거절 누르면 다시 허용할 수 있도록 해야 함 (have to do)
 */
 
+position.addEventListener("click", getLocation);
 // 현재 위치 Get
 function getLocation() {
   if (navigator.geolocation) { // GPS를 지원하면
@@ -26,6 +16,10 @@ function getLocation() {
       latlng = { lat: firstlatitudeValue, lng: firstlngitudeValue };
       markersLength=markers.length;
       latlngsLength=latlngs.length;
+
+      // Test 0 : 소수점 3번째 자리 변화 -> 위치 변화 인식 O
+      lat0 = [firstlatitudeValue+0.001, firstlatitudeValue+0.005, firstlatitudeValue+0.002, firstlatitudeValue+0.001, firstlatitudeValue+0.005, firstlatitudeValue+0.006, firstlatitudeValue+0.007, firstlatitudeValue+0.008];
+      lng0 = [firstlngitudeValue+0.01, firstlngitudeValue+0.015, firstlngitudeValue+0.02, firstlngitudeValue+0.025 ,firstlngitudeValue+0.03, firstlngitudeValue+0.035, firstlngitudeValue+0.04, firstlngitudeValue+0.045];
 
       addressResult = getAddress(firstlatitudeValue, firstlngitudeValue); // 도로명 주소 가져오기 
       address.innerHTML = addressResult;
