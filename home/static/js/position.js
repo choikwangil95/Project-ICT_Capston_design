@@ -6,9 +6,41 @@
 * 5. 사용자가 실수로 GPS 위치 허용 거절 누르면 다시 허용할 수 있도록 해야 함 (have to do)
 */
 
+// Event Add
 position.addEventListener("click", getLocation);
+
 // 현재 위치 Get
-function getLocation() {
+function getLocation(){
+  if (navigator.geolocation) { // GPS를 지원하면
+    navigator.geolocation.getCurrentPosition(function(position) {
+      firstlngitudeValue = position.coords.longitude;
+      firstlatitudeValue = position.coords.latitude;
+      latlng = { lat: firstlatitudeValue, lng: firstlngitudeValue };
+      addressResult = getAddress(firstlatitudeValue, firstlngitudeValue); // 도로명 주소 가져오기 
+      address.innerHTML = addressResult;
+      initMarker.setMap(null);  // default marker 삭제
+      setMarker(firstlatitudeValue, firstlngitudeValue);  // 현재 위치 마커 생성 및 지도에 등록
+    }, function(error) {
+      console.error(error);
+    }, {
+      enableHighAccuracy: false,
+      maximumAge: 0,
+      timeout: Infinity
+    });
+  } else {
+    /* @ To do
+    * 사용자가 실수로 GPS 위치 허용 거절 누르면
+    * 다시 허용할 수 있도록 해야 함
+    */
+    alert('GPS를 지원하지 않습니다');
+  }
+}
+
+// 현재 위치 Get & 저장
+/* @ To do
+* (Start Button이 눌리고~) popup창 확인을 누르면 현재 위치를 저장하고, 트래킹이 시작되도록 하기
+*/ 
+function saveLocation() {
   if (navigator.geolocation) { // GPS를 지원하면
     navigator.geolocation.getCurrentPosition(function(position) {
       firstlngitudeValue = position.coords.longitude;
@@ -23,7 +55,6 @@ function getLocation() {
 
       addressResult = getAddress(firstlatitudeValue, firstlngitudeValue); // 도로명 주소 가져오기 
       address.innerHTML = addressResult;
-      initMarker.setMap(null);  // default marker 삭제
       setMarker(firstlatitudeValue, firstlngitudeValue);  // 현재 위치 마커 생성 및 지도에 등록
       postLatlng(firstlatitudeValue, firstlngitudeValue)
     }, function(error) {
@@ -40,6 +71,27 @@ function getLocation() {
     */
     alert('GPS를 지원하지 않습니다');
   }
+}
+
+/* @ To do
+* 지도 생성 및 제목 저장 (새 여행 시작하기 버튼 누르게 되면~)
+*/
+function createMap(title){
+  // 403 Error를 위한 처리 
+  axios.defaults.xsrfCookieName = 'csrftoken';
+  axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+
+  axios({
+    method: "POST",
+    url: 'create_map/',
+    data: {
+      "title": title,
+    },
+  }).then(res => {
+    console.log(res.data)
+  }).catch(error => {
+    console.log(error);
+  })
 }
 // 마커 생성 및 지도에 등록
 function setMarker(lat, lng){
