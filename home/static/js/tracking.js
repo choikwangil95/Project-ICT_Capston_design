@@ -1,21 +1,9 @@
-/* @To do
-* Test case 1) 도로명 주소로 위치 변화 확인 시 위치 변화가 어떻게 일어나는지 확인
-* Test0 -> 소수점 3번째 자리 변화에 따라 도로명 주소로 위치 변화 확인
-* 
-* Test case 2) 위치 변화가 미세하게 일어날 때 지도에 선이 어떻게 그어지는지 확인
-* Test1, Test2 -> 변화가 미세하게 일어나도 선이 깔끔하게 표현됨
-*/
-// Test 1 : 소수점 4번째 자리 변화 -> 위치 변화 인식 X
-let lat1 = [37.280003, 37.280103, 37.280203, 37.280303, 37.280403, 37.280503, 37.280603, 37.280703];
-let lng1 = [127.046553, 127.046453, 127.046353, 127.046253 ,127.046153, 127.046253, 127.046353, 127.046453];
-
-// Test 2 : 소수점 5번째 자리 변화 -> 위치 변화 인식 X
-let lat2 = [37.280003, 37.280013, 37.280023, 37.280033, 37.280043, 37.280053, 37.280063, 37.280073];
-let lng2 = [127.046053, 127.046063, 127.046073, 127.046083 ,127.046093, 127.046003, 127.046013, 127.046023];
-
+testCase.addEventListener("click", checkBeforeStart);
 start.addEventListener("click", checkBeforeStart);
 end.addEventListener("click", endwatch);
+testDelete.addEventListener("click", deleteMap);
 
+// Test case
 function checkBeforeStart() {
     var empty = IsTitleEmpty();
     if (empty) {
@@ -65,4 +53,23 @@ function watchLocation() {
 
 function endwatch() {
     clearInterval(intervalobj);
+}
+
+/* @To do
+* 1 이동경로 종료 시 지도에 등록된 마커와 선 삭제하는 delete 함수
+* 2 DB에 저장된 위도 경도를 바탕으로 지도에 마커랑 선 표시하는 get함수
+*/
+
+function deleteMap(map_id){
+    
+    return axios.get(`delete/${map_id}`)
+        .then(
+            function(response){
+                console.log(response.data);
+            }
+        )
+}
+
+function getMap(){
+
 }
