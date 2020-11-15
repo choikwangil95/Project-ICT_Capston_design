@@ -16,17 +16,18 @@ def home(request):
 def create_map(request):
     if request.method == 'POST':
         data = json.loads(request.body.decode('utf-8'))
-        title = data['title']
+        name = data['title']
 
-    new_map = Map.objects.create()
-    new_map.name = title
-    map_id = new_map.pk
-    
-    data={
-        'map_id' : map_id 
-    }
+        new_map = Map.objects.create(
+            name = name,
+        )
+        map_id = new_map.pk
+        
+        data={
+            'map_id' : map_id 
+        }
 
-    return JsonResponse({'data':data})
+        return JsonResponse({'data':data})
 
 def save_now_geolocation(request):
     if request.method == 'POST':
@@ -34,13 +35,10 @@ def save_now_geolocation(request):
         latitude = data['latitudeValue']
         longitude = data['lngitudeValue']
         
-        
-
         gps = Gps.objects.create(
             latitude = latitude,
             longitude = longitude,
         )
-
         
         return HttpResponse('complete save')
 

@@ -38,7 +38,7 @@ function getLocation(){
 
 // 현재 위치 Get & 저장
 /* @ To do
-* (Start Button이 눌리고~) popup창 확인을 누르면 현재 위치를 저장하고, 트래킹이 시작되도록 하기
+* (Start Button이 눌리고, popup창 확인을 누르면~) 현재 위치를 저장하고, 트래킹이 시작되도록 하기
 */ 
 function saveLocation() {
   if (navigator.geolocation) { // GPS를 지원하면
@@ -73,26 +73,6 @@ function saveLocation() {
   }
 }
 
-/* @ To do
-* 지도 생성 및 제목 저장 (새 여행 시작하기 버튼 누르게 되면~)
-*/
-function createMap(title){
-  // 403 Error를 위한 처리 
-  axios.defaults.xsrfCookieName = 'csrftoken';
-  axios.defaults.xsrfHeaderName = 'X-CSRFToken';
-
-  axios({
-    method: "POST",
-    url: 'create_map/',
-    data: {
-      "title": title,
-    },
-  }).then(res => {
-    console.log(res.data)
-  }).catch(error => {
-    console.log(error);
-  })
-}
 // 마커 생성 및 지도에 등록
 function setMarker(lat, lng){
   // @To do 1
