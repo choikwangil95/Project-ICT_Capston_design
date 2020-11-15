@@ -1,7 +1,7 @@
+// Event Add
 testCase.addEventListener("click", confirmStart);
 start.addEventListener("click", checkBeforeStart);
 end.addEventListener("click", endwatch);
-testDelete.addEventListener("click", deleteMap);
 
 // Test case
 function checkBeforeStart() {
@@ -67,17 +67,3 @@ function confirmStart(){
 * 1 이동경로 종료 시 지도에 등록된 마커와 선 삭제하는 delete 함수
 * 2 DB에 저장된 위도 경도를 바탕으로 지도에 마커랑 선 표시하는 get함수
 */
-
-function deleteMap(map_id){
-    
-    return axios.get(`delete/${map_id}`)
-        .then(
-            function(response){
-                console.log(response.data);
-            }
-        )
-}
-
-function getMap(){
-
-}

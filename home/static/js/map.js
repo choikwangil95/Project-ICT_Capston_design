@@ -1,3 +1,4 @@
+// Event Add
 mapButton.addEventListener("click", confirmTitle);
 inputTitle.addEventListener("onkeyup", getTitle);
 
