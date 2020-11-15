@@ -3,25 +3,30 @@ start.addEventListener("click", checkBeforeStart);
 end.addEventListener("click", endwatch);
 testDelete.addEventListener("click", deleteMap);
 
+// Test 0 : 소수점 3번째 자리 변화 -> 위치 변화 인식 O
+lat0 = [37.280003, 37.281003, 37.282003, 37.283003, 37.284003, 37.285003, 37.286003, 37.287003];
+lng0 = [127.046553, 127.046553, 127.046553, 127.046553 ,127.046553, 127.046553, 127.046553, 127.046553];
+
 // Test case
 function checkBeforeStart() {
-    var empty = IsTitleEmpty();
-    if (empty) {
-        startWatch();
-    }
-    else {
-        //제목 입력안했으면 
-    }
+    // var empty = IsTitleEmpty();
+    // if (empty) {
+    //     startWatch();
+    // }
+    // else {
+    //     //제목 입력안했으면 
+    // }
+    startWatch();
 }
 
-function IsTitleEmpty() {
-    var title = document.getElementById("title__input").value;
-    if (!title) {
-        alert("제목을 입력하세요!");
-        return false;
-    }
-    else return true;
-}
+// function IsTitleEmpty() {
+//     var title = document.getElementById("title__input").value;
+//     if (!title) {
+//         alert("제목을 입력하세요!");
+//         return false;
+//     }
+//     else return true;
+// }
 
 function test(){
     latitudeValue = lat0[t];
@@ -53,6 +58,7 @@ function watchLocation() {
 }
 
 function endwatch() {
+    setEndMarker(latitudeValue, lngitudeValue);
     clearInterval(intervalobj);
 }
 

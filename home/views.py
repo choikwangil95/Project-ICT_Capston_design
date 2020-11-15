@@ -2,8 +2,10 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Gps, Map
 import json
+import math
 from django.http import JsonResponse
 from django.views.decorators.csrf import ensure_csrf_cookie
+from django.db.models import Max, Min
 @ensure_csrf_cookie
 
 def home(request):
@@ -50,6 +52,20 @@ def save_now_geolocation(request, map_id):
         )
         
         return HttpResponse('complete save')
+
+def set_zoom(request):
+    # if request.method == 'POST':
+    maxlat = Gps.objects.aggregate(Max('latitude'))
+    minlat = Gps.objects.aggregate(Min('latitude'))
+    maxlon = Gps.objects.aggregate(Max('longitude'))
+    minlon = Gps.objects.aggregate(Min('longitude'))
+    lat = list(maxlat.values())[0] - list(minlat.values())[0]
+    lon = list(maxlon.values())[0] - list(minlon.values())[0]
+    zoom_dec = max(lat,lon)
+    # zoom = 20 - round(round(zoom_dec/1128.497220)**(1/2)) -5
+    zoom = round(math.log(360)/zoom_dec/math.log(2))
+    print(zoom_dec)
+    return JsonResponse({'zoom':zoom})
 
 # To do
 # 새로운 여행 시작 및 여행 목록 클릭 시 지도에 표시된 마커와 선이 모두 지워져야 함

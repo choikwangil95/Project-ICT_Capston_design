@@ -44,12 +44,24 @@ function getLocation(){
 function setMarker(lat, lng){
   // @To do 1
   // 위치 변경 시 이전 위치였던 0번째 index marker 삭제
+
   if(markers[0]!=null){
     markers[0].setMap(null);
   }
 
   latlng = { lat: lat, lng: lng };
   Position = new google.maps.LatLng(lat, lng);
+
+  //start위치에서 start마커 추가
+  if(flag == 0){
+    startMarker = new google.maps.Marker({
+      position : Position,
+      icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
+    });
+    startMarker.setMap(map)
+    flag += 1
+  }
+
   Marker = new google.maps.Marker({
     position: Position,
     // @To do 2
@@ -70,6 +82,34 @@ function setMarker(lat, lng){
     latlngs.push(latlng);
   }
 }
+
+//End버튼 눌렀을 때 End marker 추가
+function setEndMarker(lat, lng){
+  latlng = { lat: lat, lng: lng };
+  Position = new google.maps.LatLng(lat, lng);
+  endMarker = new google.maps.Marker({
+    position : Position,
+    icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
+  });
+  endMarker.setMap(map)
+  setZoom()
+}
+
+//End 버튼 누르고 최종 지도 zoom 조절
+function setZoom(){
+  axios({
+    method: "GET",
+    url: `setzoom/`
+  }).then(function(res){
+    // map.setZoom(zoomint)
+    var data = res.data.zoom;
+    console.log(data)
+    map.setZoom(data)
+  }).catch(error => {
+    console.log(error);
+  })
+}
+
 // 도로명 주소 가져오기
 function getAddress(lat, lng){
   axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyDbM2ILxG_n0ScqaBRFcf40fCalno5QX90`)
