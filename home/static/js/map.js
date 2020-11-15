@@ -32,7 +32,7 @@ function getTitle(){
   cfTitle = inputTitle.value;
 }
 function setTitle(text){
-  mapSetTitle.innerText = `여행 제목 : ${text}`;
+  mapSetTitle.innerText = text;
   mapSetTitle.classList.add("setTitle--display");
   mapTitle.classList.remove("title--display");
 }
@@ -54,7 +54,7 @@ function createMap(title){
       "title": title,
     },
   }).then(res => {
-    console.log(res.data.data);
+    console.log(res);
     setTitle(title);
   }).catch(error => {
     console.log(error);

@@ -18,6 +18,7 @@ let markers=[];
 let markersLength, latlngsLength;
 let latlng, path, Position, Marker;
 let lat0, lng0;
+let mapGetTitle;
 
 // tracking.js
 let start = document.getElementsByClassName("button__start")[0];
@@ -31,6 +32,7 @@ var lastLat = firstlatitudeValue;   // 이전 위도
 var lastResult = result;            // 이전 위치
 var intervalobj;
 let t=0;
+let mapId;
 
 // toggles.js
 let newMap = document.getElementsByClassName("new__route")[0];

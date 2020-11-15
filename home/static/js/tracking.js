@@ -1,4 +1,4 @@
-testCase.addEventListener("click", checkBeforeStart);
+testCase.addEventListener("click", confirmStart);
 start.addEventListener("click", checkBeforeStart);
 end.addEventListener("click", endwatch);
 testDelete.addEventListener("click", deleteMap);
@@ -43,7 +43,8 @@ function watchLocation() {
     if (lastResult != result) {
         lastResult = result;
         getAddress(latitudeValue, lngitudeValue);
-        postLatlng(latitudeValue, lngitudeValue);
+        mapGetTitle = mapSetTitle.innerText
+        postLatlng(latitudeValue, lngitudeValue, mapGetTitle);
         setMarker(latitudeValue, lngitudeValue);
         paintLine(latitudeValue, lngitudeValue);
     }
@@ -53,6 +54,13 @@ function watchLocation() {
 
 function endwatch() {
     clearInterval(intervalobj);
+}
+
+function confirmStart(){
+    let cfStart = confirm('여행을 시작하시겠습니까 ?')
+    if(cfStart){
+        checkBeforeStart();
+    }
 }
 
 /* @To do

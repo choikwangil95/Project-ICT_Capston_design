@@ -15,6 +15,11 @@ function getLocation(){
     navigator.geolocation.getCurrentPosition(function(position) {
       firstlngitudeValue = position.coords.longitude;
       firstlatitudeValue = position.coords.latitude;
+
+      // Test 0 : 소수점 3번째 자리 변화 -> 위치 변화 인식 O
+      lat0 = [firstlatitudeValue+0.001, firstlatitudeValue+0.005, firstlatitudeValue+0.002, firstlatitudeValue+0.001, firstlatitudeValue+0.005, firstlatitudeValue+0.006, firstlatitudeValue+0.007, firstlatitudeValue+0.008];
+      lng0 = [firstlngitudeValue+0.01, firstlngitudeValue+0.015, firstlngitudeValue+0.02, firstlngitudeValue+0.025 ,firstlngitudeValue+0.03, firstlngitudeValue+0.035, firstlngitudeValue+0.04, firstlngitudeValue+0.045];
+
       latlng = { lat: firstlatitudeValue, lng: firstlngitudeValue };
       addressResult = getAddress(firstlatitudeValue, firstlngitudeValue); // 도로명 주소 가져오기 
       address.innerHTML = addressResult;
@@ -35,44 +40,6 @@ function getLocation(){
     alert('GPS를 지원하지 않습니다');
   }
 }
-
-// 현재 위치 Get & 저장
-/* @ To do
-* (Start Button이 눌리고, popup창 확인을 누르면~) 현재 위치를 저장하고, 트래킹이 시작되도록 하기
-*/ 
-function saveLocation() {
-  if (navigator.geolocation) { // GPS를 지원하면
-    navigator.geolocation.getCurrentPosition(function(position) {
-      firstlngitudeValue = position.coords.longitude;
-      firstlatitudeValue = position.coords.latitude;
-      latlng = { lat: firstlatitudeValue, lng: firstlngitudeValue };
-      markersLength=markers.length;
-      latlngsLength=latlngs.length;
-
-      // Test 0 : 소수점 3번째 자리 변화 -> 위치 변화 인식 O
-      lat0 = [firstlatitudeValue+0.001, firstlatitudeValue+0.005, firstlatitudeValue+0.002, firstlatitudeValue+0.001, firstlatitudeValue+0.005, firstlatitudeValue+0.006, firstlatitudeValue+0.007, firstlatitudeValue+0.008];
-      lng0 = [firstlngitudeValue+0.01, firstlngitudeValue+0.015, firstlngitudeValue+0.02, firstlngitudeValue+0.025 ,firstlngitudeValue+0.03, firstlngitudeValue+0.035, firstlngitudeValue+0.04, firstlngitudeValue+0.045];
-
-      addressResult = getAddress(firstlatitudeValue, firstlngitudeValue); // 도로명 주소 가져오기 
-      address.innerHTML = addressResult;
-      setMarker(firstlatitudeValue, firstlngitudeValue);  // 현재 위치 마커 생성 및 지도에 등록
-      postLatlng(firstlatitudeValue, firstlngitudeValue)
-    }, function(error) {
-      console.error(error);
-    }, {
-      enableHighAccuracy: false,
-      maximumAge: 0,
-      timeout: Infinity
-    });
-  } else {
-    /* @ To do
-    * 사용자가 실수로 GPS 위치 허용 거절 누르면
-    * 다시 허용할 수 있도록 해야 함
-    */
-    alert('GPS를 지원하지 않습니다');
-  }
-}
-
 // 마커 생성 및 지도에 등록
 function setMarker(lat, lng){
   // @To do 1
@@ -112,22 +79,23 @@ function getAddress(lat, lng){
   });
 }
 // 현재 위치 위도 경도 저장
-function postLatlng(lat, lng){
+function postLatlng(lat, lng, title){
   // 403 Error를 위한 처리 
   axios.defaults.xsrfCookieName = 'csrftoken';
   axios.defaults.xsrfHeaderName = 'X-CSRFToken';
-
-  axios({
-    method: "POST",
-    url: 'now/',
-    data: {
-      "lngitudeValue": lng,
-      "latitudeValue": lat
-    },
-  }).then(res => {
-    console.log(res.data)
-  }).catch(error => {
-    console.log(error);
+  mapId = getMapId(title).then(data=>{
+    axios({
+      method: "POST",
+      url: `now/${data}/`,
+      data: {
+        "lngitudeValue": lng,
+        "latitudeValue": lat
+      },
+    }).then(res => {
+      console.log(res.data)
+    }).catch(error => {
+      console.log(error);
+    })
   })
 }
 // 현재 위치와 이동 위치의 선 그어주기
@@ -150,4 +118,18 @@ function paintLine(lat, lng){
   if(latlngsLength==2){
     latlngs.shift();  
   }
+}
+// title에 해당하는 지도 id 가져오기
+function getMapId(title){
+  // 403 Error를 위한 처리 
+  axios.defaults.xsrfCookieName = 'csrftoken';
+  axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+  
+  return axios({
+    method: "GET",
+    url: `get_mapid/${title}/`,
+  }).then(function(response){
+    mapId = response.data.data.map_id
+    return response.data.data.map_id
+  })
 }
