@@ -61,11 +61,21 @@ def set_zoom(request):
     minlon = Gps.objects.aggregate(Min('longitude'))
     lat = list(maxlat.values())[0] - list(minlat.values())[0]
     lon = list(maxlon.values())[0] - list(minlon.values())[0]
-    zoom_dec = max(lat,lon)
-    # zoom = 20 - round(round(zoom_dec/1128.497220)**(1/2)) -5
-    zoom = round(math.log(360)/zoom_dec/math.log(2))
+    zoom_dec = max(lat*111195,lon*88804)
+    zoom = 20 - round(round(zoom_dec/1128.497220)**(1/2)) 
+    # zoom = round(math.log(360)/zoom_dec/math.log(2))
     print(zoom_dec)
-    return JsonResponse({'zoom':zoom})
+    return JsonResponse({'zoom':zoom,'maxlat':maxlat})
+
+def set_center(request):
+    maxlat = Gps.objects.aggregate(Max('latitude'))
+    minlat = Gps.objects.aggregate(Min('latitude'))
+    maxlon = Gps.objects.aggregate(Max('longitude'))
+    minlon = Gps.objects.aggregate(Min('longitude'))
+    middlelat = (list(maxlat.values())[0] + list(minlat.values())[0])
+    middlelon = (list(maxlon.values())[0] + list(minlon.values())[0])
+    print(middlelat/2,middlelon/2)
+    return JsonResponse({'middlelat':middlelat,'middlelon':middlelon})
 
 # To do
 # 새로운 여행 시작 및 여행 목록 클릭 시 지도에 표시된 마커와 선이 모두 지워져야 함
