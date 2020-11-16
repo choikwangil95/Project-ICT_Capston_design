@@ -8,4 +8,5 @@ urlpatterns = [
     path('now/<int:map_id>/', views.save_now_geolocation, name='nowloc'),
     path('delete/<int:map_id>/', views.delete_map, name='delmap'),
     path('get/<int:map_id>/', views.get_map, name='getmap'),
+    path('setzoom/<int:map_id>/',views.set_zoom,name='setzoom'),
 ]
