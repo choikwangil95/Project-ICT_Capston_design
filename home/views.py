@@ -53,18 +53,16 @@ def save_now_geolocation(request, map_id):
         
         return HttpResponse('complete save')
 
-def set_zoom(request):
-    # if request.method == 'POST':
-    maxlat = Gps.objects.aggregate(Max('latitude'))
+def set_zoom(request, map_id):
+    object_ = Map.objects.get(map_id=map_id)
+    print(object_)
+    maxlat = object_.aggregate(Max('latitude'))
     minlat = Gps.objects.aggregate(Min('latitude'))
     maxlon = Gps.objects.aggregate(Max('longitude'))
     minlon = Gps.objects.aggregate(Min('longitude'))
     lat = list(maxlat.values())[0] - list(minlat.values())[0]
     lon = list(maxlon.values())[0] - list(minlon.values())[0]
     zoom_dec = max(lat,lon)
-    # zoom_dec = max(lat*111195,lon*88804)
-    # zoom = 20 - round(round(zoom_dec/1128.497220)**(1/2)) 
-    # zoom = round(math.log(360)/zoom_dec/math.log(2))
     zoom = round(math.log(360 / zoom_dec)/math.log(2))
     # zoom = 15
 

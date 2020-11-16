@@ -16,7 +16,7 @@ function checkBeforeStart() {
     else {
         //제목 입력안했으면 
     }
-    startWatch();
+    // startWatch();
 }
 
 function IsTitleEmpty() {

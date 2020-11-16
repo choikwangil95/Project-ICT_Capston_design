@@ -92,25 +92,28 @@ function setEndMarker(lat, lng){
     icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
   });
   endMarker.setMap(map)
-  setZoom()
+  mapGetTitle = mapSetTitle.innerText
+  setZoom(mapGetTitle)
 }
 
 //End 버튼 누르고 최종 지도 zoom 조절
-function setZoom(){
-  axios({
-    method: "GET",
-    url: `setzoom/`
-  }).then(function(res){
-    var data = res.data.zoom;
-    console.log(res)
-    map.setZoom(data)
-    // Position = new google.maps.LatLng(lat, lng);
-    var middlelat = res.data.middlelat;
-    var middlelon = res.data.middlelon;
-    var location = new google.maps.LatLng(middlelat, middlelon);
-    map.setCenter(location);
-  }).catch(error => {
-    console.log(error);
+function setZoom(title){
+  mapId = getMapId(title).then(data=>{
+    axios({
+      method: "GET",
+      url: `setzoom/${data}/`
+    }).then(function(res){
+      var data = res.data.zoom;
+      console.log(res)
+      map.setZoom(data)
+      // Position = new google.maps.LatLng(lat, lng);
+      var middlelat = res.data.middlelat;
+      var middlelon = res.data.middlelon;
+      var location = new google.maps.LatLng(middlelat, middlelon);
+      map.setCenter(location);
+    }).catch(error => {
+      console.log(error);
+    })
   })
 }
 
@@ -172,7 +175,7 @@ function getMapId(title){
   
   return axios({
     method: "GET",
-    url: `get_mapid/${encodeURIComponent(title)}/`,
+    url: `get_mapid/${title}`,
   }).then(function(response){
     mapId = response.data.data.map_id
     return response.data.data.map_id
