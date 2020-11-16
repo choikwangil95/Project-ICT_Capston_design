@@ -1,0 +1,1 @@
+end.style.display = 'none';
