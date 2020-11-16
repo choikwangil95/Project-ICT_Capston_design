@@ -114,21 +114,6 @@ function setZoom(){
   })
 }
 
-// function setCenter(){
-//   axios({
-//     method: "GET",
-//     url: `setcenter/`
-//   }).then(function(res){
-//     // map.setZoom(zoomint)
-//     // var data = res.data.zoom;
-//     var middlelat = res.data.middlelat;
-//     var middlelon = res.data.middlelon;
-//     var location = new google.maps.LatLng(middlelat, middlelon);
-//     map.setCenter(location);
-//   }).catch(error => {
-//     console.log(error);
-//   })
-// }
 
 // 도로명 주소 가져오기
 function getAddress(lat, lng){
@@ -187,7 +172,7 @@ function getMapId(title){
   
   return axios({
     method: "GET",
-    url: `get_mapid/${title}/`,
+    url: `get_mapid/${encodeURIComponent(title)}/`,
   }).then(function(response){
     mapId = response.data.data.map_id
     return response.data.data.map_id

@@ -9,24 +9,24 @@ lng0 = [127.046553, 127.046553, 127.046553, 127.046553 ,127.046553, 127.046553, 
 
 // Test case
 function checkBeforeStart() {
-    // var empty = IsTitleEmpty();
-    // if (empty) {
-    //     startWatch();
-    // }
-    // else {
-    //     //제목 입력안했으면 
-    // }
+    var empty = IsTitleEmpty();
+    if (empty) {
+        startWatch();
+    }
+    else {
+        //제목 입력안했으면 
+    }
     startWatch();
 }
 
-// function IsTitleEmpty() {
-//     var title = document.getElementById("title__input").value;
-//     if (!title) {
-//         alert("제목을 입력하세요!");
-//         return false;
-//     }
-//     else return true;
-// }
+function IsTitleEmpty() {
+    var title = document.getElementById("title__input").value;
+    if (!title) {
+        alert("제목을 입력하세요!");
+        return false;
+    }
+    else return true;
+}
 
 function test(){
     latitudeValue = lat0[t];
