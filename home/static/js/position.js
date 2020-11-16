@@ -93,7 +93,6 @@ function setEndMarker(lat, lng){
   });
   endMarker.setMap(map)
   setZoom()
-  setCenter()
 }
 
 //End 버튼 누르고 최종 지도 zoom 조절
@@ -105,18 +104,7 @@ function setZoom(){
     var data = res.data.zoom;
     console.log(res)
     map.setZoom(data)
-  }).catch(error => {
-    console.log(error);
-  })
-}
-
-function setCenter(){
-  axios({
-    method: "GET",
-    url: `setcenter/`
-  }).then(function(res){
-    // map.setZoom(zoomint)
-    // var data = res.data.zoom;
+    // Position = new google.maps.LatLng(lat, lng);
     var middlelat = res.data.middlelat;
     var middlelon = res.data.middlelon;
     var location = new google.maps.LatLng(middlelat, middlelon);
@@ -125,6 +113,22 @@ function setCenter(){
     console.log(error);
   })
 }
+
+// function setCenter(){
+//   axios({
+//     method: "GET",
+//     url: `setcenter/`
+//   }).then(function(res){
+//     // map.setZoom(zoomint)
+//     // var data = res.data.zoom;
+//     var middlelat = res.data.middlelat;
+//     var middlelon = res.data.middlelon;
+//     var location = new google.maps.LatLng(middlelat, middlelon);
+//     map.setCenter(location);
+//   }).catch(error => {
+//     console.log(error);
+//   })
+// }
 
 // 도로명 주소 가져오기
 function getAddress(lat, lng){

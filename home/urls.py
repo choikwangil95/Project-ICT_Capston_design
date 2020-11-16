@@ -9,5 +9,5 @@ urlpatterns = [
     path('delete/<int:map_id>/', views.delete_map, name='delmap'),
     path('get/<int:map_id>/', views.get_map, name='getmap'),
     path('setzoom/',views.set_zoom,name='setzoom'),
-    path('setcenter/',views.set_center,name='setcenter'),
+    # path('setcenter/',views.set_center,name='setcenter'),
 ]
