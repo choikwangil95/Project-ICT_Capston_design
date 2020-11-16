@@ -3,6 +3,8 @@ testCase.addEventListener("click", confirmTest);
 function checkBeforeTest() {
   var empty = IsTitleTest();
   if (empty) {
+      testCase.style.display = 'none';
+      end.style.display = 'flex';
       startTest();
   }
   else {
@@ -18,7 +20,7 @@ function IsTitleTest() {
   else return true;
 }
 function startTest() {
-  intervalobj = setInterval(test, 1000);
+  testintervalobj = setInterval(test, 1000);
 }
 function test(){
   latitudeValue = lat0[t];
@@ -28,7 +30,7 @@ function test(){
   lastLat = latitudeValue
   t++;
   if(t==7){
-      clearInterval(intervalobj);
+    endTest();
   }
 }
 function watchTest() {
@@ -48,4 +50,14 @@ function confirmTest(){
   if(cfStart){
       checkBeforeTest();
   }
+}
+function endTest() {
+  setEndMarker(latitudeValue, lngitudeValue);
+  alertEndTest();
+}
+function alertEndTest() {
+  alert("Test를 종료합니다.");
+  testCase.style.display = 'flex';
+  end.style.display = 'none';
+  clearInterval(testintervalobj);
 }

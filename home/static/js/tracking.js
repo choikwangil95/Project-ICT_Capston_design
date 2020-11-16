@@ -1,5 +1,5 @@
 // Event Add
-start.addEventListener("click", checkBeforeStart);
+start.addEventListener("click", confirmStart);
 end.addEventListener("click", endwatch);
 
 function checkBeforeStart() {
