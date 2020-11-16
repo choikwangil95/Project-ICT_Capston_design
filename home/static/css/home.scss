@@ -63,37 +63,18 @@ header{
     margin-top: 20px;
 
     .title{
-      display: flex;
-      justify-content: center;
-      width: 100%;
-      height: 50px;
-
-      &__main{
-        width: 200px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-weight: bold;
-        color: rgb(84,100,138);
+      &__map{
+        display:none;
       }
 
-      &__map{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        border: 3px solid rgb(84,100,138);
-        
-        border-radius: 10px;
+      &__submit{
+        display:none;
+      }
+    }
 
-        #title__input{
-          margin:0px 10px;
-          width: 100%;
-          height: 90%;
-          border: 0px;
-          background-color:transparent;
-          color: rgb(84,100,138);
-        }
+    .title__get{
+      &__title{
+        display:none;
       }
     }
 
@@ -178,7 +159,7 @@ footer{
     width: 50px;
     height: 50px;
     border-radius: 50px;
-    margin-right: 40px;
+    margin-right: 20px;
     background-color: rgb(84,100,138);
     color: white;
   }
@@ -187,38 +168,36 @@ footer{
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid black;
     background-color: rgb(84,100,138);
     color: white;
     margin-right: 25px;
     width: 50px;
     height: 50px;
     border-radius: 50px;
-    margin-right: 40px;
+    margin-right: 20px;
   }
 
-  &__test1 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50px;
-    height: 50px;
-    margin-left: 40px;
-    border-radius: 50px;
-    background-color: rgb(84,100,138);
-    color: white;
-    border-radius: 50px;
-    margin-right: 25px;
-  }
-
-  &__test2 {
+  &__test {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 50px;
     height: 50px;
     border-radius: 50px;
-    color: white;
     background-color: rgb(84,100,138);
+    color: white;
+    border-radius: 50px;
+    margin-right: 20px;
+  }
+
+  &__delete {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    background-color: rgb(84,100,138);
+    color: white;
   }
 }
