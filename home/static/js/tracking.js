@@ -1,9 +1,7 @@
 // Event Add
-testCase.addEventListener("click", confirmStart);
 start.addEventListener("click", checkBeforeStart);
 end.addEventListener("click", endwatch);
 
-// Test case
 function checkBeforeStart() {
     var empty = IsTitleEmpty();
     if (empty) {
@@ -28,6 +26,19 @@ function watchLocation() {
     navigator.geolocation.getCurrentPosition( function(position) {
         lngitudeValue = position.coords.longitude;
         latitudeValue = position.coords.latitude;
+
+        if (lastResult != result) {
+            lastResult = result;
+            getAddress(latitudeValue, lngitudeValue);
+            mapGetTitle = mapSetTitle.innerText
+            postLatlng(latitudeValue, lngitudeValue, mapGetTitle);
+            setMarker(latitudeValue, lngitudeValue);
+            paintLine(latitudeValue, lngitudeValue);
+            latlngsLength=latlngs.length;
+            markersLength=markers.length;
+        }else{
+            console.log("위치가 같음");
+        }
     }, function(error) {
         console.error(error);
     }, {
@@ -35,17 +46,6 @@ function watchLocation() {
         maximumAge: 0,
         timeout: Infinity
     });
-
-    if (lastResult != result) {
-        lastResult = result;
-        getAddress(latitudeValue, lngitudeValue);
-        mapGetTitle = mapSetTitle.innerText
-        postLatlng(latitudeValue, lngitudeValue, mapGetTitle);
-        setMarker(latitudeValue, lngitudeValue);
-        paintLine(latitudeValue, lngitudeValue);
-    }
-    latlngsLength=latlngs.length;
-    markersLength=markers.length;
 }
 function endwatch() {
     clearInterval(intervalobj);
