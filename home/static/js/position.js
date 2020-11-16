@@ -1,15 +1,3 @@
-let position = document.getElementsByClassName("button__position")[0];
-let address = document.getElementsByClassName("location__address")[0];
-let result; // 현재 위치 도로명 주소
-let firstlngitudeValue; // 처음 위치 경도
-let firstlatitudeValue; // 처음 위치 위도
-let markers=[]; 
-let latlngs=[];
-let markersLength, latlngsLength;
-let latlng, path, Position, Marker;
-
-position.addEventListener("click", firstLocation);
-
 /* @To do
 * 1. 현재 위치만 마커 등록하고 위치 변경 시 해당 마커 삭제 (done)
 * 2. 현재 위치 마커는 custom 해서 변경  (done)
@@ -18,18 +6,25 @@ position.addEventListener("click", firstLocation);
 * 5. 사용자가 실수로 GPS 위치 허용 거절 누르면 다시 허용할 수 있도록 해야 함 (have to do)
 */
 
-// 처음 위치 get
-function firstLocation() {
+// Event Add
+position.addEventListener("click", getLocation);
+
+// 현재 위치 Get
+function getLocation(){
   if (navigator.geolocation) { // GPS를 지원하면
     navigator.geolocation.getCurrentPosition( function(position) {
       firstlngitudeValue = position.coords.longitude;
       firstlatitudeValue = position.coords.latitude;
-      markersLength=markers.length;
-      latlngsLength=latlngs.length;
-      getAddress(firstlatitudeValue, firstlngitudeValue); // 도로명 주소 가져오기 
+
+      // Test 0 : 소수점 3번째 자리 변화 -> 위치 변화 인식 O
+      lat0 = [firstlatitudeValue+0.001, firstlatitudeValue+0.005, firstlatitudeValue+0.002, firstlatitudeValue+0.001, firstlatitudeValue+0.005, firstlatitudeValue+0.006, firstlatitudeValue+0.007, firstlatitudeValue+0.008];
+      lng0 = [firstlngitudeValue+0.01, firstlngitudeValue+0.015, firstlngitudeValue+0.02, firstlngitudeValue+0.025 ,firstlngitudeValue+0.03, firstlngitudeValue+0.035, firstlngitudeValue+0.04, firstlngitudeValue+0.045];
+
+      latlng = { lat: firstlatitudeValue, lng: firstlngitudeValue };
+      addressResult = getAddress(firstlatitudeValue, firstlngitudeValue); // 도로명 주소 가져오기 
+      address.innerHTML = addressResult;
       initMarker.setMap(null);  // default marker 삭제
       setMarker(firstlatitudeValue, firstlngitudeValue);  // 현재 위치 마커 생성 및 지도에 등록
-      postLatlng(firstlatitudeValue, firstlngitudeValue)
     }, function(error) {
       console.error(error);
     }, {
@@ -82,26 +77,25 @@ function getAddress(lat, lng){
     result = res.data.results[0].formatted_address.slice(5);
     address.innerHTML = result;
   });
-
-  return result;
 }
 // 현재 위치 위도 경도 저장
-function postLatlng(lat, lng){
+function postLatlng(lat, lng, title){
   // 403 Error를 위한 처리 
   axios.defaults.xsrfCookieName = 'csrftoken';
   axios.defaults.xsrfHeaderName = 'X-CSRFToken';
-
-  axios({
-    method: "POST",
-    url: 'now/',
-    data: {
-      "lngitudeValue": lng,
-      "latitudeValue": lat
-    },
-  }).then(res => {
-    console.log(res.data)
-  }).catch(error => {
-    console.log(error);
+  mapId = getMapId(title).then(data=>{
+    axios({
+      method: "POST",
+      url: `now/${data}/`,
+      data: {
+        "lngitudeValue": lng,
+        "latitudeValue": lat
+      },
+    }).then(res => {
+      console.log(res.data)
+    }).catch(error => {
+      console.log(error);
+    })
   })
 }
 // 현재 위치와 이동 위치의 선 그어주기
@@ -124,4 +118,18 @@ function paintLine(lat, lng){
   if(latlngsLength==2){
     latlngs.shift();  
   }
+}
+// title에 해당하는 지도 id 가져오기
+function getMapId(title){
+  // 403 Error를 위한 처리 
+  axios.defaults.xsrfCookieName = 'csrftoken';
+  axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+  
+  return axios({
+    method: "GET",
+    url: `get_mapid/${title}/`,
+  }).then(function(response){
+    mapId = response.data.data.map_id
+    return response.data.data.map_id
+  })
 }

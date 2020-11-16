@@ -1,16 +1,9 @@
-let start = document.getElementsByClassName("button__start")[0];
-let end = document.getElementsByClassName("button__end")[0];
+// Event Add
+testCase.addEventListener("click", confirmStart);
 start.addEventListener("click", checkBeforeStart);
 end.addEventListener("click", endwatch);
 
-let lngitudeValue;  // 현재 경도
-let latitudeValue;  // 현재 위도
-var geoId;
-var lastLng = firstlngitudeValue;   // 이전 경도
-var lastLat = firstlatitudeValue;   // 이전 위도
-var lastResult = result;            // 이전 위치
-var intervalobj;
-
+// Test case
 function checkBeforeStart() {
     var empty = IsTitleEmpty();
     if (empty) {
@@ -30,33 +23,47 @@ function IsTitleEmpty() {
     else return true;
 }
 
+function test(){
+    latitudeValue = lat0[t];
+    lngitudeValue = lng0[t];
+    watchLocation();
+    lastlng = lngitudeValue;
+    lastLat = latitudeValue
+    t++;
+    if(t==7){
+        clearInterval(intervalobj);
+    }
+}
+
 function startWatch() {
     intervalobj = setInterval(watchLocation, 1000);
 }
 
 function watchLocation() {
-    navigator.geolocation.getCurrentPosition( function(position) {
-        lngitudeValue = position.coords.longitude;
-        latitudeValue = position.coords.latitude;
-    }, function(error) {
-        console.error(error);
-    }, {
-        enableHighAccuracy: false,
-        maximumAge: 0,
-        timeout: Infinity
-    });
-
     if (lastResult != result) {
         lastResult = result;
         getAddress(latitudeValue, lngitudeValue);
+        mapGetTitle = mapSetTitle.innerText
+        postLatlng(latitudeValue, lngitudeValue, mapGetTitle);
         setMarker(latitudeValue, lngitudeValue);
-        paintLine(latitudeValue, lngitudeValue);    
-        postLatlng(latitudeValue, lngitudeValue);
+        paintLine(latitudeValue, lngitudeValue);
     }
-    markersLength=markers.length;
     latlngsLength=latlngs.length;
+    markersLength=markers.length;
 }
 
 function endwatch() {
     clearInterval(intervalobj);
 }
+
+function confirmStart(){
+    let cfStart = confirm('여행을 시작하시겠습니까 ?')
+    if(cfStart){
+        checkBeforeStart();
+    }
+}
+
+/* @To do
+* 1 이동경로 종료 시 지도에 등록된 마커와 선 삭제하는 delete 함수
+* 2 DB에 저장된 위도 경도를 바탕으로 지도에 마커랑 선 표시하는 get함수
+*/

@@ -6,6 +6,7 @@
 <head>
   <meta charset="utf-8">
   <link href="{% sass_src 'css/home.scss' %}" rel="stylesheet" type="text/css" />
+  <link href="{% sass_src 'css/toggles.scss' %}" rel="stylesheet" type="text/css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <title>Home</title>
@@ -20,15 +21,16 @@
       <div class="service__logo">
         <img src="{% static 'img/logo.png' %}">
       </div>
-      <a class="new__route" href="">새 여행 경로 생성</a>
+      <div class="new__route">새 여행 경로 생성</div>
       <a class="show__route" href="">여행 경로 목록</a>
     </header>
     <div class="main">
       <div class="main__container">
         <div class="title">
-          <div class="title__main">새 여행 경로 생성</div>
-          <div class="title__map"><input id="title__input" type="text" placeholder="제목을 입력하세요."></div>
+          <div class="title__map"><input id="title__input" onkeyup="getTitle()" type="text" placeholder="여행 제목을 입력하세요"></div>
+          <div class="title__submit">저장</div>
         </div>
+        <div class="title__get"></div>
         <div class="position">
           <div class="position__container">
             <div class="location">
@@ -41,6 +43,8 @@
         <div class="tracking">
           <button class="button__start"><h3>Start</h3></button>
           <button class="button__end"><h3>End</h3></button>
+          <button class="button__test">Tracking Test</button>
+          <button class="button__delete" onclick="deleteCall('{{map_id}}')">Delete Test</button>
         </div>
       </div>
     </div>
@@ -49,9 +53,10 @@
   </footer>
   </div>
 </body>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDd4jvxbs2P8Ak0JooTliUo_4E3QrnTykk&callback=initMap&region=kr"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDd4jvxbs2P8Ak0JooTliUo_4E3QrnTykk&callback=initMap&region=kr" type="text/javascript"></script>
+<script type="text/javascript" src="{% static 'js/variables.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/map.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/toggles.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/position.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/tracking.js' %}"></script>
-
 </html>
