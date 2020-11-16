@@ -54,12 +54,11 @@ def save_now_geolocation(request, map_id):
         return HttpResponse('complete save')
 
 def set_zoom(request, map_id):
-    object_ = Map.objects.get(map_id=map_id)
-    print(object_)
-    maxlat = object_.aggregate(Max('latitude'))
-    minlat = Gps.objects.aggregate(Min('latitude'))
-    maxlon = Gps.objects.aggregate(Max('longitude'))
-    minlon = Gps.objects.aggregate(Min('longitude'))
+    # object_ = Gps.objects.all().filter(map_id = map_id).aggregate(Max('latitude'))
+    maxlat = Gps.objects.all().filter(map_id = map_id).aggregate(Max('latitude'))
+    minlat = Gps.objects.all().filter(map_id = map_id).aggregate(Min('latitude'))
+    maxlon = Gps.objects.all().filter(map_id = map_id).aggregate(Max('longitude'))
+    minlon = Gps.objects.all().filter(map_id = map_id).aggregate(Min('longitude'))
     lat = list(maxlat.values())[0] - list(minlat.values())[0]
     lon = list(maxlon.values())[0] - list(minlon.values())[0]
     zoom_dec = max(lat,lon)

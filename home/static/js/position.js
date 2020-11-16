@@ -175,7 +175,7 @@ function getMapId(title){
   
   return axios({
     method: "GET",
-    url: `get_mapid/${title}`,
+    url: `get_mapid/${title}/`,
   }).then(function(response){
     mapId = response.data.data.map_id
     return response.data.data.map_id
