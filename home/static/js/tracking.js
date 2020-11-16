@@ -13,7 +13,6 @@ function checkBeforeStart() {
         //제목 입력안했으면 
     }
 }
-
 function IsTitleEmpty() {
     var title = document.getElementById("title__input").value;
     if (!title) {
@@ -22,24 +21,21 @@ function IsTitleEmpty() {
     }
     else return true;
 }
-
-function test(){
-    latitudeValue = lat0[t];
-    lngitudeValue = lng0[t];
-    watchLocation();
-    lastlng = lngitudeValue;
-    lastLat = latitudeValue
-    t++;
-    if(t==7){
-        clearInterval(intervalobj);
-    }
-}
-
 function startWatch() {
     intervalobj = setInterval(watchLocation, 1000);
 }
-
 function watchLocation() {
+    navigator.geolocation.getCurrentPosition( function(position) {
+        lngitudeValue = position.coords.longitude;
+        latitudeValue = position.coords.latitude;
+    }, function(error) {
+        console.error(error);
+    }, {
+        enableHighAccuracy: false,
+        maximumAge: 0,
+        timeout: Infinity
+    });
+
     if (lastResult != result) {
         lastResult = result;
         getAddress(latitudeValue, lngitudeValue);
@@ -51,19 +47,12 @@ function watchLocation() {
     latlngsLength=latlngs.length;
     markersLength=markers.length;
 }
-
 function endwatch() {
     clearInterval(intervalobj);
 }
-
 function confirmStart(){
     let cfStart = confirm('여행을 시작하시겠습니까 ?')
     if(cfStart){
         checkBeforeStart();
     }
 }
-
-/* @To do
-* 1 이동경로 종료 시 지도에 등록된 마커와 선 삭제하는 delete 함수
-* 2 DB에 저장된 위도 경도를 바탕으로 지도에 마커랑 선 표시하는 get함수
-*/
