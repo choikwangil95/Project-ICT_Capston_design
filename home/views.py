@@ -68,7 +68,6 @@ def set_zoom(request, map_id):
     middlelat = (list(maxlat.values())[0] + list(minlat.values())[0])/2
     middlelon = (list(maxlon.values())[0] + list(minlon.values())[0])/2
    
-    print(zoom_dec,zoom,maxlat,minlat,maxlon,minlon,middlelat,middlelon)
     return JsonResponse({'zoom':zoom,'middlelat':middlelat,'middlelon':middlelon})
 
 

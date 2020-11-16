@@ -1,5 +1,4 @@
 // Event Add
-testCase.addEventListener("click", confirmStart);
 start.addEventListener("click", confirmStart);
 end.addEventListener("click", endwatch);
 
