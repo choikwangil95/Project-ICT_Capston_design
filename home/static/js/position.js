@@ -1,11 +1,3 @@
-/* @To do
-* 1. 현재 위치만 마커 등록하고 위치 변경 시 해당 마커 삭제 (done)
-* 2. 현재 위치 마커는 custom 해서 변경  (done)
-* 3. zoom은 출발 위치와 종료 위치 거리에 따라 조절 (규리, 유림)
-* 4. 현재 위치 marker는 start 버튼 누를 시 출발점이 된다 (gyuri)
-* 5. 사용자가 실수로 GPS 위치 허용 거절 누르면 다시 허용할 수 있도록 해야 함 (have to do)
-*/
-
 // Event Add
 position.addEventListener("click", getLocation);
 
@@ -127,7 +119,7 @@ function getMapId(title){
   
   return axios({
     method: "GET",
-    url: `get_mapid/${title}/`,
+    url: `get_mapid/${encodeURI(title,"UTF-8")}/`,
   }).then(function(response){
     mapId = response.data.data.map_id
     return response.data.data.map_id
