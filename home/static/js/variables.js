@@ -19,6 +19,7 @@ let markersLength, latlngsLength;
 let latlng, path, Position, Marker;
 let lat0, lng0;
 let mapGetTitle;
+let flag=0;
 
 // tracking.js
 let start = document.getElementsByClassName("button__start")[0];
