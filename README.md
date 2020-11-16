@@ -38,7 +38,6 @@ github flow에서 해당 프로젝트에 맞게 수정<br/>
 - [X] Release 1 : 실시간 이동 경로 트래킹 기능 개발 & 배포
   - [X] 1차 Sprint : google 지도에 현재 위치 표시
   - [X] 2차 Sprint : 실시간 이동 경로를 google 지도에 선으로 표시
-  ![image](https://user-images.githubusercontent.com/48672212/99239961-21336880-283f-11eb-9758-839924a1a452.png)
 
 <br/>
 
