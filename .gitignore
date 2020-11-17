@@ -4,6 +4,7 @@
 *.pyc
 __pycache__/
 /static
+static2
 db.sqlite3
 media
 myvenv

@@ -24,7 +24,7 @@ SECRET_KEY = 'yzc#sch5&!7m_wo6$yiq&j8%e$zoqat_c)n5ny(reskd+e-qyw'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -130,7 +130,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, '.static_root')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_deploy')
 
 SASS_PROCESSOR_ENABLED = True
 SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, 'static')
