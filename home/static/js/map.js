@@ -33,12 +33,14 @@ function getTitle(){
   cfTitle = inputTitle.value;
 }
 function setTitle(text){
-  mapSetTitle.innerText = text;
-  mapSetTitle.classList.add("setTitle--display");
+  mapSetTitle_p=document.createElement("p");
+  mapSetTitle_p.innerHTML = text;
+  mapSetTitle.appendChild(mapSetTitle_p);
+  getTitleName.classList.add("setTitle--display");
   mapTitle.classList.remove("title--display");
 }
 function confirmTitle(){
-  ctResult = confirm(`'${cfTitle}' 제목으로 지도 생성 할꺼야?`);
+  ctResult = confirm(`'${cfTitle}' 제목으로 지도 생성 하시겠습니까?`);
   if(ctResult){
     createMap(cfTitle);
   }

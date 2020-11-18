@@ -36,5 +36,6 @@ let mapId;
 // toggles.js
 let newMap = document.getElementsByClassName("new__route")[0];
 let mapTitle = document.getElementsByClassName("title")[0];
-let mapSetTitle = document.getElementsByClassName("title__get")[0];
+let getTitleName = document.getElementsByClassName("title__get")[0];
+let mapSetTitle = document.getElementsByClassName("settitle__set")[0];
 let mapButton = document.getElementsByClassName("title__submit")[0];
