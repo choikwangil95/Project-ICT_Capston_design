@@ -125,12 +125,11 @@ USE_TZ = True
 import os
 
 STATIC_URL = '/static/'
-ROOT_DIR = os.path.dirname(BASE_DIR)
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
-STATIC_ROOT = os.path.join(ROOT_DIR, 'static_deploy')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_deploy')
 
 SASS_PROCESSOR_ENABLED = True
 SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, 'static')
