@@ -32,6 +32,14 @@ header{
       img{
         width: 200px;
         height: 50px;
+
+        &:hover{
+          cursor: pointer;
+        }
+
+        &:active{
+          cursor: pointer;
+        }
       }
   
       &__logo{
@@ -45,6 +53,14 @@ header{
         img{
           width: 50px;
           height: 50px;
+
+          &:hover{
+            cursor: pointer;
+          }
+  
+          &:active{
+            cursor: pointer;
+          }
         }
       }
     }
@@ -68,8 +84,15 @@ header{
 
       p{
         &:hover{
-        z-index:99;
-        border-bottom: 2px solid rgb(92, 92, 122);
+          border-bottom: 2px solid rgb(92, 92, 122);
+          font-weight: bold;
+          cursor: pointer;
+        }
+
+        &:active{
+          border-bottom: 2px solid rgb(92, 92, 122);
+          font-weight: bold;
+          cursor: pointer;
         }
       }
     }
@@ -84,8 +107,15 @@ header{
 
       p{
         &:hover{
-        z-index:99;
-        border-bottom: 2px solid rgb(92, 92, 122);
+          border-bottom: 2px solid rgb(92, 92, 122);
+          font-weight: bold;
+          cursor: pointer;
+        }
+
+        &:active{
+          border-bottom: 2px solid rgb(92, 92, 122);
+          font-weight: bold;
+          cursor: pointer;
         }
       }
     }
@@ -212,6 +242,20 @@ footer{
       width: 30px;
       height: 30px;  
       margin-left: 70px;
+
+      &:hover{
+        width:35px;
+        height:35px;
+        transition-duration: 0.5s;
+        cursor: pointer;
+      }
+  
+      &:active{
+        width:35px;
+        height:35px;
+        transition-duration: 0.5s;
+        cursor: pointer;
+      }
     }
   }
   
@@ -226,6 +270,22 @@ footer{
     height: 50px;
     border-radius: 50px;
     margin-right: 20px;
+
+    &:hover{
+      width:60px;
+      height:60px;
+      transition-duration: 0.5s;
+      background-color: rgba(175, 26, 59, 0.8);
+      cursor: pointer;
+    }
+
+    &:active{
+      width:60px;
+      height:60px;
+      transition-duration: 0.5s;
+      background-color: rgba(175, 26, 59, 0.8);
+      cursor: pointer;
+    }
   }
 
   &__test {
@@ -238,6 +298,23 @@ footer{
     background-color: rgb(84,100,138);
     color: white;
     border-radius: 50px;
+    font-size: 16px;
+
+    &:hover{
+      width:60px;
+      height:60px;
+      transition-duration: 0.5s;
+      background-color: rgba(84,100,138, 0.8);
+      cursor: pointer;
+    }
+
+    &:active{
+      width:60px;
+      height:60px;
+      transition-duration: 0.5s;
+      background-color: rgba(84,100,138, 0.8);
+      cursor: pointer;
+    }
   }
 
   &__delete {
