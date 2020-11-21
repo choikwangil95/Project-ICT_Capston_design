@@ -1,0 +1,144 @@
+@import './setup/reset.scss';
+@import './setup/_variables.scss';
+
+.container{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+header{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 130px;
+  border-bottom: 1px solid $border-line;
+
+  .header__top{
+    height: 80px;
+    border-bottom: 1px solid $border-line;
+    display: flex;
+    flex-direction: row;
+    padding-left: 200px;
+
+    .service{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 200px;
+
+      img{
+        width: 200px;
+        height: 50px;
+
+        &:hover{
+          cursor: pointer;
+        }
+
+        &:active{
+          cursor: pointer;
+        }
+      }
+  
+      &__logo{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 80px;
+        margin-left: 20px;
+  
+        img{
+          width: 50px;
+          height: 50px;
+
+          &:hover{
+            cursor: pointer;
+          }
+  
+          &:active{
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+
+  .header__bottom{
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+    color: black;
+    padding-left: 190px;
+    padding-top: 5px;
+
+    .new__route{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 5px;
+      width: 150px;
+      height: 38px;
+
+      p{
+        &:hover{
+          border-bottom: 2px solid rgb(92, 92, 122);
+          font-weight: bold;
+          cursor: pointer;
+        }
+
+        &:active{
+          border-bottom: 2px solid rgb(92, 92, 122);
+          font-weight: bold;
+          cursor: pointer;
+        }
+      }
+    }
+    .show__route{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 5px;
+      width: 150px;
+      height: 40px;
+      text-decoration:none;
+
+      p{
+        &:hover{
+          border-bottom: 2px solid rgb(92, 92, 122);
+          font-weight: bold;
+          cursor: pointer;
+        }
+
+        &:active{
+          border-bottom: 2px solid rgb(92, 92, 122);
+          font-weight: bold;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+.main{
+  display: flex;
+  justify-content: center;
+  background-image: linear-gradient(to right, #88a2c7, rgba(181, 214, 190, 0.92));
+
+  &__container{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    }
+  
+    
+  
+}
+
+footer{
+  width: 100%;
+  height: 200px;
+  border-top: 1px solid $border-line;
+}

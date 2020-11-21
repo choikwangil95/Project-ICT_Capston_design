@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% load static %}
+{% load sass_tags %}
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link href="{% sass_src 'css/list.scss' %}" rel="stylesheet" type="text/css" />
+    <link href="{% sass_src 'css/toggles.scss' %}" rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Home</title>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="header__top">
+                <div class="service" onclick="location.href='/'"><img src="{% static 'img/name.png' %}"></div>
+                <div class="service__logo"><img src="{% static 'img/logo.png' %}"></div>
+            </div>
+            <div class="header__bottom">
+                <div class="new__route" onclick="location.href='/new_route/'">
+                    <p>새 여행 경로 생성</p>
+                </div>
+                <div class="show__route" onclick="location.href=''">
+                    <p>여행 경로 목록</p>
+                </div>
+            </div>
+        </header>
+        <div class="main">
+            <div class="main__container">
+
+            </div>
+        </div>
+    </div>
+    <footer>
+    </footer>
+    </div>
+</body>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDd4jvxbs2P8Ak0JooTliUo_4E3QrnTykk&callback=initMap&region=kr"
+    type="text/javascript"></script>
+<script type="text/javascript" src="{% static 'js/variables.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/init.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/map.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/position.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/tracking.js' %}"></script>
+
+</html>

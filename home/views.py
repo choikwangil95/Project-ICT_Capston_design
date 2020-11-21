@@ -92,3 +92,7 @@ def delete_map(request, map_id):
 
 def new_route(request):
     return render(request, 'newRoute.html')
+
+
+def show_list(request):
+    return render(request, 'travelList.html')

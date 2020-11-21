@@ -318,6 +318,32 @@ footer{
     background-color: rgb(84,100,138);
     color: white;
   }
+
+  &__upload__photo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    border-radius: 12px;
+    background-color: rgb(84,100,138);
+    color: white;
+    font-size: 16px;
+    padding: 0px 10px;
+    margin-right: 100px;
+  }
+
+  &__new__route{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    border-radius: 12px;
+    background-color: rgb(84,100,138);
+    color: white;
+    font-size: 16px;
+    padding: 0px 10px;
+    margin-left: 100px;
+  }
 }
 
 .settitle{
