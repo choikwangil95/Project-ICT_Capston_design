@@ -71,9 +71,11 @@ function confirmStart() {
 function confirmEnd() {
     let cfEnd = confirm("여행을 종료하시겠습니까?");
     if (cfEnd) {
-        start.style.display = 'flex';
-        end.style.display = 'none';
         clearInterval(intervalobj);
+        end.style.display = 'none';
+        uploadPhotoButton.style.display = 'flex';
+        newRouteButton.style.display = 'flex';
+
     }
 }
 /* @To do

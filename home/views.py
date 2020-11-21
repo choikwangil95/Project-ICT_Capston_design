@@ -6,8 +6,9 @@ import math
 from django.http import JsonResponse
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.db.models import Max, Min
-@ensure_csrf_cookie
 
+
+@ensure_csrf_cookie
 def home(request):
     return render(request, 'home.html')
 
@@ -15,15 +16,17 @@ def home(request):
 # 1 여행이 시작되는 지도 객체를 생성한 뒤, start전에 입력한 제목이 해당 지도 제목 칼럼에 저장 되어야 함
 # 2 해당 지도 pk에 해당하는 gps fk 에 위도, 경도들이 저장되도록 해야 함
 
+
 def get_map(request, map_title):
     name = map_title
     map_id = Map.objects.get(name=name).pk
 
-    data={
-        'map_id' : map_id 
+    data = {
+        'map_id': map_id
     }
 
-    return JsonResponse({'data':data})
+    return JsonResponse({'data': data})
+
 
 def create_map(request):
     if request.method == 'POST':
@@ -31,12 +34,13 @@ def create_map(request):
         name = data['title']
 
         new_map = Map.objects.create(
-            name = name,
+            name=name,
         )
 
-        data={}
+        data = {}
 
-        return JsonResponse({'data':data})
+        return JsonResponse({'data': data})
+
 
 def save_now_geolocation(request, map_id):
     if request.method == 'POST':
@@ -44,31 +48,32 @@ def save_now_geolocation(request, map_id):
         latitude = data['latitudeValue']
         longitude = data['lngitudeValue']
         set_map = Map.objects.get(pk=map_id)
-        
+
         gps = Gps.objects.create(
-            map_id = set_map,
-            latitude = latitude,
-            longitude = longitude,
+            map_id=set_map,
+            latitude=latitude,
+            longitude=longitude,
         )
-        
+
         return HttpResponse('complete save')
+
 
 def set_zoom(request, map_id):
     # object_ = Gps.objects.all().filter(map_id = map_id).aggregate(Max('latitude'))
-    maxlat = Gps.objects.all().filter(map_id = map_id).aggregate(Max('latitude'))
-    minlat = Gps.objects.all().filter(map_id = map_id).aggregate(Min('latitude'))
-    maxlon = Gps.objects.all().filter(map_id = map_id).aggregate(Max('longitude'))
-    minlon = Gps.objects.all().filter(map_id = map_id).aggregate(Min('longitude'))
+    maxlat = Gps.objects.all().filter(map_id=map_id).aggregate(Max('latitude'))
+    minlat = Gps.objects.all().filter(map_id=map_id).aggregate(Min('latitude'))
+    maxlon = Gps.objects.all().filter(map_id=map_id).aggregate(Max('longitude'))
+    minlon = Gps.objects.all().filter(map_id=map_id).aggregate(Min('longitude'))
     lat = list(maxlat.values())[0] - list(minlat.values())[0]
     lon = list(maxlon.values())[0] - list(minlon.values())[0]
-    zoom_dec = max(lat,lon)
+    zoom_dec = max(lat, lon)
     zoom = round(math.log(360 / zoom_dec)/math.log(2))
     # zoom = 15
 
     middlelat = (list(maxlat.values())[0] + list(minlat.values())[0])/2
     middlelon = (list(maxlon.values())[0] + list(minlon.values())[0])/2
-   
-    return JsonResponse({'zoom':zoom,'middlelat':middlelat,'middlelon':middlelon})
+
+    return JsonResponse({'zoom': zoom, 'middlelat': middlelat, 'middlelon': middlelon})
 
 
 # To do
@@ -77,9 +82,13 @@ def delete_map(request, map_id):
     get_map = Map.objects.get(pk=map_id)
     gps = get_map.gps
 
-    data={
-        'gps':gps,
+    data = {
+        'gps': gps,
     }
-    return JsonResponse({'data':data})
+    return JsonResponse({'data': data})
 
 # To do 특정 map_id에 해당하는 model에서 위도, 경도를 가져와서 마커와 선 표시해줘야 함
+
+
+def new_route(request):
+    return render(request, 'newRoute.html')
