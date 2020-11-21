@@ -96,7 +96,6 @@ def image(request, map_id):
                     map_id = set_map,
                     image = img,
                 )
-
                 image = Image.open(media_path+"\\"+str(img))
 
                 # 새로운 딕셔너리 생성

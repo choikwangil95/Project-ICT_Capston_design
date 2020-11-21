@@ -23,6 +23,6 @@ class Gps(models.Model):
 class Picture(models.Model):
   map_id = models.ForeignKey('Map', on_delete = models.SET_NULL, null = True)
   image = models.ImageField(blank=True)
-  latitude = models.FloatField(null = True)
-  longitude = models.FloatField(null = True)
+  latitude = models.FloatField(null=True)
+  longitude = models.FloatField(null=True)
   datetime = models.DateField(default = timezone.now)

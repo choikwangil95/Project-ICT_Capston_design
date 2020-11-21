@@ -23,17 +23,15 @@ function getImage(){
       let length = Object.keys(response.data.data).length;
       for (let i=0; i<length; i++){
         let data = response.data.data[i];
-        console.log(data);
-        // let icon = new google.maps.MarkerImage(
-        //   `media/${data.image}`,
-        //   new google.maps.Size(12, 20),
-        //   new google.maps.Point(0, 0),
-        //   new google.maps.Point(6, 20)
-        // )
-
+        let image = {
+          url: `media/${data.image}`,
+          size: new google.maps.Size(32, 32),
+          origin: new google.maps.Point(0, 0),
+          anchor: new google.maps.Point(0, 32),
+        }
         let imagePosition = new google.maps.LatLng(data.lat, data.lng);
         let imageMarker = new google.maps.Marker({
-          // icon: icon,
+          icon: image,
           position: imagePosition,
         })
         imageMarker.setMap(map);
