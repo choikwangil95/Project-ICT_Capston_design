@@ -136,27 +136,14 @@ header{
       z-index: 99;
       border: 0.1px solid $border-line;
       background-color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: row;
-      height: 40px;
-      margin-right: 10px;
-      width: 100%;
-      
-      &__name{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding-top: 8px;
-        font-size: 18px;
-        background-color: rgb(240, 240, 240);
-        width: 150px;
-        height: 41px;
-        border-right: 1px solid $border_line;
 
+
+
+      &__get{
+        &__title{
+          display:none;
+        }
       }
-
     }
 
     .position{
@@ -329,30 +316,6 @@ footer{
     border-radius: 50px;
     background-color: rgb(84,100,138);
     color: white;
-  }
-
-  &__upload__photo{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50px;
-    border-radius: 15px;
-    background-color: rgb(84,100,138);
-    color: white;
-    padding: 0px 10px;
-    margin-right: 100px;
-  }
-
-  &__new__route{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50px;
-    border-radius: 15px;
-    background-color: rgb(84,100,138);
-    color: white;
-    padding: 0px 10px;
-    margin-left: 100px;
   }
 }
 

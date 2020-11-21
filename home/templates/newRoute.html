@@ -16,7 +16,7 @@
     <div class="container">
         <header>
             <div class="header__top">
-                <div class="service"><img src="{% static 'img/name.png' %}"></div>
+                <div class="service" onclick="location.href='/'"><img src="{% static 'img/name.png' %}"></div>
                 <div class="service__logo"><img src="{% static 'img/logo.png' %}"></div>
             </div>
             <div class="header__bottom">
@@ -30,7 +30,7 @@
         </header>
         <div class="main">
             <div class="main__container">
-                <div class="title">
+                <div class="title title--display">
                     <div class="title__name">여행 제목</div>
                     <div class="title__map"><input id="title__input" onkeyup="getTitle()" type="text"
                             placeholder="여행 제목을 입력하세요">
@@ -79,6 +79,7 @@
 <script type="text/javascript" src="{% static 'js/variables.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/init.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/map.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/toggle.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/position.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/tracking.js' %}"></script>
 
