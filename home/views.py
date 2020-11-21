@@ -1,11 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Gps, Map
+from .models import Gps, Map, Picture
 import json
 import math
 from django.http import JsonResponse
 from django.views.decorators.csrf import ensure_csrf_cookie
+from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Max, Min
+from PIL import Image
+from PIL.ExifTags import TAGS
+from django.conf import settings
 @ensure_csrf_cookie
 
 def home(request):
@@ -54,7 +58,6 @@ def save_now_geolocation(request, map_id):
         return HttpResponse('complete save')
 
 def set_zoom(request, map_id):
-    # object_ = Gps.objects.all().filter(map_id = map_id).aggregate(Max('latitude'))
     maxlat = Gps.objects.all().filter(map_id = map_id).aggregate(Max('latitude'))
     minlat = Gps.objects.all().filter(map_id = map_id).aggregate(Min('latitude'))
     maxlon = Gps.objects.all().filter(map_id = map_id).aggregate(Max('longitude'))
@@ -73,13 +76,74 @@ def set_zoom(request, map_id):
 
 # To do
 # 새로운 여행 시작 및 여행 목록 클릭 시 지도에 표시된 마커와 선이 모두 지워져야 함
-def delete_map(request, map_id):
-    get_map = Map.objects.get(pk=map_id)
-    gps = get_map.gps
-
-    data={
-        'gps':gps,
-    }
-    return JsonResponse({'data':data})
 
 # To do 특정 map_id에 해당하는 model에서 위도, 경도를 가져와서 마커와 선 표시해줘야 함
+
+@csrf_exempt
+def image(request, map_id):
+    set_map = Map.objects.get(pk=map_id)
+    media_path = settings.MEDIA_ROOT
+
+    if request.method == 'POST':
+        images = request.FILES.getlist('image')
+
+        data={}
+
+        if images:
+            i=0
+            for img in images:
+                Picture.objects.create(
+                    map_id = set_map,
+                    image = img,
+                )
+
+                image = Image.open(media_path+"\\"+str(img))
+
+                # 새로운 딕셔너리 생성
+                taglabel = {}
+
+                info = image._getexif()
+                image.close()
+
+                for tag, value in info.items():
+                    decoded = TAGS.get(tag, tag)
+                    taglabel[decoded] = value
+        
+                exifGPS = taglabel['GPSInfo']
+                latData = exifGPS[2]
+                lonData = exifGPS[4]
+
+                # 도, 분, 초 계산
+                latDeg = latData[0]
+                latMin = latData[1]
+                latSec = latData[2]
+                lonDeg = lonData[0]
+                lonMin = lonData[1]
+                lonSec = lonData[2]
+
+                # 도 decimal로 나타내기
+                # 위도 계산
+                Lat = (latDeg + (latMin + latSec / 60.0) / 60.0)
+                # 북위, 남위인지를 판단, 남위일 경우 -로 변경
+                if exifGPS[1] == 'S': Lat = Lat * -1
+                # 경도 계산
+                Lon = (lonDeg + (lonMin + lonSec / 60.0) / 60.0)
+                # 동경, 서경인지를 판단, 서경일 경우 -로 변경
+                if exifGPS[3] == 'W': Lon = Lon * -1
+
+                pic = Picture.objects.get(image=img)
+                pic.latitude=Lat
+                pic.longitude=Lon
+                pic.save()
+
+                dataSet = {
+                    i:{
+                        'image' : str(img),
+                        'lat' : Lat,
+                        'lng' : Lon
+                    }
+                }
+                data.update(dataSet)
+                i=i+1
+                
+    return JsonResponse({'data':data})

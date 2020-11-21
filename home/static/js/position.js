@@ -84,7 +84,7 @@ function setEndMarker(lat, lng){
   });
   endMarker.setMap(map)
   mapGetTitle = mapSetTitle.innerText
-  setZoom(mapGetTitle)
+  setZoom(mapSetTitle_p.innerHTML)
 }
 //End 버튼 누르고 최종 지도 zoom 조절
 function setZoom(title){

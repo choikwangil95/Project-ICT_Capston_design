@@ -21,8 +21,8 @@ class Gps(models.Model):
   # def save(self, *args, **kwargs):
 
 class Picture(models.Model):
-  picture = models.ForeignKey('Map', on_delete = models.SET_NULL, null = True)
+  map_id = models.ForeignKey('Map', on_delete = models.SET_NULL, null = True)
   image = models.ImageField(blank=True)
-  latitude = models.FloatField()
-  longitude = models.FloatField()
+  latitude = models.FloatField(null = True)
+  longitude = models.FloatField(null = True)
   datetime = models.DateField(default = timezone.now)
