@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Gps, Map
+from .models import Gps, Map, Picture
 import json
 import math
 from django.http import JsonResponse
@@ -90,9 +90,17 @@ def delete_map(request, map_id):
 # To do 특정 map_id에 해당하는 model에서 위도, 경도를 가져와서 마커와 선 표시해줘야 함
 
 
+# 여행 목록에 사진, 날짜, 제목, 사람 이름 가져오기
+# 목록 클릭시 지도에 선, 마커 , 사진으로 나타내기
+
+# id : 71번 map으로 test
+
 def new_route(request):
+
     return render(request, 'newRoute.html')
 
 
 def show_list(request):
-    return render(request, 'travelList.html')
+    get_map = Map.objects.get(pk=71)
+    get_picture = Picture.objects.all().filter(map_id=71).first()
+    return render(request, 'travelList.html', {'get_map': get_map, 'get_picture': get_picture})

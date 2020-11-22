@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils import timezone
+from imagekit.models import ImageSpecField
+from imagekit.processors import ResizeToFill
 
 # Create your models here.
 
@@ -26,7 +28,9 @@ class Gps(models.Model):
 
 class Picture(models.Model):
     map_id = models.ForeignKey('Map', on_delete=models.SET_NULL, null=True)
-    image = models.ImageField(blank=True)
+    image = models.ImageField(blank=True, upload_to="picture/original")
+    image_thumbnail = ImageSpecField(
+        source='image', processors=[ResizeToFill(200, 130)], format='JPEG')
     latitude = models.FloatField(null=True)
     longitude = models.FloatField(null=True)
     datetime = models.DateField(default=timezone.now)

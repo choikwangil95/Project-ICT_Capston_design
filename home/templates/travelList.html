@@ -33,10 +33,12 @@
             <div class="main__container">
                 <div class="list__container">
                     <div class="list__component">
-                        <div class="travel__photo">사진</div>
-                        <div class="travel__date">날짜</div>
-                        <div class="travel__title">여행제목</div>
+
+                        <img class="travel__photo" src="{{get_picture.image_thumbnail.url}}">
+                        <div class="travel__date">{{get_map.datetime}}</div>
+                        <div class="travel__title">{{get_map.name}}</div>
                         <div class="travel__with">여행 참여자들</div>
+
                     </div>
                     <div class="list__component">
                         <div class="travel__photo">사진</div>
@@ -60,18 +62,11 @@
                 </div>
             </div>
         </div>
-    </div>
-    <footer>
-    </footer>
+        <footer>
+        </footer>
     </div>
 </body>
-<script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDd4jvxbs2P8Ak0JooTliUo_4E3QrnTykk&callback=initMap&region=kr"
-    type="text/javascript"></script>
+
 <script type="text/javascript" src="{% static 'js/variables.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/init.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/map.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/position.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/tracking.js' %}"></script>
 
 </html>
