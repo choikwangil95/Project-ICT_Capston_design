@@ -41,10 +41,10 @@ function startWatch() {
 }
 
 function watchLocation() {
+    getAddress(latitudeValue, lngitudeValue);
     if (lastResult != result) {
         lastResult = result;
-        getAddress(latitudeValue, lngitudeValue);
-        mapGetTitle = mapSetTitle.innerText
+        mapGetTitle = mapSetTitle.innerText;
         postLatlng(latitudeValue, lngitudeValue, mapGetTitle);
         setMarker(latitudeValue, lngitudeValue);
         paintLine(latitudeValue, lngitudeValue);

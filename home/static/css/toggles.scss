@@ -40,6 +40,27 @@
       cursor: pointer;
     }
   }
+  
+  .title__edit{
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-left: 1px solid $border_line;
+    font-weight: bold;
+    padding-top:8px;
+    height:42px;
+
+    &:hover{
+      background-color: rgb(240, 240, 240);
+      cursor: pointer;
+    }
+
+    &:active{
+      background-color: rgb(240, 240, 240);
+      cursor: pointer;
+    }
+  }
 
   .title__map{
     display: flex;

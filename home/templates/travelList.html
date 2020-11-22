@@ -32,12 +32,12 @@
         <div class="main">
             <div class="main__container">
                 <div class="list__container">
-                    <div class="list__component">
+                    <div class="list__component" onclick=location.href="{%url 'showmymap' map_id=get_map.pk %}">
 
                         <img class="travel__photo" src="{{get_picture.image_thumbnail.url}}">
-                        <div class="travel__date">{{get_map.datetime}}</div>
-                        <div class="travel__title">{{get_map.name}}</div>
-                        <div class="travel__with">여행 참여자들</div>
+                        <div class="travel__date"><label for="travel__date">여행 날짜 :</label>{{get_map.datetime}}</div>
+                        <div class="travel__title"><label for="travel__date">여행 제목 :</label>{{get_map.name}}</div>
+                        <div class="travel__with"><label for="travel__date">여행 참여자들 :</label></div>
 
                     </div>
                     <div class="list__component">

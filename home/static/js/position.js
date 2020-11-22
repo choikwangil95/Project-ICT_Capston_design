@@ -11,8 +11,8 @@ function getLocation() {
       console.log(firstlatitudeValue);
 
       // Test 0 : 소수점 3번째 자리 변화 -> 위치 변화 인식 O
-      lat0 = [firstlatitudeValue + 0.001, firstlatitudeValue + 0.005, firstlatitudeValue + 0.002, firstlatitudeValue + 0.001, firstlatitudeValue + 0.005, firstlatitudeValue + 0.006, firstlatitudeValue + 0.007, firstlatitudeValue + 0.008];
-      lng0 = [firstlngitudeValue + 0.01, firstlngitudeValue + 0.015, firstlngitudeValue + 0.02, firstlngitudeValue + 0.025, firstlngitudeValue + 0.03, firstlngitudeValue + 0.035, firstlngitudeValue + 0.04, firstlngitudeValue + 0.045];
+      lat0 = [firstlatitudeValue, firstlatitudeValue + 0.005, firstlatitudeValue + 0.002, firstlatitudeValue + 0.001, firstlatitudeValue + 0.005, firstlatitudeValue + 0.006, firstlatitudeValue + 0.007, firstlatitudeValue + 0.008];
+      lng0 = [firstlngitudeValue, firstlngitudeValue + 0.015, firstlngitudeValue + 0.02, firstlngitudeValue + 0.025, firstlngitudeValue + 0.03, firstlngitudeValue + 0.035, firstlngitudeValue + 0.04, firstlngitudeValue + 0.045];
 
       latlng = { lat: firstlatitudeValue, lng: firstlngitudeValue };
       addressResult = getAddress(firstlatitudeValue, firstlngitudeValue); // 도로명 주소 가져오기 
