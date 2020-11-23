@@ -135,27 +135,13 @@ header{
     margin-top: 20px;
 
     .title{
+      display: flex;
       z-index: 99;
       border: 0.1px solid $border-line;
       background-color: white;
 
-      &__name{
-        display:none;
-      }
 
-      &__map{
-        display:none;
-      }
 
-      &__submit{
-        display:none;
-      }
-
-      &__get{
-        &__title{
-          display:none;
-        }
-      }
     }
 
     .position{
@@ -321,6 +307,32 @@ footer{
 
   &__image{
     display: none;
+  }
+
+  &__upload__photo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    border-radius: 12px;
+    background-color: rgb(84,100,138);
+    color: white;
+    font-size: 16px;
+    padding: 0px 10px;
+    margin-right: 100px;
+  }
+
+  &__new__route{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    border-radius: 12px;
+    background-color: rgb(84,100,138);
+    color: white;
+    font-size: 16px;
+    padding: 0px 10px;
+    margin-left: 100px;
   }
 }
 

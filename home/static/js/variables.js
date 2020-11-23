@@ -1,3 +1,7 @@
+//init.js
+let uploadPhotoButton = document.getElementsByClassName("button__upload__photo")[0];
+let newRouteButton = document.getElementsByClassName("button__new__route")[0];
+
 // map.js
 const seoulLat = 37.5642135;
 const seoulLng = 127.0016985;
@@ -13,13 +17,13 @@ let address = document.getElementsByClassName("location__address")[0];
 let result; // 현재 위치
 let firstlngitudeValue;
 let firstlatitudeValue;
-let latlngs=[];
-let markers=[];
+let latlngs = [];
+let markers = [];
 let markersLength, latlngsLength;
 let latlng, path, Position, Marker;
 let lat0, lng0;
 let mapGetTitle;
-let flag=0;
+let flag = 0;
 
 // tracking.js
 let start = document.getElementsByClassName("button__test")[0];
@@ -30,7 +34,7 @@ var lastLng = firstlngitudeValue;   // 이전 경도
 var lastLat = firstlatitudeValue;   // 이전 위도
 var lastResult = result;            // 이전 위치
 var intervalobj;
-let t=0;
+let t = 0;
 let mapId;
 
 // toggles.js
