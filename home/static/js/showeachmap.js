@@ -15,5 +15,4 @@ function showEachMap() {
     }).catch(error => {
         console.log(error);
     })
-
 }
