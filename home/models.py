@@ -3,9 +3,6 @@ from django.utils import timezone
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill
 
-# Create your models here.
-
-
 class Map(models.Model):
     name = models.CharField(max_length=30)
     datetime = models.DateField(default=timezone.now)
@@ -16,7 +13,6 @@ class Map(models.Model):
     def __str__(self):
         return str(self.pk)
 
-
 class Gps(models.Model):
     map_id = models.ForeignKey('Map', on_delete=models.CASCADE, null=True)
     latitude = models.FloatField()
@@ -24,7 +20,6 @@ class Gps(models.Model):
     datetime = models.DateField(default=timezone.now)
 
     # def save(self, *args, **kwargs):
-
 
 class Picture(models.Model):
     map_id = models.ForeignKey('Map', on_delete=models.SET_NULL, null=True)
