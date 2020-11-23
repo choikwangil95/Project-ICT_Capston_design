@@ -10,7 +10,6 @@ from django.db.models import Max, Min
 from PIL import Image
 from PIL.ExifTags import TAGS
 from django.conf import settings
-import pyexiv2
 
 @ensure_csrf_cookie
 def home(request):
@@ -78,6 +77,7 @@ def set_zoom(request, map_id):
 
     return JsonResponse({'zoom': zoom, 'middlelat': middlelat, 'middlelon': middlelon})
 
+
 @csrf_exempt
 def image(request, map_id):
     set_map = Map.objects.get(pk=map_id)
@@ -98,16 +98,18 @@ def image(request, map_id):
                 )
                 pic = Picture.objects.get(image="origin/"+str(img))
 
-                basewidth = 50
+                basewidth = 64
                 get_img = Image.open(file_path)
+                dpi = get_img.info['dpi']
                 wpercent = (basewidth / float(get_img.size[0]))
                 hsize = int((float(get_img.size[1]) * float(wpercent)))
                 get_img = get_img.resize((basewidth, hsize), Image.ANTIALIAS)
-                get_img.save(media_path+"\\"+str(img)[0:-4]+"_resized.jpg")
+                get_img.save(media_path+"\\"+str(img)[0:-4]+"_resized.jpg", dpi=dpi)
 
-                Lat, Lon = extractData(img)
+                Lat, Lon = extractData(file_path)
                 pic.latitude=Lat
                 pic.longitude=Lon
+                pic.resized_image=str(img)[0:-4]+"_resized.jpg"
                 pic.save()
 
             maxlat = Gps.objects.all().filter(map_id = map_id).aggregate(Max('latitude'))
@@ -130,9 +132,9 @@ def image(request, map_id):
                 
     return JsonResponse({'data':data})
 
-def extractData(img):
-    media_path = settings.MEDIA_ROOT
-    image = Image.open(media_path+"\\origin\\"+str(img))
+
+def extractData(file_path):
+    image = Image.open(file_path)
     # 새로운 딕셔너리 생성
     taglabel = {}
 
@@ -166,6 +168,7 @@ def extractData(img):
     if exifGPS[3] == 'W': Lon = Lon * -1
 
     return Lat, Lon
+
 
 def new_route(request):
     return render(request, 'newRoute.html')

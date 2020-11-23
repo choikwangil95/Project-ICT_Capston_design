@@ -14,7 +14,6 @@ function checkBeforeStart() {
         //제목 입력안했으면 
     }
 }
-
 function IsTitleEmpty() {
     var title = document.getElementById("title__input").value;
     if (!title) {
@@ -23,21 +22,18 @@ function IsTitleEmpty() {
     }
     else return true;
 }
-
 function test() {
     latitudeValue = lat0[t];
     lngitudeValue = lng0[t];
     watchLocation(latitudeValue, lngitudeValue);
     t++;
-    if (t == 7) {
+    if (t == 15) {
         clearInterval(intervalobj);
     }
 }
-
 function startWatch() {
     intervalobj = setInterval(test, 100);
 }
-
 function watchLocation(lat, lng) {
     getAddress(lat, lng);
     if (lastResult != result) {
@@ -49,12 +45,10 @@ function watchLocation(lat, lng) {
         console.log("위치가 같음");
     }
 }
-
 function endwatch() {
     setEndMarker(latitudeValue, lngitudeValue);
     confirmEnd();
 }
-
 function confirmStart() {
     let cfStart = confirm('여행을 시작하시겠습니까 ?')
     if (cfStart) {

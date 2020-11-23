@@ -34,7 +34,7 @@ function getImage(){
         let data = response.data.data[i];
         let image = {
           url: `media/${data.image}`,
-          size: new google.maps.Size(50, 50),
+          size: new google.maps.Size(64, 64),
           origin: new google.maps.Point(0, 0),
           anchor: new google.maps.Point(0, 0),
         }
