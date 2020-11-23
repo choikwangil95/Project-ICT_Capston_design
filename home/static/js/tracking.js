@@ -35,7 +35,7 @@ function test() {
 }
 
 function startWatch() {
-    intervalobj = setInterval(test, 1000);
+    intervalobj = setInterval(test, 100);
 }
 
 function watchLocation(lat, lng) {

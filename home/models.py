@@ -23,7 +23,7 @@ class Gps(models.Model):
 
 class Picture(models.Model):
     map_id = models.ForeignKey('Map', on_delete=models.SET_NULL, null=True)
-    image = models.ImageField(blank=True)
+    image = models.ImageField(blank=True, upload_to="CACHE/images")
     image_thumbnail = ImageSpecField(
         source='image', processors=[ResizeToFill(200, 130)], format='JPEG', options = {'quality':95})
     mapImage_thumbnail = ImageSpecField(

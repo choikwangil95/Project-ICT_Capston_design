@@ -94,7 +94,7 @@ def image(request, map_id):
                     image = img,
                 )
                 Lat, Lon = extractData(img)
-                pic = Picture.objects.get(image=img)
+                pic = Picture.objects.get(image="CACHE/images/"+str(img))
                 pic.latitude=Lat
                 pic.longitude=Lon
                 pic.save()
@@ -105,11 +105,13 @@ def image(request, map_id):
             minlon = Gps.objects.all().filter(map_id = map_id).aggregate(Min('longitude'))
 
             for img in images:
+                resized_img = Picture.objects.get(image="CACHE/images/"+str(img)).mapImage_thumbnail
+                print(resized_img)
                 Lat, Lon = extractData(img)
                 if( Lat <= maxlat.get("latitude__max") and Lat >= minlat.get("latitude__min") and Lon <= maxlon.get("longitude__max") and Lon >= minlon.get("longitude__min")):
                     dataSet = {
                         i:{
-                            'image' : str(img),
+                            'image' : str(resized_img),
                             'lat' : Lat,
                             'lng' : Lon
                         }
@@ -120,8 +122,8 @@ def image(request, map_id):
     return JsonResponse({'data':data})
 
 def extractData(img):
-    media_path = settings.MEDIA_ROOT
-    image = Image.open(media_path+"\\"+str(img))
+    media_path = settings.MEDIA_ROOT+"\\CACHE\\images\\"
+    image = Image.open(media_path+str(img))
     # 새로운 딕셔너리 생성
     taglabel = {}
 
