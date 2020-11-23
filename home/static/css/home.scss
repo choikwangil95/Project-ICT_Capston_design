@@ -5,6 +5,7 @@
   width: 100%;
   height: 100%;
   display: flex;
+  position:relative;
   flex-direction: column;
   justify-content: center;
 }
@@ -125,6 +126,7 @@ header{
 .main{
   display: flex;
   justify-content: center;
+  align-items: center;
   background-image: linear-gradient(to right, #88a2c7, rgba(181, 214, 190, 0.92));
 
   &__container{
@@ -318,21 +320,7 @@ footer{
   }
 
   &__image{
-    padding: 6px 25px;
-    background-color:#FF6600;
-    border-radius: 4px;
-    color: white;
-    cursor: pointer;
-  }
-  &__delete {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50px;
-    height: 50px;
-    border-radius: 50px;
-    background-color: rgb(84,100,138);
-    color: white;
+    display: none;
   }
 }
 
@@ -346,3 +334,6 @@ footer{
   }
 }
 
+.image{
+  display:none;
+}

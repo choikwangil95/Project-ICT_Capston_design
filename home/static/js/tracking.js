@@ -58,8 +58,6 @@ function watchLocation() {
 function endwatch() {
     setEndMarker(latitudeValue, lngitudeValue);
     confirmEnd();
-
-
 }
 
 function confirmStart() {
@@ -73,10 +71,7 @@ function confirmEnd() {
     if (cfEnd) {
         start.style.display = 'flex';
         end.style.display = 'none';
+        imageFile.style.display = 'flex';
         clearInterval(intervalobj);
     }
 }
-/* @To do
-* 1 이동경로 종료 시 지도에 등록된 마커와 선 삭제하는 delete 함수
-* 2 DB에 저장된 위도 경도를 바탕으로 지도에 마커랑 선 표시하는 get함수
-*/

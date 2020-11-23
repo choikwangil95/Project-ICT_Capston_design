@@ -48,13 +48,12 @@ def save_now_geolocation(request, map_id):
         latitude = data['latitudeValue']
         longitude = data['lngitudeValue']
         set_map = Map.objects.get(pk=map_id)
-        
+
         gps = Gps.objects.create(
             map_id = set_map,
             latitude = latitude,
             longitude = longitude,
         )
-        
         return HttpResponse('complete save')
 
 def set_zoom(request, map_id):
@@ -73,20 +72,13 @@ def set_zoom(request, map_id):
    
     return JsonResponse({'zoom':zoom,'middlelat':middlelat,'middlelon':middlelon})
 
-
-# To do
-# 새로운 여행 시작 및 여행 목록 클릭 시 지도에 표시된 마커와 선이 모두 지워져야 함
-
-# To do 특정 map_id에 해당하는 model에서 위도, 경도를 가져와서 마커와 선 표시해줘야 함
-
 @csrf_exempt
 def image(request, map_id):
     set_map = Map.objects.get(pk=map_id)
-    media_path = settings.MEDIA_ROOT
 
     if request.method == 'POST':
         images = request.FILES.getlist('image')
-
+        
         data={}
 
         if images:
@@ -96,53 +88,65 @@ def image(request, map_id):
                     map_id = set_map,
                     image = img,
                 )
-                image = Image.open(media_path+"\\"+str(img))
-
-                # 새로운 딕셔너리 생성
-                taglabel = {}
-
-                info = image._getexif()
-                image.close()
-
-                for tag, value in info.items():
-                    decoded = TAGS.get(tag, tag)
-                    taglabel[decoded] = value
-        
-                exifGPS = taglabel['GPSInfo']
-                latData = exifGPS[2]
-                lonData = exifGPS[4]
-
-                # 도, 분, 초 계산
-                latDeg = latData[0]
-                latMin = latData[1]
-                latSec = latData[2]
-                lonDeg = lonData[0]
-                lonMin = lonData[1]
-                lonSec = lonData[2]
-
-                # 도 decimal로 나타내기
-                # 위도 계산
-                Lat = (latDeg + (latMin + latSec / 60.0) / 60.0)
-                # 북위, 남위인지를 판단, 남위일 경우 -로 변경
-                if exifGPS[1] == 'S': Lat = Lat * -1
-                # 경도 계산
-                Lon = (lonDeg + (lonMin + lonSec / 60.0) / 60.0)
-                # 동경, 서경인지를 판단, 서경일 경우 -로 변경
-                if exifGPS[3] == 'W': Lon = Lon * -1
-
+                Lat, Lon = extractData(img)
                 pic = Picture.objects.get(image=img)
                 pic.latitude=Lat
                 pic.longitude=Lon
                 pic.save()
 
-                dataSet = {
-                    i:{
-                        'image' : str(img),
-                        'lat' : Lat,
-                        'lng' : Lon
+            maxlat = Gps.objects.all().filter(map_id = map_id).aggregate(Max('latitude'))
+            minlat = Gps.objects.all().filter(map_id = map_id).aggregate(Min('latitude'))
+            maxlon = Gps.objects.all().filter(map_id = map_id).aggregate(Max('longitude'))
+            minlon = Gps.objects.all().filter(map_id = map_id).aggregate(Min('longitude'))
+
+            for img in images:
+                Lat, Lon = extractData(img)
+                if( Lat <= maxlat.get("latitude__max") and Lat >= minlat.get("latitude__min") and Lon <= maxlon.get("longitude__max") and Lon >= minlon.get("longitude__min")):
+                    dataSet = {
+                        i:{
+                            'image' : str(img),
+                            'lat' : Lat,
+                            'lng' : Lon
+                        }
                     }
-                }
-                data.update(dataSet)
-                i=i+1
+                    data.update(dataSet)
+                    i=i+1
                 
     return JsonResponse({'data':data})
+
+def extractData(img):
+    media_path = settings.MEDIA_ROOT
+    image = Image.open(media_path+"\\"+str(img))
+    # 새로운 딕셔너리 생성
+    taglabel = {}
+
+    info = image._getexif()
+    image.close()
+
+    for tag, value in info.items():
+        decoded = TAGS.get(tag, tag)
+        taglabel[decoded] = value
+
+    exifGPS = taglabel['GPSInfo']
+    latData = exifGPS[2]
+    lonData = exifGPS[4]
+
+    # 도, 분, 초 계산
+    latDeg = latData[0]
+    latMin = latData[1]
+    latSec = latData[2]
+    lonDeg = lonData[0]
+    lonMin = lonData[1]
+    lonSec = lonData[2]
+
+    # 도 decimal로 나타내기
+    # 위도 계산
+    Lat = (latDeg + (latMin + latSec / 60.0) / 60.0)
+    # 북위, 남위인지를 판단, 남위일 경우 -로 변경
+    if exifGPS[1] == 'S': Lat = Lat * -1
+    # 경도 계산
+    Lon = (lonDeg + (lonMin + lonSec / 60.0) / 60.0)
+    # 동경, 서경인지를 판단, 서경일 경우 -로 변경
+    if exifGPS[3] == 'W': Lon = Lon * -1
+
+    return Lat, Lon

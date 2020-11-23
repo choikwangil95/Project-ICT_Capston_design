@@ -40,3 +40,8 @@ let getTitleName = document.getElementsByClassName("title__get")[0];
 let mapSetTitle = document.getElementsByClassName("settitle__set")[0];
 let mapButton = document.getElementsByClassName("title__submit")[0];
 mapGetTitle = mapSetTitle.getElementsByTagName("p").innerHTML;
+let imageUploading = document.getElementsByClassName("image")[0];
+
+// image.js
+let imageFile = document.getElementsByClassName("button__image")[0];
+let imageState=-1;

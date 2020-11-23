@@ -1,12 +1,16 @@
 function getImage(){
   let formData = new FormData();
-  let imageFile = document.getElementsByClassName("image")[0];
   for(let i=0; i<imageFile.files.length; i++){
     formData.append('image', imageFile.files[i]);
   }
   formData.append('csrfmiddlewaretoken', '{{ csrf_token }}')
 
   mapId = getMapId(mapSetTitle_p.innerHTML).then(data=>{
+    imageState = 0;
+    console.log(imageState);
+    if(imageState==0){
+      imageUploading.classList.add("image--uploading");
+    }
     axios({
       method: "POST",
       url: `image/${data}/`,
@@ -19,6 +23,11 @@ function getImage(){
         'crossDomain' : true,
       }
     }).then((response) => {
+      imageState=1;
+      if(imageState==1){
+        imageUploading.classList.remove("image--uploading");
+      }
+      console.log(imageState);
       console.log(response.data);
       let length = Object.keys(response.data.data).length;
       for (let i=0; i<length; i++){
