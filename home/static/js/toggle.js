@@ -1,3 +1,3 @@
-if (mapSetTitle.classList.contains("setTitle--display")) {
-    mapSetTitle.classList.remove("setTitle--display");
-}
+// if (mapSetTitle.classList.contains("setTitle--display")) {
+//     mapSetTitle.classList.remove("setTitle--display");
+// }

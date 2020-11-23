@@ -40,9 +40,7 @@ function startWatch() {
 
 function watchLocation(lat, lng) {
     getAddress(lat, lng);
-    console.log(result);
     if (lastResult != result) {
-        lastResult = result;
         mapGetTitle = mapSetTitle.innerText;
         postLatlng(lat, lng, mapGetTitle);
         setMarker(lat, lng);

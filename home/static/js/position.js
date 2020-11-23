@@ -14,8 +14,6 @@ function getLocation() {
       latlng = { lat: firstlatitudeValue, lng: firstlngitudeValue };
       getAddress(firstlatitudeValue, firstlngitudeValue); // 도로명 주소 가져오기 
       mapGetTitle = mapSetTitle.innerText
-
-      console.log(lastResult);
       postLatlng(firstlatitudeValue, firstlngitudeValue, mapGetTitle);
       setMarker(firstlatitudeValue, firstlngitudeValue);  // 현재 위치 마커 생성 및 지도에 등록
     }, function (error) {
