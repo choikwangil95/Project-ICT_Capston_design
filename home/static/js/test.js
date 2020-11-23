@@ -20,7 +20,7 @@ function IsTitleTest() {
   else return true;
 }
 function startTest() {
-  testintervalobj = setInterval(test, 1000);
+  testintervalobj = setInterval(test, 100);
 }
 function test(){
   latitudeValue = lat0[t];
@@ -29,7 +29,7 @@ function test(){
   lastlng = lngitudeValue;
   lastLat = latitudeValue
   t++;
-  if(t==7){
+  if(t==15){
     endTest();
   }
 }
