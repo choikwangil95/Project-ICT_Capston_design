@@ -7,8 +7,6 @@ let cfTitle;
 let inputTitle = document.getElementById("title__input");
 
 // position.js
-let latlngs = [];
-let markers = [];
 let markersLength, latlngsLength;
 let path;
 let lat0, lng0;
@@ -19,10 +17,7 @@ let flag = 0;
 let start = document.getElementsByClassName("button__test")[0];
 let end = document.getElementsByClassName("button__end")[0];
 let lngitudeValue, latitudeValue;  // 현재 위도, 경도
-var geoId; // ?
-var lastLng = firstlngitudeValue;   // 이전 경도
-var lastLat = firstlatitudeValue;   // 이전 위도
-var lastResult = result;            // 이전 위치
+var lastResult;            // 이전 위치
 var intervalobj;
 let t = 0;
 let mapId;
@@ -30,10 +25,9 @@ let mapId;
 // toggles.js
 let newMap = document.getElementsByClassName("new__route")[0];
 let mapTitle = document.getElementsByClassName("title")[0];
-// let getTitleName = document.getElementsByClassName("title__get")[0];
+let getTitleName = document.getElementsByClassName("title__get")[0];
 let mapSetTitle = document.getElementsByClassName("settitle__set")[0];
 let mapButton = document.getElementsByClassName("title__submit")[0];
-// mapGetTitle = mapSetTitle.getElementsByTagName("p").innerHTML;
 let imageUploading = document.getElementsByClassName("image")[0];
 
 // image.js

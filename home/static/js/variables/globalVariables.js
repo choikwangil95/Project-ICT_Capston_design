@@ -12,3 +12,5 @@ let result; // 현재 위치
 let firstlngitudeValue;
 let firstlatitudeValue;
 let latlng, Position, Marker;
+let latlngs = [];
+let markers = [];

@@ -30,12 +30,23 @@ function getLocation() {
 function setMarker(lat, lng) {
   latlng = { lat: lat, lng: lng };
   Position = new google.maps.LatLng(lat, lng);
-
   Marker = new google.maps.Marker({
     position: Position,
     icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/library_maps.png",
   });
 
+  if (markers[0] != null) {
+    markers.shift();
+    markers.push(Marker);
+    markers[0].setMap(map);
+  }
+  if (markers[0] != null && Marker != markers[0]){
+    markers[0].setMap(null);
+    markers.shift();
+    markers.push(Marker);
+    markers[0].setMap(map);
+  }
+  console.log(markers);
   map.setZoom(15);
   map.panTo(Position);
 }

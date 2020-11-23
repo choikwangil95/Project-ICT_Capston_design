@@ -27,9 +27,7 @@ function IsTitleEmpty() {
 function test() {
     latitudeValue = lat0[t];
     lngitudeValue = lng0[t];
-    watchLocation();
-    lastlng = lngitudeValue;
-    lastLat = latitudeValue
+    watchLocation(latitudeValue, lngitudeValue);
     t++;
     if (t == 7) {
         clearInterval(intervalobj);
@@ -40,20 +38,19 @@ function startWatch() {
     intervalobj = setInterval(test, 1000);
 }
 
-function watchLocation() {
-    getAddress(latitudeValue, lngitudeValue);
+function watchLocation(lat, lng) {
+    getAddress(lat, lng);
+    console.log(result);
     if (lastResult != result) {
         lastResult = result;
         mapGetTitle = mapSetTitle.innerText;
-        postLatlng(latitudeValue, lngitudeValue, mapGetTitle);
-        setMarker(latitudeValue, lngitudeValue);
-        paintLine(latitudeValue, lngitudeValue);
+        postLatlng(lat, lng, mapGetTitle);
+        setMarker(lat, lng);
+        paintLine(lat, lng);
+    }else{
+        console.log("위치가 같음");
     }
-    latlngsLength = latlngs.length;
-    markersLength = markers.length;
 }
-
-
 
 function endwatch() {
     setEndMarker(latitudeValue, lngitudeValue);
@@ -71,9 +68,7 @@ function confirmEnd() {
     if (cfEnd) {
         clearInterval(intervalobj);
         end.style.display = 'none';
-        uploadPhotoButton.style.display = 'flex';
         imageFile.style.display = 'flex';
         newRouteButton.style.display = 'flex';
-
     }
 }

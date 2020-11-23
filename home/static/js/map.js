@@ -11,6 +11,7 @@ function initMap() {
     position: defaultPosition,
     label: "Default"
   });
+  markers.push(initMarker);
   initMarker.setMap(map);
 }
 initMap();
