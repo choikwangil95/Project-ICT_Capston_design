@@ -25,7 +25,6 @@
       </div>
     </header>
     <div class="main">
-      <div class="image"><p>여행 사진 업로드 중..</p></div>
       <div class="main__container">
         <div class="position">
           <div class="position__container">
@@ -37,14 +36,6 @@
           </div>
         </div>
         <div id="map"></div>
-        <div class="tracking">
-          <button class="button__test"><h3>Test</h3></button>
-          <button class="button__end"><h3>End</h3></button>
-          <form>
-            <input type="file" class="button__image" accept="image/*" multiple onchange="getImage()"/>
-          </form>
-          <button class="button__new__route"><h3>새로운 여행 생성하기</h3></button>
-        </div>
       </div>
     </div>
   </div>
@@ -55,10 +46,8 @@
 <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDd4jvxbs2P8Ak0JooTliUo_4E3QrnTykk&callback=initMap&region=kr"
   type="text/javascript"></script>
-<script type="text/javascript" src="{% static 'js/variables.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/init.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/variables/globalVariables.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/variables/homeVarialbles.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/map.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/position.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/tracking.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/image.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/getLocation.js' %}"></script>
 </html>

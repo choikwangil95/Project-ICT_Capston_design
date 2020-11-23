@@ -3,24 +3,14 @@ let uploadPhotoButton = document.getElementsByClassName("button__upload__photo")
 let newRouteButton = document.getElementsByClassName("button__new__route")[0];
 
 // map.js
-const seoulLat = 37.5642135;
-const seoulLng = 127.0016985;
-let defaultPosition;
-let map;
-let initMarker;
-let inputTitle = document.getElementById("title__input");
 let cfTitle;
+let inputTitle = document.getElementById("title__input");
 
 // position.js
-let position = document.getElementsByClassName("button__position")[0];
-let address = document.getElementsByClassName("location__address")[0];
-let result; // 현재 위치
-let firstlngitudeValue;
-let firstlatitudeValue;
 let latlngs = [];
 let markers = [];
 let markersLength, latlngsLength;
-let latlng, path, Position, Marker;
+let path;
 let lat0, lng0;
 let mapGetTitle;
 let flag = 0;
@@ -40,10 +30,10 @@ let mapId;
 // toggles.js
 let newMap = document.getElementsByClassName("new__route")[0];
 let mapTitle = document.getElementsByClassName("title")[0];
-let getTitleName = document.getElementsByClassName("title__get")[0];
+// let getTitleName = document.getElementsByClassName("title__get")[0];
 let mapSetTitle = document.getElementsByClassName("settitle__set")[0];
 let mapButton = document.getElementsByClassName("title__submit")[0];
-mapGetTitle = mapSetTitle.getElementsByTagName("p").innerHTML;
+// mapGetTitle = mapSetTitle.getElementsByTagName("p").innerHTML;
 let imageUploading = document.getElementsByClassName("image")[0];
 
 // image.js

@@ -155,3 +155,17 @@ def extractData(img):
     if exifGPS[3] == 'W': Lon = Lon * -1
 
     return Lat, Lon
+
+def new_route(request):
+    return render(request, 'newRoute.html')
+
+# def show_list(request):
+#     get_map = Map.objects.get(pk=71)
+#     get_picture = Picture.objects.all().filter(map_id=71).first()
+#     return render(request, 'travelList.html', {'get_map': get_map, 'get_picture': get_picture})
+
+
+# def show_my_map(request, map_id):
+#     get_map = Map.objects.get(pk=map_id)
+
+#     return render(request, 'mymap.html', {'get_map': get_map})

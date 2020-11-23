@@ -6,7 +6,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('', views.home, name='home'),
     path('new_route/image/<int:map_id>/', views.image, name="image"),
-    # path('new_route/', views.new_route, name='newroute'),
+    path('new_route/', views.new_route, name='newroute'),
     path('new_route/create_map/', views.create_map, name='createmap'),
     path('new_route/get_mapid/<slug:map_title>/', views.get_map, name='getmap'),
     path('new_route/now/<int:map_id>/',views.save_now_geolocation, name='nowloc'),

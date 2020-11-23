@@ -20,21 +20,16 @@
                 <div class="service__logo"><img src="{% static 'img/logo.png' %}"></div>
             </div>
             <div class="header__bottom">
-                <div class="new__route" onclick="location.href='/new_route/'">
-                    <p>새 여행 경로 생성</p>
-                </div>
-                <div class="show__route" onclick="location.href='/list/'">
-                    <p>여행 경로 목록</p>
-                </div>
+                <div class="new__route" onclick="location.href='/new_route/'"><p>새 여행 경로 생성</p></div>
+                <div class="show__route" onclick="location.href='/list/'"><p>여행 경로 목록</p></div>
             </div>
         </header>
         <div class="main">
+            <div class="image"><p>여행 사진 업로드 중..</p></div>
             <div class="main__container">
                 <div class="title title--display">
                     <div class="title__name">여행 제목</div>
-                    <div class="title__map"><input id="title__input" onkeyup="getTitle()" type="text"
-                            placeholder="여행 제목을 입력하세요">
-                    </div>
+                    <div class="title__map"><input id="title__input" onkeyup="getTitle()" type="text"placeholder="여행 제목을 입력하세요"></div>
                     <div class="title__submit">저장</div>
                 </div>
                 <div class="title__get">
@@ -52,19 +47,10 @@
                 </div>
                 <div id="map"></div>
                 <div class="tracking">
-                    <button class="button__test">
-                        <h3>Test</h3>
-                    </button>
-                    <button class="button__end">
-                        <h3>End</h3>
-                    </button>
-                    <button class="button__upload__photo">
-                        <h3>사진 업로드하기</h3>
-                    </button>
-                    <button class="button__new__route" onclick="location.href='/new_route/'">
-                        <h3>새로운 여행 생성하기</h3>
-                    </button>
-
+                    <button class="button__test"><h3>Test</h3></button>
+                    <button class="button__end"><h3>End</h3></button>
+                    <form><input type="file" class="button__image" accept="image/*" multiple onchange="getImage()"/></form>
+                    <button class="button__new__route" onclick="location.href='/new_route/'"><h3>새로운 여행 생성하기</h3></button>
                 </div>
             </div>
         </div>
@@ -76,11 +62,12 @@
 <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDd4jvxbs2P8Ak0JooTliUo_4E3QrnTykk&callback=initMap&region=kr"
     type="text/javascript"></script>
-<script type="text/javascript" src="{% static 'js/variables.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/variables/globalVariables.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/variables/routeVariables.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/init.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/map.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/title.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/toggle.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/position.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/tracking.js' %}"></script>
-
 </html>
