@@ -24,7 +24,7 @@ class Gps(models.Model):
 class Picture(models.Model):
     map_id = models.ForeignKey('Map', on_delete=models.SET_NULL, null=True)
     image = models.ImageField(blank=True, upload_to="origin")
-    resized_image = models.ImageField(blank=True, upload_to="resized")
+    resized_image = models.ImageField(blank=True)
     image_thumbnail = ImageSpecField(
         source='image', processors=[ResizeToFill(200, 130)], format='JPEG', options = {'quality':95})
     latitude = models.FloatField(null=True)

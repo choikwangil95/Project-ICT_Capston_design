@@ -25,7 +25,6 @@ function getLocation() {
     alert('GPS를 지원하지 않습니다');
   }
 }
-
 // 마커 생성 및 지도에 등록
 function setMarker(lat, lng) {
   latlng = { lat: lat, lng: lng };
@@ -46,11 +45,9 @@ function setMarker(lat, lng) {
     markers.push(Marker);
     markers[0].setMap(map);
   }
-  console.log(markers);
   map.setZoom(15);
   map.panTo(Position);
 }
-
 // 도로명 주소 가져오기
 function getAddress(lat, lng) {
   axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyDbM2ILxG_n0ScqaBRFcf40fCalno5QX90`)
