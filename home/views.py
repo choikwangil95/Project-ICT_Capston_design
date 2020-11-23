@@ -10,6 +10,7 @@ from django.db.models import Max, Min
 from PIL import Image
 from PIL.ExifTags import TAGS
 from django.conf import settings
+import pyexiv2
 
 @ensure_csrf_cookie
 def home(request):
@@ -83,18 +84,28 @@ def image(request, map_id):
 
     if request.method == 'POST':
         images = request.FILES.getlist('image')
-        
+        media_path = settings.MEDIA_ROOT
+
         data={}
 
         if images:
             i=0
             for img in images:
+                file_path = media_path+"\\origin\\"+str(img)
                 Picture.objects.create(
                     map_id = set_map,
                     image = img,
                 )
+                pic = Picture.objects.get(image="origin/"+str(img))
+
+                basewidth = 50
+                get_img = Image.open(file_path)
+                wpercent = (basewidth / float(get_img.size[0]))
+                hsize = int((float(get_img.size[1]) * float(wpercent)))
+                get_img = get_img.resize((basewidth, hsize), Image.ANTIALIAS)
+                get_img.save(media_path+"\\"+str(img)[0:-4]+"_resized.jpg")
+
                 Lat, Lon = extractData(img)
-                pic = Picture.objects.get(image="CACHE/images/"+str(img))
                 pic.latitude=Lat
                 pic.longitude=Lon
                 pic.save()
@@ -105,13 +116,11 @@ def image(request, map_id):
             minlon = Gps.objects.all().filter(map_id = map_id).aggregate(Min('longitude'))
 
             for img in images:
-                resized_img = Picture.objects.get(image="CACHE/images/"+str(img)).mapImage_thumbnail
-                print(resized_img)
                 Lat, Lon = extractData(img)
                 if( Lat <= maxlat.get("latitude__max") and Lat >= minlat.get("latitude__min") and Lon <= maxlon.get("longitude__max") and Lon >= minlon.get("longitude__min")):
                     dataSet = {
                         i:{
-                            'image' : str(resized_img),
+                            'image' : str(img)[0:-4]+"_resized.jpg",
                             'lat' : Lat,
                             'lng' : Lon
                         }
@@ -122,8 +131,8 @@ def image(request, map_id):
     return JsonResponse({'data':data})
 
 def extractData(img):
-    media_path = settings.MEDIA_ROOT+"\\CACHE\\images\\"
-    image = Image.open(media_path+str(img))
+    media_path = settings.MEDIA_ROOT
+    image = Image.open(media_path+"\\origin\\"+str(img))
     # 새로운 딕셔너리 생성
     taglabel = {}
 

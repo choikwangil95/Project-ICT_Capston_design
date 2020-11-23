@@ -13,4 +13,4 @@ rjsmin==1.1.0
 six==1.15.0
 sqlparse==0.3.1
 image==1.5.33
-
+pyexiv2==2.3.1

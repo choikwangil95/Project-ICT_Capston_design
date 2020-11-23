@@ -14,4 +14,4 @@ urlpatterns = [
     path('new_route/setzoom/<int:map_id>/', views.set_zoom, name='setzoom'),
     # path('list/', views.show_list, name='showlist'),
     # path('show_my_map/<int:map_id>', views.show_my_map, name='showmymap'),
-]+static("new_route\\CACHE\\images\\"+settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]+static("new_route"+settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
