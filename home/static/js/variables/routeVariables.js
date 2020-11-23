@@ -14,7 +14,8 @@ let mapGetTitle;
 let flag = 0;
 
 // tracking.js
-let start = document.getElementsByClassName("button__test")[0];
+let start = document.getElementsByClassName("button__start")[0];
+let testCase = document.getElementsByClassName("button__test")[0];
 let end = document.getElementsByClassName("button__end")[0];
 let lngitudeValue, latitudeValue;  // 현재 위도, 경도
 var lastResult = result;            // 이전 위치

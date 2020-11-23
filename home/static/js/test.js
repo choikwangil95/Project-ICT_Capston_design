@@ -34,9 +34,9 @@ function test(){
   }
 }
 function watchTest() {
+  getAddress(latitudeValue, lngitudeValue);
   if (lastResult != result) {
       lastResult = result;
-      getAddress(latitudeValue, lngitudeValue);
       mapGetTitle = mapSetTitle.innerText
       postLatlng(latitudeValue, lngitudeValue, mapGetTitle);
       setMarker(latitudeValue, lngitudeValue);
@@ -59,5 +59,7 @@ function alertEndTest() {
   alert("Test를 종료합니다.");
   testCase.style.display = 'flex';
   end.style.display = 'none';
+  imageFile.style.display = 'flex';
+  newRouteButton.style.display = 'flex';
   clearInterval(testintervalobj);
 }
