@@ -7,7 +7,6 @@ let cfTitle;
 let inputTitle = document.getElementById("title__input");
 
 // position.js
-let markersLength, latlngsLength;
 let path;
 let lat0, lng0;
 let mapGetTitle;
@@ -26,8 +25,4 @@ let mapTitle = document.getElementsByClassName("title")[0];
 let getTitleName = document.getElementsByClassName("title__get")[0];
 let mapSetTitle = document.getElementsByClassName("settitle__set")[0];
 let mapButton = document.getElementsByClassName("title__submit")[0];
-let imageUploading = document.getElementsByClassName("image")[0];
 
-// image.js
-let imageFile = document.getElementsByClassName("button__image")[0];
-let imageState=-1;

@@ -8,7 +8,6 @@ function displayTest(){
   }
   testMobile.classList.add("button__test--mobile--display");
 }
-
 function checkBeforeTest() {
   let empty = IslocationTest();
   if (empty) {
@@ -29,14 +28,12 @@ function IslocationTest() {
   else return true;
 }
 function startTest() {
-  testintervalobj = setInterval(test, 100);
+  testintervalobj = setInterval(test, 1000);
 }
 function test(){
   latitudeValue = lat0[t];
   lngitudeValue = lng0[t];
   watchTest();
-  lastlng = lngitudeValue;
-  lastLat = latitudeValue
   t++;
   if(t==9){
     endTest();

@@ -31,7 +31,7 @@ function IsTitleEmpty() {
     else return true;
 }
 function startWatch() {
-    intervalobj = setInterval(watchLocation, 10000);
+    intervalobj = setInterval(watchLocation, 1000);
 }
 function watchLocation() {
     navigator.geolocation.getCurrentPosition( function(position) {
@@ -41,8 +41,10 @@ function watchLocation() {
         getAddress(latitudeValue, lngitudeValue);
         if (lastResult != result) {
             lastResult = result;
-            mapGetTitle = mapSetTitle.innerText
-            postLatlng(latitudeValue, lngitudeValue, mapGetTitle);
+            let checktitleMobile = mapTitleMobile.getElementsByTagName("p")[0].innerHTML;
+            if(checktitleMobile){
+                postLatlng(latitudeValue, lngitudeValue, checktitleMobile);
+            }
             setMarker(latitudeValue, lngitudeValue);
             paintLine(latitudeValue, lngitudeValue);
         }else{

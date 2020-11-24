@@ -31,6 +31,7 @@
       </div>
     </header>
     <div class="main">
+      <div class="image"><p>여행 사진 업로드 중..</p></div>
       <div class="map__title--mobile"></div>
       <div id="map--mobile"></div>
       <button class="button__position--mobile"><img src="{% static 'img/position.png' %}"></button>
@@ -42,7 +43,7 @@
         <button class="button__newMap"><img src="{% static 'img/map.png' %}"><p>지도 생성</p>
         <button class="button__delete" onclick="location.href='/'"><img src="{% static 'img/travel.png' %}"><p>지도 초기화</p></button>
         <button class="button__test"><img src="{% static 'img/travel.png' %}"><p>테스트</p></button>
-        <button class="button__delete"><img src="{% static 'img/travel.png' %}"><p>사진 업로드</p></button>
+        <form><input type="file" class="button__image" accept="image/*" multiple onchange="getImage()"/></form>
       </div>
       <div class="main__container">
         <div class="position">
@@ -70,4 +71,5 @@
 <script type="text/javascript" src="{% static 'js/title.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/tracking.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/test.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/image.js' %}"></script>
 </html>

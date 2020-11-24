@@ -4,8 +4,8 @@ function getImage(){
     formData.append('image', imageFile.files[i]);
   }
   formData.append('csrfmiddlewaretoken', '{{ csrf_token }}')
-
-  mapId = getMapId(mapSetTitle_p.innerHTML).then(data=>{
+  let titleMobile = mapTitleMobile.getElementsByTagName("p")[0].innerHTML;
+  mapId = getMapId(titleMobile).then(data=>{
     imageState = 0;
     console.log(imageState);
     if(imageState==0){
@@ -13,7 +13,7 @@ function getImage(){
     }
     axios({
       method: "POST",
-      url: `image/${data}/`,
+      url: `new_route/image/${data}/`,
       data: formData,
       headers: {
         'cache': false,
@@ -33,7 +33,7 @@ function getImage(){
       for (let i=0; i<length; i++){
         let data = response.data.data[i];
         let image = {
-          url: `media/${data.image}`,
+          url: `new_route/media/${data.image}`,
           size: new google.maps.Size(64, 64),
           origin: new google.maps.Point(0, 0),
           anchor: new google.maps.Point(0, 0),
@@ -43,7 +43,7 @@ function getImage(){
           icon: image,
           position: imagePosition,
         })
-        imageMarker.setMap(map);
+        imageMarker.setMap(mapMobile);
       }
     })
     .catch((error) => {

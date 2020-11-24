@@ -29,3 +29,11 @@ let lastResult = result;            // 이전 위치
 
 //test.js
 let t = 0;
+
+//position.js
+let markersLength, latlngsLength;
+
+//image.js
+let imageFile = document.getElementsByClassName("button__image")[0];
+let imageState=-1;
+let imageUploading = document.getElementsByClassName("image")[0];
