@@ -1,6 +1,7 @@
 // Add Event
-inputTitle.addEventListener("onkeyup", getTitle);
-mapButton.addEventListener("click", confirmTitle);
+// inputTitle.addEventListener("onkeyup", getTitle);
+// mapButton.addEventListener("click", confirmTitle);
+createMapTitle.addEventListener("click", promptTitle);
 
 function getTitle() {
   cfTitle = inputTitle.value;
@@ -25,15 +26,36 @@ function createMap(title) {
 
   axios({
     method: "POST",
-    url: 'create_map/',
+    url: 'new_route/create_map/',
     data: {
       "title": title,
     },
   }).then(res => {
     console.log(res);
-    mapTitle.style.display = 'none';
-    setTitle(title);
+    // mapTitle.style.display = 'none';
+    // setTitle(title);
   }).catch(error => {
     console.log(error);
   })
+}
+function promptTitle(){
+  if(startMobile.style.display=='none'){
+    startMobile.style.display='flex';
+  }
+  promTitle=prompt('여행 제목을 입력해주세요', '');
+  if (promTitle==null){
+   alert("여행 제목을 입력하지 않았습니다."); 
+  }else{
+    console.log(promTitle);
+    ctResult = confirm(`'${promTitle}' 제목으로 지도 생성 하시겠습니까?`);
+    if (ctResult) {
+      createMap(promTitle);
+    }else{
+      alert("지도가 생성되지 않았습니다."); 
+    }
+    mapTitleMobile.classList.add("map__title--mobile--display");
+    mapSetTitle_p = document.createElement("p");
+    mapSetTitle_p.innerHTML = promTitle;
+    mapTitleMobile.appendChild(mapSetTitle_p);
+  }
 }

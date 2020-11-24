@@ -5,7 +5,8 @@
 
 <head>
   <meta charset="utf-8">
-  <link href="{% sass_src 'css/home.scss' %}" rel="stylesheet" type="text/css" />
+  <link href="{% sass_src 'css/mobile.scss' %}" rel="stylesheet" type="text/css" />
+  <link href="{% sass_src 'css/desktop.scss' %}" rel="stylesheet" type="text/css" />
   <link href="{% sass_src 'css/toggles.scss' %}" rel="stylesheet" type="text/css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -18,13 +19,31 @@
       <div class="header__top">
         <div class="service" onclick="location.href='/'"><img src="{% static 'img/name.png' %}"></div>
         <div class="service__logo"><img src="{% static 'img/logo.png' %}"></div>
+        <div class="service__container--mobile">
+          <div class="service__logo--mobile"><img src="{% static 'img/logo.png' %}"></div>
+          <div class="service--mobile" onclick="location.href='/'">trip Surfer</div>
+        </div>
       </div>
       <div class="header__bottom">
         <div class="new__route" onclick="location.href='/new_route/'"><p>새 여행 경로 생성</p></div>
         <div class="show__route" onclick="location.href='/list/'"><p>여행 경로 목록</p></div>
+        <div class="location__address--mobile"></div>
       </div>
     </header>
     <div class="main">
+      <div class="map__title--mobile"></div>
+      <div id="map--mobile"></div>
+      <button class="button__position--mobile"><img src="{% static 'img/position.png' %}"></button>
+      <button class="button__start--mobile">Start</button>
+      <button class="button__end--mobile">End</button>
+      <button class="button__test--mobile">test</button>
+      <button class="button__testend--mobile">end</button>
+      <div class="pannel">
+        <button class="button__newMap"><img src="{% static 'img/map.png' %}"><p>지도 생성</p>
+        <button class="button__delete" onclick="location.href='/'"><img src="{% static 'img/travel.png' %}"><p>지도 초기화</p></button>
+        <button class="button__test"><img src="{% static 'img/travel.png' %}"><p>테스트</p></button>
+        <button class="button__delete"><img src="{% static 'img/travel.png' %}"><p>사진 업로드</p></button>
+      </div>
       <div class="main__container">
         <div class="position">
           <div class="position__container">
@@ -39,8 +58,6 @@
       </div>
     </div>
   </div>
-  <footer>
-  </footer>
   </div>
 </body>
 <script async defer
@@ -50,4 +67,7 @@
 <script type="text/javascript" src="{% static 'js/variables/homeVarialbles.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/map.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/getLocation.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/title.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/tracking.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/test.js' %}"></script>
 </html>

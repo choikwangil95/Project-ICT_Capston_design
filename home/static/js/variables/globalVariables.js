@@ -3,6 +3,7 @@ const seoulLat = 37.5642135;
 const seoulLng = 127.0016985;
 let defaultPosition;
 let map;
+let mapMobile;
 let initMarker;
 
 // getLocation.js
@@ -14,3 +15,17 @@ let firstlatitudeValue;
 let latlng, Position, Marker;
 let latlngs = [];
 let markers = [];
+
+// mobile.js
+let positionMobile = document.getElementsByClassName("button__position--mobile")[0];
+let addressMobile = document.getElementsByClassName("location__address--mobile")[0];
+
+// title.js
+let createMapTitle = document.getElementsByClassName("button__newMap")[0];
+let promTitle;
+
+//tracking.js
+let lastResult = result;            // 이전 위치
+
+//test.js
+let t = 0;

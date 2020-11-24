@@ -1,12 +1,16 @@
 // Event Add
-start.addEventListener("click", confirmStart);
-end.addEventListener("click", endwatch);
+// start.addEventListener("click", confirmStart);
+// end.addEventListener("click", endwatch);
+startMobile.addEventListener("click", confirmStart);
+endMobile.addEventListener("click", endwatch);
 
 function checkBeforeStart() {
-    var notempty = IsTitleEmpty();
+    let notempty = IsTitleEmpty();
     if (notempty) {
-        start.style.display = 'none';
-        end.style.display = 'flex';
+        startMobile.style.display = 'none';
+        endMobile.classList.add("button__end--mobile--display");
+        // start.style.display = 'none';
+        // end.style.display = 'flex';
         startWatch();
     }
     else {
@@ -14,8 +18,13 @@ function checkBeforeStart() {
     }
 }
 function IsTitleEmpty() {
-    var title = document.getElementById("title__input").value;
-    if (!title) {
+    // let title = document.getElementById("title__input").value;
+    let checktitleMobile = mapTitleMobile.getElementsByTagName("p")[0]
+    if(!checktitleMobile){
+        alert("지도를 생성하세요!");
+        console.log(checktitleMobile.innerHTML);
+        return false;
+    }else if (!checktitleMobile.innerHTML) {
         alert("제목을 입력하세요!");
         return false;
     }
@@ -61,8 +70,10 @@ function confirmEnd() {
     let cfEnd = confirm("여행을 종료하시겠습니까?");
     if (cfEnd) {
         clearInterval(intervalobj);
-        end.style.display = 'none';
-        imageFile.style.display = 'flex';
-        newRouteButton.style.display = 'flex';
+        startMobile.style.display = 'flex';
+        endMobile.classList.remove("button__end--mobile--display");
+        // end.style.display = 'none';
+        // imageFile.style.display = 'flex';
+        // newRouteButton.style.display = 'flex';
     }
 }
