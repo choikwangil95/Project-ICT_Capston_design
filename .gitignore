@@ -4,7 +4,6 @@
 *.pyc
 __pycache__/
 /static
-static
 static_deploy/
 /static_deploy
 db.sqlite3
