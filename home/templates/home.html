@@ -43,7 +43,10 @@
         <button class="button__newMap"><img src="{% static 'img/map.png' %}"><p>지도 생성</p>
         <button class="button__delete" onclick="location.href='/'"><img src="{% static 'img/travel.png' %}"><p>지도 초기화</p></button>
         <button class="button__test"><img src="{% static 'img/travel.png' %}"><p>테스트</p></button>
-        <form><input type="file" class="button__image" accept="image/*" multiple onchange="getImage()"/></form>
+        <form class="filebox">
+          <label for="ex_file"><p>사진 업로드</p></label>
+          <input type="file" id="ex_file" class="button__image" accept="image/*" multiple onchange="getImage()"/>
+        </form>
       </div>
       <div class="main__container">
         <div class="position">

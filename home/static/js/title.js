@@ -1,8 +1,9 @@
 // Add Event
 // inputTitle.addEventListener("onkeyup", getTitle);
 // mapButton.addEventListener("click", confirmTitle);
-createMapTitle.addEventListener("click", promptTitle);
-
+if(createMapTitle){
+  createMapTitle.addEventListener("click", promptTitle);
+}
 function getTitle() {
   cfTitle = inputTitle.value;
 }
