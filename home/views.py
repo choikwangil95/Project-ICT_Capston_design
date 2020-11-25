@@ -115,16 +115,16 @@ def image(request, map_id):
 
             for img in images:
                 Lat, Lon = extractData(img)
-                if( Lat <= maxlat.get("latitude__max") and Lat >= minlat.get("latitude__min") and Lon <= maxlon.get("longitude__max") and Lon >= minlon.get("longitude__min")):
-                    dataSet = {
-                        i:{
-                            'image' : str(img)[0:-4]+"_resized.jpg",
-                            'lat' : Lat,
-                            'lng' : Lon
-                        }
+                # if( Lat <= maxlat.get("latitude__max") and Lat >= minlat.get("latitude__min") and Lon <= maxlon.get("longitude__max") and Lon >= minlon.get("longitude__min")):
+                dataSet = {
+                    i:{
+                        'image' : str(img)[0:-4]+"_resized.jpg",
+                        'lat' : Lat,
+                        'lng' : Lon
                     }
-                    data.update(dataSet)
-                    i=i+1
+                }
+                data.update(dataSet)
+                i=i+1
                 
     return JsonResponse({'data':data})
 
