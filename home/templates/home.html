@@ -20,8 +20,17 @@
         <div class="service__logo"><img src="{% static 'img/logo.png' %}"></div>
       </div>
       <div class="header__bottom">
-        <div class="new__route" onclick="location.href='/new_route/'"><p>새 여행 경로 생성</p></div>
-        <div class="show__route" onclick="location.href='/list/'"><p>여행 경로 목록</p></div>
+        <div class="new__route" onclick="location.href='/new_route/'">
+          <p>새 여행 경로 생성</p>
+        </div>
+        <div class="show__route" onclick="location.href='/list/'">
+          <p>여행 경로 목록</p>
+        </div>
+        {%if user.is_authenticated%}
+        <div class="myid">
+          <p>{{user.username}}</p>
+        </div>
+        {%endif%}
       </div>
     </header>
     <div class="main">
@@ -50,4 +59,5 @@
 <script type="text/javascript" src="{% static 'js/variables/homeVarialbles.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/map.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/getLocation.js' %}"></script>
+
 </html>
