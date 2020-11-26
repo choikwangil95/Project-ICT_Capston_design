@@ -174,10 +174,6 @@ def extractData(file_path):
     return Lat, Lon
 
 
-def new_route(request):
-    return render(request, 'newRoute.html')
-
-
 def show_list(request):
     get_map = Map.objects.get(pk=71)
     get_picture = Picture.objects.all().filter(map_id=71).first()
