@@ -32,7 +32,7 @@ function test() {
     }
 }
 function startWatch() {
-    intervalobj = setInterval(test, 100);
+    intervalobj = setInterval(test, 1000);
 }
 function watchLocation(lat, lng) {
     getAddress(lat, lng);
@@ -41,7 +41,7 @@ function watchLocation(lat, lng) {
         postLatlng(lat, lng, mapGetTitle);
         setMarker(lat, lng);
         paintLine(lat, lng);
-    }else{
+    } else {
         console.log("위치가 같음");
     }
 }
