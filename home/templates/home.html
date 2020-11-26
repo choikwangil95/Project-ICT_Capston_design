@@ -28,9 +28,13 @@
         </div>
         {%if user.is_authenticated%}
         <div class="myid">
-          <p>{{user.username}}</p>
+          {{user.username}}
         </div>
+        <a href="{%url 'logout'%}">logout</a>
+        {%else%}
+        <a href="{%url 'login'%}">login</a>
         {%endif%}
+
       </div>
     </header>
     <div class="main">
