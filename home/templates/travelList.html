@@ -23,11 +23,11 @@
                 <div class="new__route" onclick="location.href='/new_route/'">
                     <p>새 여행 경로 생성</p>
                 </div>
-                <div class="show__route">
+        <div class="show__route" onclick=location.href="{%url 'showlist' user_name=user.username %}">
                     <p>여행 경로 목록</p>
                 </div>
                 {%if user.is_authenticated%}
-                <div class="myid">
+                <div class="myid" data-value="{{user.username}}">
                 {{user.username}}
                 </div>
                 <a href="{%url 'logout'%}">logout</a>
@@ -40,7 +40,7 @@
         <div class="main">
             <div class="main__container">
                 <div class="list__container">
-                    <div class="list__component" onclick=location.href="{%url 'showmymap' map_id=get_map.pk %}">
+                    <div class="list__component" >
 
                         <img class="travel__photo" src="{{get_picture.image_thumbnail.url}}">
                         <div class="travel__date"><label for="travel__date">여행 날짜 :</label>{{get_map.datetime}}</div>

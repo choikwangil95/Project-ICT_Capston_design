@@ -102,7 +102,7 @@ def image(request, map_id):
         if images:
             i = 0
             for img in images:
-                file_path = media_path+"\\origin\\"+str(img)
+                file_path = media_path+"/origin/"+str(img)
                 Picture.objects.create(
                     map_id=set_map,
                     image=img,
@@ -194,10 +194,12 @@ def get_userid(request, user_name):
     return JsonResponse({'data': data})
 
 
-def show_list(request):
-    get_map = Map.objects.get(pk=71)
-    get_picture = Picture.objects.all().filter(map_id=71).first()
-    return render(request, 'travelList.html', {'get_map': get_map, 'get_picture': get_picture})
+def show_list(request, user_name):
+    # get_map = Map.objects.get(pk=71)
+    # get_picture = Picture.objects.all().filter(map_id=71).first()
+    # maps_id = User.objects.get(username=user_name).map_id
+    # maps = Map.objects.all().filter()
+    return render(request, 'travelList.html')
 
 
 def show_my_map(request, map_id):
