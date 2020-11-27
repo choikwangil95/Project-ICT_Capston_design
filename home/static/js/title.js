@@ -10,7 +10,6 @@ function setTitle(text) {
   mapSetTitle_p.innerHTML = text;
   mapSetTitle.appendChild(mapSetTitle_p);
   getTitleName.classList.add("setTitle--display");
-  mapTitle.classList.remove("title--display");
 }
 function confirmTitle() {
   ctResult = confirm(`'${cfTitle}' 제목으로 지도 생성 하시겠습니까?`);
@@ -37,3 +36,4 @@ function createMap(title) {
     console.log(error);
   })
 }
+
