@@ -9,9 +9,9 @@ function getLocation() {
       firstlatitudeValue = position.coords.latitude;
       
       // Test 0 : 소수점 3번째 자리 변화 -> 위치 변화 인식 O
-      lat0 = [firstlatitudeValue, firstlatitudeValue + 0.0001, firstlatitudeValue + 0.0002, firstlatitudeValue - 0.0001, firstlatitudeValue - 0.0003, firstlatitudeValue -0.0007, firstlatitudeValue - 0.0001, firstlatitudeValue + 0.0005, firstlatitudeValue + 0.0008, firstlatitudeValue + 0.0001, firstlatitudeValue + 0.0002];
-      lng0 = [firstlngitudeValue, firstlngitudeValue + 0.0002, firstlngitudeValue + 0.0003, firstlngitudeValue + 0.0001, firstlngitudeValue + 0.0002, firstlngitudeValue + 0.0005, firstlngitudeValue + 0.0007, firstlngitudeValue - 0.0001, firstlngitudeValue - 0.0005, firstlngitudeValue - 0.0001, firstlngitudeValue - 0.0002];
-      console.log(firstlatitudeValue);
+      lat0 = [firstlatitudeValue, firstlatitudeValue + 0.002, firstlatitudeValue + 0.005, firstlatitudeValue + 0.008, firstlatitudeValue + 0.01, firstlatitudeValue + 0.015, firstlatitudeValue + 0.02, firstlatitudeValue + 0.025, firstlatitudeValue + 0.03, firstlatitudeValue + 0.04, firstlatitudeValue + 0.05];
+      lng0 = [firstlngitudeValue, firstlngitudeValue + 0.003, firstlngitudeValue + 0.006, firstlngitudeValue + 0.01, firstlngitudeValue + 0.015, firstlngitudeValue + 0.01, firstlngitudeValue + 0.026, firstlngitudeValue + 0.03, firstlngitudeValue + 0.025, firstlngitudeValue + 0.04, firstlngitudeValue + 0.045];
+
       latlng = { lat: firstlatitudeValue, lng: firstlngitudeValue };
       getAddress(firstlatitudeValue, firstlngitudeValue); // 도로명 주소 가져오기 
       mapGetTitle = mapSetTitle.innerText

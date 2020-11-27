@@ -51,12 +51,12 @@ function promptTitle(){
     ctResult = confirm(`'${promTitle}' 제목으로 지도 생성 하시겠습니까?`);
     if (ctResult) {
       createMap(promTitle);
+      mapTitleMobile.classList.add("map__title--mobile--display");
+      mapSetTitle_p = document.createElement("p");
+      mapSetTitle_p.innerHTML = promTitle;
+      mapTitleMobile.appendChild(mapSetTitle_p);
     }else{
       alert("지도가 생성되지 않았습니다."); 
     }
-    mapTitleMobile.classList.add("map__title--mobile--display");
-    mapSetTitle_p = document.createElement("p");
-    mapSetTitle_p.innerHTML = promTitle;
-    mapTitleMobile.appendChild(mapSetTitle_p);
   }
 }

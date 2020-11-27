@@ -10,8 +10,8 @@ function getLocation() {
       if(latlngs[0]==null){
         latlngs.push(latlng);  
       }
-      lat0 = [firstlatitudeValue, firstlatitudeValue + 0.001, firstlatitudeValue + 0.002, firstlatitudeValue + 0.003, firstlatitudeValue + 0.004, firstlatitudeValue + 0.005, firstlatitudeValue + 0.006, firstlatitudeValue + 0.007, firstlatitudeValue + 0.008, firstlatitudeValue + 0.009, firstlatitudeValue + 0.015];
-      lng0 = [firstlngitudeValue, firstlngitudeValue + 0.002, firstlngitudeValue + 0.003, firstlngitudeValue - 0.001, firstlngitudeValue + 0.001, firstlngitudeValue + 0.005, firstlngitudeValue + 0.006, firstlngitudeValue + 0.007, firstlngitudeValue + 0.008, firstlngitudeValue + 0.01, firstlngitudeValue - 0.004];
+      lat0 = [firstlatitudeValue, firstlatitudeValue + 0.002, firstlatitudeValue + 0.005, firstlatitudeValue + 0.008, firstlatitudeValue + 0.01, firstlatitudeValue + 0.015, firstlatitudeValue + 0.02, firstlatitudeValue + 0.025, firstlatitudeValue + 0.03, firstlatitudeValue + 0.04, firstlatitudeValue + 0.05];
+      lng0 = [firstlngitudeValue, firstlngitudeValue + 0.003, firstlngitudeValue + 0.006, firstlngitudeValue + 0.01, firstlngitudeValue + 0.015, firstlngitudeValue + 0.01, firstlngitudeValue + 0.026, firstlngitudeValue + 0.03, firstlngitudeValue + 0.025, firstlngitudeValue + 0.04, firstlngitudeValue + 0.045];
 
       getAddress(firstlatitudeValue, firstlngitudeValue); // 도로명 주소 가져오기 
       setMarker(firstlatitudeValue, firstlngitudeValue);  // 현재 위치 마커 생성 및 지도에 등록
