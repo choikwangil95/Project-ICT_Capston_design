@@ -5,12 +5,14 @@ newMap.addEventListener("click", showTitleOrNot);
 
 
 function showTitleOrNot() {
-    if (!getTitleName.value) {
-        //제목 입력한 적 없으면
+    if (!mapSetTitle.innerHTML) {
+        mapTitle.style.display = 'flex';
         mapTitle_display.style.display = 'flex';
+
     } else {
+
         console.log("title already exist");
         //입력한 적 있으면
-        // window.location.href = "{%url 'home'%}"
+        window.location = window.location.pathname;
     }
 }

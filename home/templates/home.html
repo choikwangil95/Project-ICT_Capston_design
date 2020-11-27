@@ -27,7 +27,7 @@
           <p>여행 경로 목록</p>
         </div>
         {%if user.is_authenticated%}
-        <div class="myid">
+        <div class="myid" data-value="{{user.username}}">
           {{user.username}}
         </div>
         <a href="{%url 'logout'%}">logout</a>

@@ -13,5 +13,6 @@ urlpatterns = [
     path('get/<int:map_id>/', views.get_map, name='getmap'),
     path('setzoom/<int:map_id>/', views.set_zoom, name='setzoom'),
     path('list/', views.show_list, name='showlist'),
+    path('get_userid/<slug:user_name>/', views.get_userid, name='getuserid'),
     path('show_my_map/<int:map_id>', views.show_my_map, name='showmymap'),
 ]+static(""+settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

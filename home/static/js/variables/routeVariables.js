@@ -34,3 +34,7 @@ let imageUploading = document.getElementsByClassName("image")[0];
 // image.js
 let imageFile = document.getElementsByClassName("button__image")[0];
 let imageState = -1;
+
+//showeachmap.js
+let username = document.getElementsByClassName("myid")[0].getAttribute('data-value');
+let showRouteButton = document.getElementsByClassName("show__route")[0];

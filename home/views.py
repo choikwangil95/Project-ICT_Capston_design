@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Gps, Map, Picture
+from account.models import User
 import json
 import math
 from django.http import JsonResponse
@@ -40,6 +41,15 @@ def create_map(request):
         new_map = Map.objects.create(
             name=name,
         )
+
+        set_map = Map.objects.get(name=name)
+
+        username = data['username']
+
+        user = User.objects.get(username=username)
+
+        user.map_id = set_map
+        user.save()
 
         data = {}
 
@@ -121,16 +131,16 @@ def image(request, map_id):
 
             for img in images:
                 Lat, Lon = extractData(img)
-                if(Lat <= maxlat.get("latitude__max") and Lat >= minlat.get("latitude__min") and Lon <= maxlon.get("longitude__max") and Lon >= minlon.get("longitude__min")):
-                    dataSet = {
-                        i: {
-                            'image': str(img)[0:-4]+"_resized.jpg",
-                            'lat': Lat,
-                            'lng': Lon
-                        }
+                # if(Lat <= maxlat.get("latitude__max") and Lat >= minlat.get("latitude__min") and Lon <= maxlon.get("longitude__max") and Lon >= minlon.get("longitude__min")):
+                dataSet = {
+                    i: {
+                        'image': str(img)[0:-4]+"_resized.jpg",
+                        'lat': Lat,
+                        'lng': Lon
                     }
-                    data.update(dataSet)
-                    i = i+1
+                }
+                data.update(dataSet)
+                i = i+1
 
     return JsonResponse({'data': data})
 
@@ -172,6 +182,16 @@ def extractData(file_path):
         Lon = Lon * -1
 
     return Lat, Lon
+
+
+def get_userid(request, user_name):
+    username = user_name
+    user_id = User.objects.get(username=username).pk
+    data = {
+        'user_id': user_id
+    }
+
+    return JsonResponse({'data': data})
 
 
 def show_list(request):

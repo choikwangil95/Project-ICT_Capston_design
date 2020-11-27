@@ -5,6 +5,8 @@ mapButton.addEventListener("click", confirmTitle);
 function getTitle() {
   cfTitle = inputTitle.value;
 }
+
+
 function setTitle(text) {
   mapSetTitle_p = document.createElement("p");
   mapSetTitle_p.innerHTML = text;
@@ -14,10 +16,10 @@ function setTitle(text) {
 function confirmTitle() {
   ctResult = confirm(`'${cfTitle}' 제목으로 지도 생성 하시겠습니까?`);
   if (ctResult) {
-    createMap(cfTitle);
+    createMap(cfTitle, username);
   }
 }
-function createMap(title) {
+function createMap(title, username) {
   // 403 Error를 위한 처리 
   axios.defaults.xsrfCookieName = 'csrftoken';
   axios.defaults.xsrfHeaderName = 'X-CSRFToken';
@@ -27,6 +29,7 @@ function createMap(title) {
     url: 'create_map/',
     data: {
       "title": title,
+      "username": username,
     },
   }).then(res => {
     console.log(res);
