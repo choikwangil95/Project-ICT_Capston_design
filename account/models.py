@@ -7,8 +7,6 @@ from home.models import Map
 
 
 class User(AbstractUser):
-    map_id = models.ForeignKey(
-        'home.Map', on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return self.username

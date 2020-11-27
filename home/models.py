@@ -5,6 +5,8 @@ from imagekit.processors import ResizeToFill
 
 
 class Map(models.Model):
+    user_id = models.ForeignKey(
+        'account.User', on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=30)
     datetime = models.DateField(default=timezone.now)
     zoom = models.FloatField(null=True)

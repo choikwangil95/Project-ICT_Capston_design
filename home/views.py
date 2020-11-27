@@ -38,18 +38,14 @@ def create_map(request):
         data = json.loads(request.body.decode('utf-8'))
         name = data['title']
 
-        new_map = Map.objects.create(
-            name=name,
-        )
-
-        set_map = Map.objects.get(name=name)
-
         username = data['username']
 
         user = User.objects.get(username=username)
 
-        user.map_id = set_map
-        user.save()
+        new_map = Map.objects.create(
+            name=name,
+            user_id=user,
+        )
 
         data = {}
 
@@ -197,9 +193,9 @@ def get_userid(request, user_name):
 def show_list(request, user_name):
     # get_map = Map.objects.get(pk=71)
     # get_picture = Picture.objects.all().filter(map_id=71).first()
-    # maps_id = User.objects.get(username=user_name).map_id
-    # maps = Map.objects.all().filter()
-    return render(request, 'travelList.html')
+    maps = User.objects.get(username=user_name).map_id
+    print(maps)
+    return render(request, 'travelList.html', {'maps': maps})
 
 
 def show_my_map(request, map_id):
