@@ -5,3 +5,8 @@ let mapTitleMobile = document.getElementsByClassName("map__title--mobile")[0];
 let testMobile = document.getElementsByClassName("button__test--mobile")[0];
 let testEndMobile = document.getElementsByClassName("button__testend--mobile")[0];
 let testCase = document.getElementsByClassName("button__test")[0];
+
+//toggles.scss
+let tab = document.getElementsByClassName("service__tab")[0];
+let tabBlock = document.getElementsByClassName("service__tab--none")[0];
+

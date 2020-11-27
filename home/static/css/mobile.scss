@@ -14,6 +14,62 @@
     flex-direction: column;
     font-family: 'CookieRun-Regular';
 
+    .service__tab{
+      &--none{
+        display:none;
+      }
+
+      &--display{
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        width: 70%;
+        left: 0;
+        background-color: rgba(255, 255, 255, 0.829);
+        border-right: 1px solid rgb(168, 168, 168);
+        box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.219);
+        z-index:99;
+
+        .account__container{
+          width:100%;
+          display: flex;
+          flex-direction: row;
+          margin-bottom: 100%;
+
+          .login{
+            display:none;
+  
+            &--display{
+              display:flex;
+              height: 5vh;
+              margin-left: 35%;
+              margin-top: 8%;
+              font-size:18px;;
+            }
+          }
+  
+          .signin{
+            display:none;
+  
+            &--display{
+              display:flex;
+              height: 5vh;
+              margin-top: 8%;
+              font-size:18px;;
+            }
+          }
+        }
+
+        .copyright__container{
+          display:flex;
+          position: relative;
+          font-size:18px;
+          float:top;
+        }
+      }
+    }
+
     header{
       display:flex;
       flex-direction: column;
@@ -29,13 +85,29 @@
 
           .service{
             display:none;
+            &__container{
+              display:flex;
+              flex-direction: row;
+              margin-left: 2%;
+            }
+            &__tab{
+              display:flex;
+              width:20%;
+              height: 4vh;
+              margin-left: 3%;
+
+              img{
+                width:100%;
+              }
+            }
+
             &__logo{
               display:none;
             }
             &__container--mobile{
               height:7vh;
               display:flex;
-              justify-content: start;
+              flex-direction: row;
               align-items: center;
 
               .service{
@@ -55,9 +127,9 @@
                 
                 &--mobile{
                   display:flex;
-                  justify-content: center;
+                  justify-content: start;
                   align-items: center;
-                  width: 30%;
+                  width: 40%;
                   height: 7vh;
                   font-size: 5vw;
                   padding-left: 2%;
@@ -107,7 +179,7 @@
         position: absolute; 
         top: 40vh; 
         left: 12%; 
-        z-index: 99;
+        z-index: 98;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -149,7 +221,7 @@
             position: absolute; 
             top: 65vh; 
             left: 4%; 
-            z-index: 99;
+            z-index: 98;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -304,7 +376,7 @@
           position: absolute; 
           top: 65vh; 
           left: 44%; 
-          z-index: 99;
+          z-index: 98;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -328,7 +400,7 @@
           position: absolute; 
           top: 65vh; 
           left: 44%; 
-          z-index: 99;
+          z-index: 98;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -344,7 +416,7 @@
           position: absolute; 
           top: 65vh; 
           left: 44%; 
-          z-index: 99;
+          z-index: 98;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -360,7 +432,7 @@
           position: absolute; 
           top: 65vh; 
           left: 44%; 
-          z-index: 99;
+          z-index: 98;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -419,7 +491,7 @@
         border-radius: 1%;
         top: 75vh; 
         left: 4%; 
-        z-index: 99;
+        z-index: 98;
         display: flex;
         justify-content: start;
         align-items: center;
