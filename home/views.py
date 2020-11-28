@@ -11,6 +11,9 @@ from django.db.models import Max, Min
 from PIL import Image
 from PIL.ExifTags import TAGS
 from django.conf import settings
+from django import template
+
+register = template.Library()
 
 
 @ensure_csrf_cookie
@@ -181,8 +184,7 @@ def extractData(file_path):
 
 
 def get_userid(request, user_name):
-    username = user_name
-    user_id = User.objects.get(username=username).pk
+    user_id = User.objects.get(username=user_name).pk
     data = {
         'user_id': user_id
     }
@@ -193,9 +195,16 @@ def get_userid(request, user_name):
 def show_list(request, user_name):
     # get_map = Map.objects.get(pk=71)
     # get_picture = Picture.objects.all().filter(map_id=71).first()
-    maps = User.objects.get(username=user_name).map_id
-    print(maps)
+    user_id = User.objects.get(username=user_name).pk
+    maps = Map.objects.all().filter(user_id=user_id)
+
     return render(request, 'travelList.html', {'maps': maps})
+
+
+@register.simple_tag
+def get_pic(map_id):
+    pic = Picture.objects.all().filter(map_id=map_id).firsh().image_thumbnail
+    return pic
 
 
 def show_my_map(request, map_id):

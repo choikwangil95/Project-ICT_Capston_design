@@ -1,14 +1,14 @@
-function getImage(){
+function getImage() {
   let formData = new FormData();
-  for(let i=0; i<imageFile.files.length; i++){
+  for (let i = 0; i < imageFile.files.length; i++) {
     formData.append('image', imageFile.files[i]);
   }
   formData.append('csrfmiddlewaretoken', '{{ csrf_token }}')
 
-  mapId = getMapId(mapSetTitle_p.innerHTML).then(data=>{
+  mapId = getMapId(mapSetTitle_p.innerHTML).then(data => {
     imageState = 0;
     console.log(imageState);
-    if(imageState==0){
+    if (imageState == 0) {
       imageUploading.classList.add("image--uploading");
     }
     axios({
@@ -17,20 +17,20 @@ function getImage(){
       data: formData,
       headers: {
         'cache': false,
-        'Content-Type' : false,
+        'Content-Type': false,
         'processData': false,
         'Access-Control-Allow-Origin': '*',
-        'crossDomain' : true,
+        'crossDomain': true,
       }
     }).then((response) => {
-      imageState=1;
-      if(imageState==1){
+      imageState = 1;
+      if (imageState == 1) {
         imageUploading.classList.remove("image--uploading");
       }
       console.log(imageState);
       console.log(response.data);
       let length = Object.keys(response.data.data).length;
-      for (let i=0; i<length; i++){
+      for (let i = 0; i < length; i++) {
         let data = response.data.data[i];
         let image = {
           url: `media/${data.image}`,
@@ -46,8 +46,8 @@ function getImage(){
         imageMarker.setMap(map);
       }
     })
-    .catch((error) => {
-      console.log(error);
-    })
+      .catch((error) => {
+        console.log(error);
+      })
   })
 }

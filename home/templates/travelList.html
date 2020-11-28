@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
 {% load sass_tags %}
+{% load custom_tags %}
 <html>
 
 <head>
@@ -40,32 +41,15 @@
         <div class="main">
             <div class="main__container">
                 <div class="list__container">
-                    <div class="list__component" >
-
-                        <img class="travel__photo" src="{{get_picture.image_thumbnail.url}}">
-                        <div class="travel__date"><label for="travel__date">여행 날짜 :</label>{{get_map.datetime}}</div>
-                        <div class="travel__title"><label for="travel__date">여행 제목 :</label>{{get_map.name}}</div>
+                    {%for map in maps%}
+                    <div class="list__component" data-value="{{map.pk}}" >
+                        <img class="travel__photo" src="{% get_pic map.pk%}">
+                        <div class="travel__date"><label for="travel__date">여행 날짜 :</label>{{map.datetime}}</div>
+                        <div class="travel__title"><label for="travel__date">여행 제목 :</label>{{map.name}}</div>
                         <div class="travel__with"><label for="travel__date">여행 참여자들 :</label></div>
+                    </div>
+                    {%endfor%}
 
-                    </div>
-                    <div class="list__component">
-                        <div class="travel__photo">사진</div>
-                        <div class="travel__date">날짜</div>
-                        <div class="travel__title">여행제목</div>
-                        <div class="travel__with">여행 참여자들</div>
-                    </div>
-                    <div class="list__component">
-                        <div class="travel__photo">사진</div>
-                        <div class="travel__date">날짜</div>
-                        <div class="travel__title">여행제목</div>
-                        <div class="travel__with">여행 참여자들</div>
-                    </div>
-                    <div class="list__component">
-                        <div class="travel__photo">사진</div>
-                        <div class="travel__date">날짜</div>
-                        <div class="travel__title">여행제목</div>
-                        <div class="travel__with">여행 참여자들</div>
-                    </div>
 
                 </div>
             </div>
@@ -75,5 +59,8 @@
     </div>
 </body>
 
+<script type="text/javascript" src="{% static 'js/variables/globalVariables.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/variables/routeVariables.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/image.js' %}"></script>
 
 </html>
