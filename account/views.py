@@ -36,3 +36,27 @@ def logout(request):
     if request.method == 'GET':
         auth.logout(request)
         return redirect('login')
+
+def signup_mobile(request):
+    if request.method == 'POST':
+        if request.POST['password'] == request.POST['confirm']:
+            user = User.objects.create_user(username=request.POST['username'],
+                                            password=request.POST['password'])
+            auth.login(request, user)
+            return redirect('login/mobile/')
+    return render(request, 'signup--mobile.html')
+
+
+def login_mobile(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+
+        user = auth.authenticate(request, username=username, password=password)
+        if user is not None:
+            auth.login(request, user)
+            return redirect('home')
+        else:
+            return render(request, 'login--mobile.html')
+    else:
+        return render(request, 'login--mobile.html')

@@ -16,6 +16,9 @@ from django.conf import settings
 def home(request):
     return render(request, 'home.html')
 
+def home_mobile(request):
+    return render(request, 'homeMobile.html')
+
 
 def get_map(request, map_title):
     name = map_title
@@ -174,7 +177,7 @@ def show_list(request):
     return render(request, 'travelList.html')
 
 def show_list_mobile(request):
-    return render(request, 'travelList--mobile.html')
+    return render(request, 'travelListMobile.html')
 
 # def show_my_map(request, map_id):
 #     get_map = Map.objects.get(pk=map_id)

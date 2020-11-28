@@ -2,15 +2,13 @@
 {% load static %}
 {% load sass_tags %}
 <html>
-
   <head>
     <meta charset="utf-8">
     <link href="{% sass_src 'css/list--mobile.scss' %}" rel="stylesheet" type="text/css" />
     <link href="{% sass_src 'css/toggles.scss' %}" rel="stylesheet" type="text/css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>여행 목록</title>
+    <title>{% block title %}{% endblock %}</title>
   </head>
-
   <body>
     <div class="container">
       <div class="service__tab--none">
@@ -58,11 +56,10 @@
           </div>
         </div>
       </header>
-      <div class="container__main">
-      </div>
+      {% block content %}
+      {% endblock%}
     </div>
   </body>
-
   <script type="text/javascript" src="{% static 'js/variables/globalVariables.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/variables/mobileVariables.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/toggles.js' %}"></script>

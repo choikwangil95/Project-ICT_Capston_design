@@ -5,6 +5,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.home, name='home'),
+    path('mobile/', views.home_mobile, name='home_mobile'),
     path('image/<int:map_id>/', views.image, name="image"),
     path('create_map/', views.create_map, name='createmap'),
     path('get_mapid/<slug:map_title>/', views.get_map, name='getmap'),
