@@ -1,4 +1,8 @@
-end.style.display = 'none';
+if(end){
+  end.style.display = 'none';
+}
 // uploadPhotoButton.style.display = 'none';
-newRouteButton.style.display = 'none';
+if(newRouteButton){
+  newRouteButton.style.display = 'none';
+}
 

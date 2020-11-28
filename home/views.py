@@ -11,6 +11,7 @@ from PIL import Image
 from PIL.ExifTags import TAGS
 from django.conf import settings
 
+
 @ensure_csrf_cookie
 def home(request):
     return render(request, 'home.html')
@@ -58,10 +59,10 @@ def save_now_geolocation(request, map_id):
 
 
 def set_zoom(request, map_id):
-    maxlat = Gps.objects.all().filter(map_id = map_id).aggregate(Max('latitude'))
-    minlat = Gps.objects.all().filter(map_id = map_id).aggregate(Min('latitude'))
-    maxlon = Gps.objects.all().filter(map_id = map_id).aggregate(Max('longitude'))
-    minlon = Gps.objects.all().filter(map_id = map_id).aggregate(Min('longitude'))
+    maxlat = Gps.objects.all().filter(map_id=map_id).aggregate(Max('latitude'))
+    minlat = Gps.objects.all().filter(map_id=map_id).aggregate(Min('latitude'))
+    maxlon = Gps.objects.all().filter(map_id=map_id).aggregate(Max('longitude'))
+    minlon = Gps.objects.all().filter(map_id=map_id).aggregate(Min('longitude'))
     lat = list(maxlat.values())[0] - list(minlat.values())[0]
     lon = list(maxlon.values())[0] - list(minlon.values())[0]
     zoom_dec = max(lat, lon)
@@ -82,15 +83,15 @@ def image(request, map_id):
         images = request.FILES.getlist('image')
         media_path = settings.MEDIA_ROOT
 
-        data={}
+        data = {}
 
         if images:
-            i=0
+            i = 0
             for img in images:
                 file_path = media_path+"\\origin\\"+str(img)
                 Picture.objects.create(
-                    map_id = set_map,
-                    image = img,
+                    map_id=set_map,
+                    image=img,
                 )
                 pic = Picture.objects.get(image="origin/"+str(img))
 
@@ -100,18 +101,19 @@ def image(request, map_id):
                 wpercent = (basewidth / float(get_img.size[0]))
                 hsize = int((float(get_img.size[1]) * float(wpercent)))
                 get_img = get_img.resize((basewidth, hsize), Image.ANTIALIAS)
-                get_img.save(media_path+"\\"+str(img)[0:-4]+"_resized.jpg", dpi=dpi)
+                get_img.save(media_path+"\\"+str(img)
+                             [0:-4]+"_resized.jpg", dpi=dpi)
 
                 Lat, Lon = extractData(file_path)
-                pic.latitude=Lat
-                pic.longitude=Lon
-                pic.resized_image=str(img)[0:-4]+"_resized.jpg"
+                pic.latitude = Lat
+                pic.longitude = Lon
+                pic.resized_image = str(img)[0:-4]+"_resized.jpg"
                 pic.save()
 
-            maxlat = Gps.objects.all().filter(map_id = map_id).aggregate(Max('latitude'))
-            minlat = Gps.objects.all().filter(map_id = map_id).aggregate(Min('latitude'))
-            maxlon = Gps.objects.all().filter(map_id = map_id).aggregate(Max('longitude'))
-            minlon = Gps.objects.all().filter(map_id = map_id).aggregate(Min('longitude'))
+            maxlat = Gps.objects.all().filter(map_id=map_id).aggregate(Max('latitude'))
+            minlat = Gps.objects.all().filter(map_id=map_id).aggregate(Min('latitude'))
+            maxlon = Gps.objects.all().filter(map_id=map_id).aggregate(Max('longitude'))
+            minlon = Gps.objects.all().filter(map_id=map_id).aggregate(Min('longitude'))
 
             for img in images:
                 Lat, Lon = extractData(img)
@@ -157,23 +159,22 @@ def extractData(file_path):
     # 위도 계산
     Lat = (latDeg + (latMin + latSec / 60.0) / 60.0)
     # 북위, 남위인지를 판단, 남위일 경우 -로 변경
-    if exifGPS[1] == 'S': Lat = Lat * -1
+    if exifGPS[1] == 'S':
+        Lat = Lat * -1
     # 경도 계산
     Lon = (lonDeg + (lonMin + lonSec / 60.0) / 60.0)
     # 동경, 서경인지를 판단, 서경일 경우 -로 변경
-    if exifGPS[3] == 'W': Lon = Lon * -1
+    if exifGPS[3] == 'W':
+        Lon = Lon * -1
 
     return Lat, Lon
 
 
-def new_route(request):
-    return render(request, 'newRoute.html')
+def show_list(request):
+    return render(request, 'travelList.html')
 
-# def show_list(request):
-#     get_map = Map.objects.get(pk=71)
-#     get_picture = Picture.objects.all().filter(map_id=71).first()
-#     return render(request, 'travelList.html', {'get_map': get_map, 'get_picture': get_picture})
-
+def show_list_mobile(request):
+    return render(request, 'travelList--mobile.html')
 
 # def show_my_map(request, map_id):
 #     get_map = Map.objects.get(pk=map_id)

@@ -102,7 +102,7 @@ function setZoom(title) {
   mapId = getMapId(title).then(data => {
     axios({
       method: "GET",
-      url: `new_route/setzoom/${data}/`
+      url: `setzoom/${data}/`
     }).then(function (res) {
       var data = res.data.zoom;
       console.log(res)
@@ -126,7 +126,7 @@ function postLatlng(lat, lng, title) {
   mapId = getMapId(title).then(data => {
     axios({
       method: "POST",
-      url: `new_route/now/${data}/`,
+      url: `now/${data}/`,
       data: {
         "lngitudeValue": lng,
         "latitudeValue": lat
@@ -146,7 +146,7 @@ function getMapId(title) {
 
   return axios({
     method: "GET",
-    url: `new_route/get_mapid/${encodeURI(title, "UTF-8")}/`,
+    url: `get_mapid/${encodeURI(title, "UTF-8")}/`,
   }).then(function (response) {
     mapId = response.data.data.map_id
     return response.data.data.map_id

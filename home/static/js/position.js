@@ -1,5 +1,7 @@
 // Event Add
-position.addEventListener("click", getLocation);
+if(position){
+  position.addEventListener("click", getLocation);
+}
 
 // 현재 위치 Get
 function getLocation() {

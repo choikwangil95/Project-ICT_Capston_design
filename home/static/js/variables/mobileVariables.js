@@ -15,5 +15,7 @@ let buttonTest = document.getElementsByClassName("button__test")[0];
 let buttonDelete = document.getElementsByClassName("button__delete")[0];
 let buttonStart = document.getElementsByClassName("button__start")[0];
 let buttonList = document.getElementsByClassName("button__list")[0];
+console.log(buttonList);
+
 let form = document.getElementsByClassName("filebox")[0];
 let label = document.getElementsByTagName("label")[0];

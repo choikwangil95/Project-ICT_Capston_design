@@ -27,7 +27,7 @@ function createMap(title) {
 
   axios({
     method: "POST",
-    url: 'new_route/create_map/',
+    url: 'create_map/',
     data: {
       "title": title,
     },

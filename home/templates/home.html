@@ -3,75 +3,101 @@
 {% load sass_tags %}
 <html>
 
-<head>
-  <meta charset="utf-8">
-  <link href="{% sass_src 'css/mobile.scss' %}" rel="stylesheet" type="text/css" />
-  <link href="{% sass_src 'css/desktop.scss' %}" rel="stylesheet" type="text/css" />
-  <link href="{% sass_src 'css/toggles.scss' %}" rel="stylesheet" type="text/css" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <title>Trip Suffer</title>
-</head>
+  <head>
+    <meta charset="utf-8">
+    <link href="{% sass_src 'css/mobile.scss' %}" rel="stylesheet" type="text/css" />
+    <link href="{% sass_src 'css/desktop.scss' %}" rel="stylesheet" type="text/css" />
+    <link href="{% sass_src 'css/toggles.scss' %}" rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Home</title>
+  </head>
 
-<body>
-  <div class="container">
-    <div class="service__tab--none">
-      <div class="account__container">
-        <div class="login">로그인 /</div>
-        <div class="signin">회원가입</div>
-        <div class="close"></div>
-      </div>
-      <div class="pannel">
-        <button class="button__newMap"><img src="{% static 'img/map.png' %}"><p>지도 생성</p></button>
-        <button class="button__start"><img src="{% static 'img/travel.png' %}"><p>여행 시작</p></button>
-        <button class="button__delete" onclick="location.href='/'"><img src="{% static 'img/travel.png' %}"><p>지도 초기화</p></button>
-        <button class="button__test"><img src="{% static 'img/travel.png' %}"><p>테스트</p></button>
-        <button class="button__list"><img src="{% static 'img/travel.png' %}"><p>여행 목록</p></button>
-        <form class="filebox">
-          <label for="ex_file">
-            <img src="{% static 'img/travel.png' %}">
-            <p>사진 업로드</p>
-          </label>
-          <input type="file" id="ex_file" class="button__image" accept="image/*" multiple onchange="getImage()"/>
-        </form>
-      </div>
-      <div class="copyright__container">
-        <p>&copy; Like Tomato</p>
-        <div class="copyright__name">
-          <p>박규리</p>
-          <p>임유림</p>
-          <p>최광일</p>
+  <body>
+    <div class="container">
+      <div class="service__tab--none">
+        <div class="account__container">
+          {%if user.is_authenticated%}
+            <div class="myid">
+              {{user.username}}
+            </div>
+            <a href="{%url 'logout'%}">logout</a>
+          {%else%}
+            <div class="signup" onclick="location.href='signup/'"><p>회원가입</p></div>
+            <div class="login" onclick="location.href='login/'"><p>로그인</p></div>
+          {%endif%}
+          <div class="close"></div>
         </div>
-      </div>
-    </div>
-    <header>
-      <div class="header__top">
-        <div class="service" onclick="location.href='/'"><img src="{% static 'img/name.png' %}"></div>
-        <div class="service__logo"><img src="{% static 'img/logo.png' %}"></div>
-        <div class="service__container--mobile">
-          <div class="service__tab"><img src="{% static 'img/tab.png' %}"></div>
-          <div class="service__container">
-            <div class="service__logo--mobile"><img src="{% static 'img/logo.png' %}"></div>
-            <div class="service--mobile" onclick="location.href='/'">Trip Surfer</div>
+        <div class="pannel">
+          <button class="button__newMap"><img src="{% static 'img/map.png' %}"><p>지도 생성</p></button>
+          <button class="button__start"><img src="{% static 'img/travel.png' %}"><p>여행 시작</p></button>
+          <button class="button__delete" onclick="location.href='/'"><img src="{% static 'img/travel.png' %}"><p>지도 초기화</p></button>
+          <button class="button__test"><img src="{% static 'img/travel.png' %}"><p>테스트</p></button>
+          <button class="button__list" onclick="location.href='list/mobile/'"><img src="{% static 'img/travel.png' %}"><p>여행 목록</p></button>
+          <form class="filebox">
+            <label for="ex_file">
+              <img src="{% static 'img/travel.png' %}">
+              <p>사진 업로드</p>
+            </label>
+            <input type="file" id="ex_file" class="button__image" accept="image/*" multiple onchange="getImage()"/>
+          </form>
+        </div>
+        <div class="copyright__container">
+          <p>&copy; Like Tomato</p>
+          <div class="copyright__name">
+            <p>박규리</p>
+            <p>임유림</p>
+            <p>최광일</p>
           </div>
         </div>
       </div>
-      <div class="header__bottom">
-        <div class="new__route" onclick="location.href='/new_route/'"><p>새 여행 경로 생성</p></div>
-        <div class="show__route" onclick="location.href='/list/'"><p>여행 경로 목록</p></div>
-        <div class="location__address--mobile"></div>
+      <header>
+        <div class="header__top">
+          <div class="service" onclick="location.href='/'"><img src="{% static 'img/name.png' %}"></div>
+          <div class="service__logo"><img src="{% static 'img/logo.png' %}"></div>
+          <div class="service__container--mobile">
+            <div class="service__tab"><img src="{% static 'img/tab.png' %}"></div>
+            <div class="service__container">
+              <div class="service__logo--mobile"><img src="{% static 'img/logo.png' %}"></div>
+              <div class="service--mobile" onclick="location.href='/'">Trip Surfer</div>
+            </div>
+          </div>
+        </div>
+        <div class="header__bottom">
+          <div class="new__route" onclick="location.href='/new_route/'"><p>새 여행 경로 생성</p></div>
+          <div class="show__route" onclick="location.href='/list/'"><p>여행 경로 목록</p></div>
+          <!-- {%if user.is_authenticated%}
+            <div class="myid">
+              {{user.username}}
+            </div>
+            <a href="{%url 'logout'%}">logout</a>
+          {%else%}
+            <a href="{%url 'login'%}">login</a>
+          {%endif%} -->
+          <div class="location__address--mobile"></div>
+        </div>
+      </header>
+      <div class="main__mobile">
+        <div class="image"><p>여행 사진 업로드 중..</p></div>
+        <div class="map__title--mobile"></div>
+        <div id="map--mobile"></div>
+        <button class="button__position--mobile"><img src="{% static 'img/position.png' %}"></button>
+        <button class="button__start--mobile"><p>Start</p></button>
+        <button class="button__end--mobile"><p>End</p></button>
+        <button class="button__test--mobile"><p>Test</p></button>
+        <button class="button__testend--mobile"><p>End</p></button>
       </div>
-    </header>
-    <div class="main">
-      <div class="image"><p>여행 사진 업로드 중..</p></div>
-      <div class="map__title--mobile"></div>
-      <div id="map--mobile"></div>
-      <button class="button__position--mobile"><img src="{% static 'img/position.png' %}"></button>
-      <button class="button__start--mobile"><p>Start</p></button>
-      <button class="button__end--mobile"><p>End</p></button>
-      <button class="button__test--mobile"><p>Test</p></button>
-      <button class="button__testend--mobile"><p>End</p></button>
-      <div class="main__container">
+      <div class="main__desktop">
+        <div class="title title--display">
+          <div class="title__name">여행 제목</div>
+          <div class="title__map"><input id="title__input" onkeyup="getTitle()" type="text" placeholder="여행 제목을 입력하세요">
+          </div>
+          <div class="title__submit">저장</div>
+        </div>
+        <div class="title__get">
+          <div class="settitle__name">여행 제목</div>
+          <div class="settitle__set"></div>
+        </div>
         <div class="position">
           <div class="position__container">
             <div class="location">
@@ -82,21 +108,36 @@
           </div>
         </div>
         <div id="map"></div>
+        <div class="tracking">
+          <button class="button__test">
+            <h3>Test</h3>
+          </button>
+          <button class="button__end">
+            <h3>End</h3>
+          </button>
+          <form><input type="file" class="button__image" accept="image/*" multiple onchange="getImage()" />
+          </form>
+          <button class="button__new__route" onclick="location.href='/new_route/'">
+            <h3>새로운 여행 생성하기</h3>
+          </button>
+        </div>
       </div>
     </div>
-  </div>
-  </div>
-</body>
-<script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDd4jvxbs2P8Ak0JooTliUo_4E3QrnTykk&callback=initMap&region=kr"
-  type="text/javascript"></script>
-<script type="text/javascript" src="{% static 'js/variables/globalVariables.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/variables/homeVarialbles.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/map.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/getLocation.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/title.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/tracking.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/test.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/image.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/toggles.js' %}"></script>
+  </body>
+
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDd4jvxbs2P8Ak0JooTliUo_4E3QrnTykk&callback=initMap&region=kr"
+    type="text/javascript"></script>
+  <script type="text/javascript" src="{% static 'js/variables/globalVariables.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/variables/routeVariables.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/variables/mobileVariables.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/map.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/init.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/position.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/getLocation.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/title.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/tracking.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/test.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/image.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/toggles.js' %}"></script>
 </html>

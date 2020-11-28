@@ -332,11 +332,12 @@
               align-items: center;
               color: black;
               height: 8vh;
-              margin-left: 6%;
+              margin-left: 4%;
+              font-weight: 500;
             }
           }
   
-          .signin{
+          .signup{
             display:none;
   
             &--display{
@@ -344,6 +345,8 @@
               height: 8vh;
               align-items: center;
               color: black;
+              margin-left: 6%;
+              font-weight: 500;
             }
           }
 
@@ -370,7 +373,7 @@
             width:100%;
             font-size: 5vw;
             border-top: 1px solid rgb(212, 212, 212);
-            background-color: rgb(105, 105, 105);
+            background-color: rgb(87, 87, 87);
             height:23vh;
             color: white;
 
@@ -512,7 +515,7 @@
       }
     }
 
-    .main{
+    .main__mobile{
       width: 100%;
       height: 88vh;
       position:relative;
@@ -530,13 +533,13 @@
         justify-content: center;
         align-items: center;
         height: 10vh;
-        width: 80%;
+        font-family: "Noto Sans KR", sans-serif;
+        width: 70%;
         background-color: rgba(110, 110, 110, 0.733);
         color: white;
         box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.301);
         border-radius: 2vh;
-        color:white;
-        font-size: 5vW;
+        font-size: 6vw;
       }
 
       .map__title--mobile{
@@ -553,7 +556,7 @@
           height: 6vh;
           font-family: "Noto Sans KR", sans-serif;
           font-size: 5vw;
-          font-weight: 700;
+          font-weight: 600;
           background-color: white;
           white-space: nowrap; 
           overflow: hidden; 
@@ -785,11 +788,33 @@
         }
       }
     }
-  }
-}
 
-.location{
-  &__name{
-    display:none;
+    .main__desktop{
+      #map{
+        display:none;
+      }
+
+      .title{
+        display:none;
+
+        &__get{
+          display:none;
+        }
+      }
+
+      .position{
+        display:none;
+
+        .location{
+          &__name{
+            display:none;
+          }
+        }
+      }
+
+      .tracking{
+        display:none;
+      }
+    }
   }
 }

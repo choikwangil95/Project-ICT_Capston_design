@@ -20,5 +20,5 @@ function initMap() {
   initMarker.setMap(map);
   initMarker.setMap(mapMobile);
 }
-initMap();
 
+initMap();
