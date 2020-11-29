@@ -41,6 +41,7 @@ function watchLocation() {
         if (lastResult != result) {
             lastResult = result;
             let checktitleMobile = mapTitleMobile.getElementsByTagName("p")[0].innerHTML;
+            console.log(checktitleMobile);
             if(checktitleMobile){
                 postLatlng(latitudeValue, lngitudeValue, checktitleMobile);
             }

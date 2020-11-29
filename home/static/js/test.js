@@ -20,13 +20,15 @@ function checkBeforeTest() {
   }
 }
 function IslocationTest() {
-  console.log(addressMobile.innerHTML);
-  if (!addressMobile.innerHTML) {
+  if (addressMobile.getElementsByTagName("p").length!=0){
+    let check = addressMobile.getElementsByTagName("p")[0].innerHTML;
+    if (check=="현재 위치를 확인하세요") {
       alert("현재 위치를 확인하세요");
       return false;
-  }
-  else return true;
+    }
+  }else return true;
 }
+
 function startTest() {
   testintervalobj = setInterval(test, 1000);
 }
