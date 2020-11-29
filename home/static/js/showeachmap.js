@@ -1,5 +1,10 @@
 showRouteButton.addEventListener("click", showEachMap);
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 128f6ee03ab6a70f5e433ef88d16bd7915f8b7a4
 function showEachMap() {
     axios.defaults.xsrfCookieName = 'csrftoken';
     axios.defaults.xsrfHeaderName = 'X-CSRFToken';
