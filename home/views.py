@@ -103,8 +103,7 @@ def image(request, map_id):
                 wpercent = (basewidth / float(get_img.size[0]))
                 hsize = int((float(get_img.size[1]) * float(wpercent)))
                 get_img = get_img.resize((basewidth, hsize), Image.ANTIALIAS)
-                get_img.save(media_path+"\\"+str(img)
-                             [0:-4]+"_resized.jpg", dpi=dpi)
+                get_img.save(media_path+"\\"+str(img)[0:-4]+"_resized.jpg", dpi=dpi)
 
                 Lat, Lon = extractData(file_path)
                 pic.latitude = Lat

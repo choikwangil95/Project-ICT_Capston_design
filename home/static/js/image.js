@@ -40,7 +40,7 @@ function getImage(){
         for (let i=0; i<length; i++){
           let data = response.data.data[i];
           let image = {
-            url: `mobile/media/${data.image}`,
+            url: `media/${data.image}`,
             size: new google.maps.Size(64, 64),
             origin: new google.maps.Point(0, 0),
             anchor: new google.maps.Point(0, 0),

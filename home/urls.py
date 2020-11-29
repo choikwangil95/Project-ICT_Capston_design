@@ -20,4 +20,4 @@ urlpatterns = [
     path('list/', views.show_list, name='showlist'),
     path('mobile/list/', views.show_list_mobile, name='showlistmobile'),
     # path('show_my_map/<int:map_id>', views.show_my_map, name='showmymap'),
-]+static(""+settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]+static("/mobile"+settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
