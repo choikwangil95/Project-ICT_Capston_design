@@ -8,13 +8,13 @@ function getTitle() {
   cfTitle = inputTitle.value;
 }
 
-
 function setTitle(text) {
   mapSetTitle_p = document.createElement("p");
   mapSetTitle_p.innerHTML = text;
   mapSetTitle.appendChild(mapSetTitle_p);
   getTitleName.classList.add("setTitle--display");
 }
+
 function confirmTitle() {
   ctResult = confirm(`'${cfTitle}' 제목으로 지도 생성 하시겠습니까?`);
   if (ctResult) {
@@ -49,10 +49,9 @@ function promptTitle(){
   if (promTitle==null){
    alert("여행 제목을 입력하지 않았습니다."); 
   }else{
-    console.log(promTitle);
     ctResult = confirm(`'${promTitle}' 제목으로 지도 생성 하시겠습니까?`);
     if (ctResult) {
-      createMap(promTitle);
+      createMap(promTitle, username);
       mapTitleMobile.classList.add("map__title--mobile--display");
       mapSetTitle_p = document.createElement("p");
       mapSetTitle_p.innerHTML = promTitle;

@@ -111,7 +111,7 @@ def image(request, map_id):
                 wpercent = (basewidth / float(get_img.size[0]))
                 hsize = int((float(get_img.size[1]) * float(wpercent)))
                 get_img = get_img.resize((basewidth, hsize), Image.ANTIALIAS)
-                get_img.save(media_path+"\\"+str(img)[0:-4]+"_resized.jpg", dpi=dpi)
+                get_img.save(media_path+"/"+str(img)[0:-4]+"_resized.jpg", dpi=dpi)
 
                 Lat, Lon = extractData(file_path)
                 pic.latitude = Lat
@@ -189,17 +189,23 @@ def get_userid(request, user_name):
 
 
 def show_list(request, user_name):
-    # get_map = Map.objects.get(pk=71)
-    # get_picture = Picture.objects.all().filter(map_id=71).first()
     user_id = User.objects.get(username=user_name).pk
     maps = Map.objects.all().filter(user_id=user_id)
 
     return render(request, 'travelList.html', {'maps': maps})
 
-def show_list_mobile(request):
-    return render(request, 'travelListMobile.html')
+def show_list_mobile(request, user_name):
+    user_id = User.objects.get(username=user_name).pk
+    maps = Map.objects.all().filter(user_id=user_id)
 
-# def show_my_map(request, map_id):
-#     get_map = Map.objects.get(pk=map_id)
+    return render(request, 'travelListMobile.html', {'maps': maps})
 
-#     return render(request, 'mymap.html', {'get_map': get_map})
+def show_my_map(request, map_id):
+    get_map = Map.objects.get(pk=map_id)
+
+    return render(request, 'mymap.html', {'get_map': get_map})
+
+def show_my_map_mobile(request, map_id):
+    get_map = Map.objects.get(pk=map_id)
+
+    return render(request, 'mymapMobile.html', {'get_map': get_map})

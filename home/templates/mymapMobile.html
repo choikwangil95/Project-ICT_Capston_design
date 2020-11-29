@@ -1,0 +1,15 @@
+{% extends "./base/baseMobile.html" %}
+{% load static %}
+
+{% block title%}
+여행 기록
+{% endblock %}
+
+{% block content %}
+<div class="container__detail">
+  <div class="map__title"><p>{{get_map.name}}</p></div>
+  <div class="map__date"><p>{{get_map.datetime}}</p></div>
+  <div id="map--mobile"></div>
+  <button class="button__back" onclick="location.href='{% url 'showlistmobile' get_map.user_id %}'"><img src="{% static 'img/back.png' %}"></button>
+</div>
+{% endblock %}

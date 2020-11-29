@@ -18,3 +18,5 @@ let buttonList = document.getElementsByClassName("button__list")[0];
 
 let form = document.getElementsByClassName("filebox")[0];
 let label = document.getElementsByTagName("label")[0];
+let usernametag = document.getElementsByClassName("myid")[0];
+let username = usernametag.getElementsByTagName("p")[0].innerHTML;

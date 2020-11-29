@@ -24,11 +24,11 @@
         </div>
         <div class="pannel">
           {%if user.is_authenticated%}
-          <button class="button__newMap"><img src="{% static 'img/map.png' %}"><p>지도 생성</p></button>
-          <button class="button__start"><img src="{% static 'img/travel.png' %}"><p>여행 시작</p></button>
-          <button class="button__delete" onclick="location.href='/'"><img src="{% static 'img/travel.png' %}"><p>지도 초기화</p></button>
+          <button class="button__newMap" onclick="location.href='{% url 'home_mobile' %}'"><img src="{% static 'img/map.png' %}"><p>지도 생성</p></button>
+          <button class="button__start" onclick="location.href='{% url 'home_mobile' %}'"><img src="{% static 'img/travel.png' %}"><p>여행 시작</p></button>
+          <button class="button__delete" onclick="location.href='{% url 'home_mobile' %}'"><img src="{% static 'img/travel.png' %}"><p>지도 초기화</p></button>
           <button class="button__test"><img src="{% static 'img/travel.png' %}"><p>테스트</p></button>
-          <a class="button__list" href="{% url 'showlistmobile' %}"><img src="{% static 'img/travel.png' %}"><p>여행 목록</p></a>
+          <a class="button__list" href="{% url 'showlistmobile' user.username %}"><img src="{% static 'img/travel.png' %}"><p>여행 목록</p></a>
           <form class="filebox">
             <label for="ex_file">
               <img src="{% static 'img/travel.png' %}">
@@ -38,6 +38,7 @@
           </form>
           {%else%}
           <button class="button__test"><img src="{% static 'img/travel.png' %}"><p>테스트</p></button>
+          <button class="button__delete" onclick="location.href='{% url 'home_mobile' %}'"><img src="{% static 'img/travel.png' %}"><p>지도 초기화</p></button>
           {%endif%}
         </div>
         <div class="copyright__container">
@@ -66,8 +67,11 @@
       {% endblock%}
     </div>
   </body>
-
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDd4jvxbs2P8Ak0JooTliUo_4E3QrnTykk&callback=initMap&region=kr"
+    type="text/javascript"></script>
   <script type="text/javascript" src="{% static 'js/variables/globalVariables.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/variables/mobileVariables.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/mapMobile.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/toggles.js' %}"></script>
 </html>

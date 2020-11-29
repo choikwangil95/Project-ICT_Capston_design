@@ -4,8 +4,7 @@ function getImage(){
       alert("여행이 끝난 후에 사진을 업로드하세요!");
   }else if (!checktitleMobile.innerHTML) {
       alert("제목을 입력하세요!");
-  }
-  else{
+  }else{
     let formData = new FormData();
     for(let i=0; i<imageFile.files.length; i++){
       formData.append('image', imageFile.files[i]);
