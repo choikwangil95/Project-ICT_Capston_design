@@ -22,7 +22,15 @@ let mapId;
 // toggles.js
 let newMap = document.getElementsByClassName("new__route")[0];
 let mapTitle = document.getElementsByClassName("title")[0];
+let mapTitle_display = document.getElementsByClassName("title--display")[0];
 let getTitleName = document.getElementsByClassName("title__get")[0];
 let mapSetTitle = document.getElementsByClassName("settitle__set")[0];
 let mapButton = document.getElementsByClassName("title__submit")[0];
 
+// image.js
+let imageFile = document.getElementsByClassName("button__image")[0];
+let imageState = -1;
+
+//showeachmap.js
+let username = document.getElementsByClassName("myid")[0].getAttribute('data-value');
+let showRouteButton = document.getElementsByClassName("show__route")[0];

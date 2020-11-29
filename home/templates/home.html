@@ -20,14 +20,14 @@
         <div class="service__logo"><img src="{% static 'img/logo.png' %}"></div>
       </div>
       <div class="header__bottom">
-        <div class="new__route" onclick="location.href=''">
+        <div class="new__route">
           <p>새 여행 경로 생성</p>
         </div>
-        <div class="show__route" onclick="location.href='/list/'">
+        <div class="show__route" onclick=location.href="{%url 'showlist' user_name=user.username %}">
           <p>여행 경로 목록</p>
         </div>
         {%if user.is_authenticated%}
-        <div class="myid">
+        <div class="myid" data-value="{{user.username}}">
           {{user.username}}
         </div>
         <a href="{%url 'logout'%}">logout</a>
@@ -71,7 +71,7 @@
           </button>
           <form><input type="file" class="button__image" accept="image/*" multiple onchange="getImage()" />
           </form>
-          <button class="button__new__route" onclick="location.href='/new_route/'">
+          <button class="button__new__route" onclick="location.href=''">
             <h3>새로운 여행 생성하기</h3>
           </button>
         </div>

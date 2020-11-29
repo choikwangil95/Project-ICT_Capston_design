@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Gps, Map, Picture
+from account.models import User
 import json
 import math
 from django.http import JsonResponse
@@ -16,8 +17,10 @@ from django.conf import settings
 def home(request):
     return render(request, 'home.html')
 
+
 def home_mobile(request):
     return render(request, 'homeMobile.html')
+
 
 def get_map(request, map_title):
     name = map_title
@@ -35,8 +38,13 @@ def create_map(request):
         data = json.loads(request.body.decode('utf-8'))
         name = data['title']
 
+        username = data['username']
+
+        user = User.objects.get(username=username)
+
         new_map = Map.objects.create(
             name=name,
+            user_id=user,
         )
 
         data = {}
@@ -90,7 +98,7 @@ def image(request, map_id):
         if images:
             i = 0
             for img in images:
-                file_path = media_path+"\\origin\\"+str(img)
+                file_path = media_path+"/origin/"+str(img)
                 Picture.objects.create(
                     map_id=set_map,
                     image=img,
@@ -171,8 +179,22 @@ def extractData(file_path):
     return Lat, Lon
 
 
-def show_list(request):
-    return render(request, 'travelList.html')
+def get_userid(request, user_name):
+    user_id = User.objects.get(username=user_name).pk
+    data = {
+        'user_id': user_id
+    }
+
+    return JsonResponse({'data': data})
+
+
+def show_list(request, user_name):
+    # get_map = Map.objects.get(pk=71)
+    # get_picture = Picture.objects.all().filter(map_id=71).first()
+    user_id = User.objects.get(username=user_name).pk
+    maps = Map.objects.all().filter(user_id=user_id)
+
+    return render(request, 'travelList.html', {'maps': maps})
 
 def show_list_mobile(request):
     return render(request, 'travelListMobile.html')
