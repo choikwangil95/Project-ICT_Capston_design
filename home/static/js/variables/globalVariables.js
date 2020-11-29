@@ -4,6 +4,7 @@ const seoulLng = 127.0016985;
 let defaultPosition;
 let map;
 let mapMobile;
+let mapMobile2;
 let initMarker;
 let breakpointMobile = 300;
 let breakpointTablet = 758;

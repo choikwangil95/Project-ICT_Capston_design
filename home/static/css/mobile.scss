@@ -1026,4 +1026,152 @@ html{
 .container__list{
   width: 100%;
   height: 92vh;
+  background-color: white;
+
+  .list__name{
+    width: 100%;
+    height: 8%;
+    border-bottom: 1px solid $border-line;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    p{
+      font-family: "Noto Sans KR", sans-serif;
+      font-size: 6vw;
+    }
+  }
+
+  .list__component{
+    width: 100%;
+    height: 15%;
+    border-bottom: 1px solid $border-line;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .travel{
+      &__info{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 70%;
+      }
+
+      &__photo{
+        width: 40%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img{
+          width: 60%;
+          height: 70%;
+          border-radius: 20%;
+        }
+      }
+
+      &__title{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+
+        p{
+          font-family: "Noto Sans KR", sans-serif;
+          color: black;
+          font-size: 6vw;
+          margin-bottom: 3%;
+        }
+      }
+
+      &__date{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        margin-top: 3%;
+
+        p{
+          font-family: "Noto Sans KR", sans-serif;
+          font-size: 4vw;
+          color: rgb(145, 145, 145);
+        }
+      }
+    }
+  }
+}
+
+.container__detail{
+  position:relative;
+  width: 100%;
+  height: 92vh;
+
+  .map{
+    &__title{
+      width: 100%;
+      height: 8%;
+      border-bottom: 1px solid $border-line;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      p{
+        font-family: "Noto Sans KR", sans-serif;
+        font-size: 6vw;
+      }
+    }
+
+    &__date{
+      width: 100%;
+      height: 6%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      p{
+        font-family: "Noto Sans KR", sans-serif;
+        font-size: 6vw;
+        color: rgb(145, 145, 145);
+      }
+    }
+  }
+
+  #map--mobile{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.button__back{
+  position: absolute; 
+  top: 85%; 
+  left: 4vw; 
+  z-index: 98;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 7vh;
+  width: 13%;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.253);
+  border-radius: 8vh;
+
+  img{
+    height: 4vh;
+    width: 50%;
+  }
+
+  &:hover{
+    cursor: pointer;
+  }
+
+  &:active{
+    cursor: pointer;
+    transition-duration: 0.5s;
+    background-color: rgb(190, 190, 190);
+  }
 }

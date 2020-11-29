@@ -7,7 +7,7 @@ __pycache__/
 static_deploy/
 /static_deploy
 db.sqlite3
-media
+media/
 myvenv
 venv
 .DS_Store

@@ -7,7 +7,8 @@
     <link href="{% sass_src 'css/mobile.scss' %}" rel="stylesheet" type="text/css" />
     <link href="{% sass_src 'css/toggles.scss' %}" rel="stylesheet" type="text/css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{% endblock %}</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>여행 기록</title>
   </head>
   <body>
     <div class="container">
@@ -63,11 +64,18 @@
           </div>
         </div>
       </header>
-      {% block content %}
-      {% endblock%}
+      <div class="container__detail">
+        <div class="map__title"><p>{{get_map.name}}</p></div>
+        <div class="map__date"><p>{{get_map.datetime}}</p></div>
+        <div id="map--mobile"></div>
+        <button class="button__back" onclick="location.href='{% url 'showlistmobile' get_map.user_id %}'"><img src="{% static 'img/back.png' %}"></button>
+      </div>
     </div>
   </body>
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDd4jvxbs2P8Ak0JooTliUo_4E3QrnTykk&callback=initMap&region=kr"></script>
   <script type="text/javascript" src="{% static 'js/variables/globalVariables.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/variables/mobileVariables.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/toggles.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/getMap.js' %}"></script>
 </html>

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Gps, Map, Picture
+from account.models import User
 import json
 import math
 from django.http import JsonResponse
@@ -16,8 +17,10 @@ from django.conf import settings
 def home(request):
     return render(request, 'home.html')
 
+
 def home_mobile(request):
     return render(request, 'homeMobile.html')
+
 
 def get_map(request, map_title):
     name = map_title
@@ -35,8 +38,13 @@ def create_map(request):
         data = json.loads(request.body.decode('utf-8'))
         name = data['title']
 
+        username = data['username']
+
+        user = User.objects.get(username=username)
+
         new_map = Map.objects.create(
             name=name,
+            user_id=user,
         )
 
         data = {}
@@ -90,7 +98,7 @@ def image(request, map_id):
         if images:
             i = 0
             for img in images:
-                file_path = media_path+"\\origin\\"+str(img)
+                file_path = media_path+"/origin/"+str(img)
                 Picture.objects.create(
                     map_id=set_map,
                     image=img,
@@ -103,7 +111,7 @@ def image(request, map_id):
                 wpercent = (basewidth / float(get_img.size[0]))
                 hsize = int((float(get_img.size[1]) * float(wpercent)))
                 get_img = get_img.resize((basewidth, hsize), Image.ANTIALIAS)
-                get_img.save(media_path+"\\"+str(img)[0:-4]+"_resized.jpg", dpi=dpi)
+                get_img.save(media_path+"/"+str(img)[0:-4]+"_resized.jpg", dpi=dpi)
 
                 Lat, Lon = extractData(file_path)
                 pic.latitude = Lat
@@ -171,13 +179,73 @@ def extractData(file_path):
     return Lat, Lon
 
 
-def show_list(request):
-    return render(request, 'travelList.html')
+def get_userid(request, user_name):
+    user_id = User.objects.get(username=user_name).pk
+    data = {
+        'user_id': user_id
+    }
 
-def show_list_mobile(request):
-    return render(request, 'travelListMobile.html')
+    return JsonResponse({'data': data})
 
-# def show_my_map(request, map_id):
-#     get_map = Map.objects.get(pk=map_id)
 
-#     return render(request, 'mymap.html', {'get_map': get_map})
+def show_list(request, user_name):
+    user_id = User.objects.get(username=user_name).pk
+    maps = Map.objects.all().filter(user_id=user_id)
+
+    return render(request, 'travelList.html', {'maps': maps})
+
+def show_list_mobile(request, user_name):
+    user_id = User.objects.get(username=user_name).pk
+    maps = Map.objects.all().filter(user_id=user_id)
+
+    return render(request, 'travelListMobile.html', {'maps': maps})
+
+def show_my_map(request, map_id):
+    get_map = Map.objects.get(pk=map_id)
+
+    return render(request, 'mymap.html', {'get_map': get_map})
+
+def show_my_map_mobile(request, map_id):
+    get_map = Map.objects.get(pk=map_id)
+
+    return render(request, 'mymapMobile.html', {'get_map': get_map})
+
+def get_mapdata(request, map_title):
+    get_map = Map.objects.get(name=map_title)
+    map_id = get_map.pk
+    latlngs = Gps.objects.all().filter(map_id=get_map)
+    images = Picture.objects.all().filter(map_id=get_map)
+
+    latlngData = {}
+    imageData ={}
+    imageSet = {}
+    latlngSet = {}
+    data={}
+
+    i=0
+    for image in images:
+        imageSet = {
+            i:{
+                'image' : str(image.image)[7:-4]+"_resized.jpg",
+                'lat' : image.latitude,
+                'lng' : image.longitude
+            }
+        }
+        imageData.update(imageSet)
+        i=i+1
+
+    j=0
+    for latlng in latlngs:
+        latlngSet = {
+            j:{
+                'lat' : latlng.latitude,
+                'lon' : latlng.longitude,
+            }
+        }
+        latlngData.update(latlngSet)
+        j=j+1
+
+    data[0]=latlngData
+    data[1]=imageData
+
+    return JsonResponse({'data': data})

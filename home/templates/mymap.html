@@ -19,9 +19,21 @@
                 <div class="service" onclick="location.href='/'"><img src="{% static 'img/name.png' %}"></div>
                 <div class="service__logo"><img src="{% static 'img/logo.png' %}"></div>
             </div>
-            <div class="header__bottom">
-                <div class="new__route" onclick="location.href='/new_route/'"><p>새 여행 경로 생성</p></div>
-                <div class="show__route" onclick="location.href='/list/'"><p>여행 경로 목록</p></div>
+
+                <div class="new__route">
+                    <p>새 여행 경로 생성</p>
+                </div>
+                <div class="show__route" onclick=location.href="{%url 'showlist' user_name=user.username %}">
+                    <p>여행 경로 목록</p>
+                </div>
+                {%if user.is_authenticated%}
+                <div class="myid" data-value="{{user.username}}">
+                    {{user.username}}
+                </div>
+                <a href="{%url 'logout'%}">logout</a>
+                {%else%}
+                <a href="{%url 'login'%}">login</a>
+                {%endif%}
             </div>
         </header>
         <div class="main">
@@ -52,7 +64,9 @@
 <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDd4jvxbs2P8Ak0JooTliUo_4E3QrnTykk&callback=initMap&region=kr"
     type="text/javascript"></script>
-<script type="text/javascript" src="{% static 'js/variables.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/variables/globalVariables.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/variables/routeVariables.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/toggle.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/showeachmap.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/map.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/position.js' %}"></script>

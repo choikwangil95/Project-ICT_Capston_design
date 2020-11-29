@@ -5,6 +5,8 @@ from imagekit.processors import ResizeToFill
 
 
 class Map(models.Model):
+    user_id = models.ForeignKey(
+        'account.User', on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=30)
     datetime = models.DateField(default=timezone.now)
     zoom = models.FloatField(null=True)
@@ -19,7 +21,7 @@ class Gps(models.Model):
     map_id = models.ForeignKey('Map', on_delete=models.CASCADE, null=True)
     latitude = models.FloatField(null=True)
     longitude = models.FloatField(null=True)
-    datetime = models.DateField(default=timezone.now)
+    datetime = models.DateField(default=timezone.now, null=True)
 
     def __str__(self):
         return str(self.map_id)
