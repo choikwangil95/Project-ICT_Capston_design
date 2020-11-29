@@ -43,7 +43,7 @@ def signup_mobile(request):
             user = User.objects.create_user(username=request.POST['username'],
                                             password=request.POST['password'])
             auth.login(request, user)
-            return redirect('login/mobile/')
+            return redirect('login_mobile')
     return render(request, 'signup--mobile.html')
 
 
@@ -55,8 +55,13 @@ def login_mobile(request):
         user = auth.authenticate(request, username=username, password=password)
         if user is not None:
             auth.login(request, user)
-            return redirect('home')
+            return redirect('home_mobile')
         else:
             return render(request, 'login--mobile.html')
     else:
         return render(request, 'login--mobile.html')
+
+def logout_mobile(request):
+    if request.method == 'GET':
+        auth.logout(request)
+        return redirect('home_mobile')

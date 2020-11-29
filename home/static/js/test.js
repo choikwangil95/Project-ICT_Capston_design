@@ -28,7 +28,7 @@ function IslocationTest() {
   else return true;
 }
 function startTest() {
-  testintervalobj = setInterval(test, 500);
+  testintervalobj = setInterval(test, 1000);
 }
 function test(){
   latitudeValue = lat0[t];

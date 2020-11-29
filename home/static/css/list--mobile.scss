@@ -42,8 +42,86 @@ html{
             z-index: 98;
             border:1% solid black;
           }
-  
           .button{
+            &__newMap{
+              display: none;
+  
+              &--display{
+                margin-left: 4%;
+                display: flex;
+                position:relative;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 40%;
+                height: 12vh;
+                margin-bottom: 12%;
+                margin-left: 8%; 
+      
+                p{
+                  padding-top: 10%;
+                }
+      
+                img{
+                  border: 1px solid rgb(126, 126, 126);
+                  border-radius: 15%;
+                  padding-top: 1vh;
+                  height: 5vh;
+                  width: 45%;
+                  padding: 5%;
+  
+                  &:hover{
+                    cursor: pointer;
+                  }
+          
+                  &:active{
+                    cursor: pointer;
+                    background-color: rgb(235, 235, 235);
+                  }
+                }
+              }
+            }
+  
+            &__start{
+              display: none;
+  
+              &--display{
+                margin-left: 4%;
+                display: flex;
+                position:relative;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 40%;
+                height: 12vh;
+                border-radius: 1vh;
+                margin-bottom: 12%;
+                transition-duration:0.1s;
+      
+                p{
+                  padding-top: 10%;
+                }
+      
+                img{
+                  border: 1px solid rgb(126, 126, 126);
+                  border-radius: 15%;
+                  padding-top: 1vh;
+                  height: 5vh;
+                  width: 45%;
+                  padding: 5%;
+  
+                  &:hover{
+                    cursor: pointer;
+                  }
+          
+                  &:active{
+                    cursor: pointer;
+                    background-color: rgb(235, 235, 235);
+                  }
+                }
+              }
+            }
+  
             &__list{
               display: none;
   
@@ -59,6 +137,84 @@ html{
                 border-radius: 1vh;
                 margin-bottom: 12%;
                 margin-left: 8%; 
+      
+                p{
+                  padding-top: 10%;
+                }
+      
+                img{
+                  border: 1px solid rgb(126, 126, 126);
+                  border-radius: 15%;
+                  padding-top: 1vh;
+                  height: 5vh;
+                  width: 45%;
+                  padding: 5%;
+  
+                  &:hover{
+                    cursor: pointer;
+                  }
+          
+                  &:active{
+                    cursor: pointer;
+                    background-color: rgb(235, 235, 235);
+                  }
+                }
+              }
+            }
+    
+            &__test{
+              display: none;
+  
+              &--display{
+                margin-left: 4%;
+                display: flex;
+                position:relative;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 40%;
+                height: 12vh;
+                border-radius: 1vh;
+                margin-bottom: 12%;
+                
+                p{
+                  padding-top: 10%;
+                }
+      
+                img{
+                  border: 1px solid rgb(126, 126, 126);
+                  border-radius: 15%;
+                  padding-top: 1vh;
+                  height: 5vh;
+                  width: 45%;
+                  padding: 5%;
+  
+                  &:hover{
+                    cursor: pointer;
+                  }
+          
+                  &:active{
+                    cursor: pointer;
+                    background-color: rgb(235, 235, 235);
+                  }
+                }
+              }
+            }
+    
+            &__delete{
+              display: none;
+  
+              &--display{
+                position:relative;
+                margin-left: 4%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 40%;
+                height: 12vh;
+                margin-left: 8%; 
+                margin-bottom: 12%;
       
                 p{
                   padding-top: 10%;
@@ -153,6 +309,7 @@ html{
               }
             }
           }
+
         }
   
         .account__container{

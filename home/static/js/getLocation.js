@@ -105,9 +105,7 @@ function setZoom(title) {
       url: `setzoom/${data}/`
     }).then(function (res) {
       var data = res.data.zoom;
-      console.log(res)
       map.setZoom(data)
-      // Position = new google.maps.LatLng(lat, lng);
       var middlelat = res.data.middlelat;
       var middlelon = res.data.middlelon;
       var location = new google.maps.LatLng(middlelat, middlelon);

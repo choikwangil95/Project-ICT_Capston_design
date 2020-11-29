@@ -19,7 +19,6 @@ def home(request):
 def home_mobile(request):
     return render(request, 'homeMobile.html')
 
-
 def get_map(request, map_title):
     name = map_title
     map_id = Map.objects.get(name=name).pk

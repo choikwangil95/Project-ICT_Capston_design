@@ -21,8 +21,7 @@ function IsTitleEmpty() {
     // let title = document.getElementById("title__input").value;
     let checktitleMobile = mapTitleMobile.getElementsByTagName("p")[0]
     if(!checktitleMobile){
-        alert("지도를 생성하세요!");
-        console.log(checktitleMobile.innerHTML);
+        alert("로그인을 하고 지도를 생성하세요!");
         return false;
     }else if (!checktitleMobile.innerHTML) {
         alert("제목을 입력하세요!");

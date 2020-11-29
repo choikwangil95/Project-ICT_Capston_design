@@ -5,6 +5,9 @@ let defaultPosition;
 let map;
 let mapMobile;
 let initMarker;
+let breakpointMobile = 300;
+let breakpointTablet = 758;
+let breakpointDesktop = 1024;
 
 // getLocation.js
 let position = document.getElementsByClassName("button__position")[0];
