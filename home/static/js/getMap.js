@@ -16,6 +16,14 @@ function getMapData(title){
     let imagesLength = Object.keys(images).length; 
     let polylines=[];
 
+    if(imagesLength==0){
+      let Position = new google.maps.LatLng(latlngs[latlngsLength-1].lat, latlngs[latlngsLength-1].lon);
+      mapMobile.setCenter(Position);
+    }else{
+      let Position = new google.maps.LatLng(images[imagesLength-1].lat, images[imagesLength-1].lon);
+      mapMobile.setCenter(Position);
+    }
+
     for(let i=0; i<imagesLength; i++){
       let image = {
         url: `media/${images[i].image}`,
@@ -56,8 +64,6 @@ function getMapData(title){
         path.setMap(mapMobile);
         polylines.shift();
         polylines.shift();
-        let Position = new google.maps.LatLng(lat2, lon2);
-        mapMobile.setCenter(Position);
       }
     }
   })
