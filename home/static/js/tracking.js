@@ -30,7 +30,7 @@ function IsTitleEmpty() {
     else return true;
 }
 function startWatch() {
-    intervalobj = setInterval(watchLocation, 1000);
+    intervalobj = setInterval(watchLocation, 10000);
 }
 function watchLocation() {
     navigator.geolocation.getCurrentPosition( function(position) {
