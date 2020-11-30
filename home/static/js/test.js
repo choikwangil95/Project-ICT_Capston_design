@@ -8,6 +8,7 @@ function displayTest(){
   }
   testMobile.classList.add("button__test--mobile--display");
 }
+
 function checkBeforeTest() {
   let empty = IslocationTest();
   if (empty) {
@@ -19,6 +20,7 @@ function checkBeforeTest() {
       //제목 입력안했으면 
   }
 }
+
 function IslocationTest() {
   if (addressMobile.getElementsByTagName("p").length!=0){
     let check = addressMobile.getElementsByTagName("p")[0].innerHTML;
@@ -32,6 +34,7 @@ function IslocationTest() {
 function startTest() {
   testintervalobj = setInterval(test, 1000);
 }
+
 function test(){
   latitudeValue = lat0[t];
   lngitudeValue = lng0[t];
@@ -41,6 +44,7 @@ function test(){
     endTest();
   }
 }
+
 function watchTest() {
   getAddress(latitudeValue, lngitudeValue);
   if (lastResult != result) {
@@ -51,19 +55,25 @@ function watchTest() {
   latlngsLength=latlngs.length;
   markersLength=markers.length;
 }
+
 function confirmTest(){
   let cfStart = confirm('Test를 시작하시겠습니까 ?')
   if(cfStart){
       checkBeforeTest();
   }
 }
+
 function endTest() {
   // setEndMarker(latitudeValue, lngitudeValue);
   alertEndTest();
 }
+
 function alertEndTest() {
   alert("Test를 종료합니다.");
   testMobile.classList.add("button__test--mobile--display");
   endMobile.classList.remove("button__end--mobile--display");
+  let Position = new google.maps.LatLng(firstlatitudeValue + 0.01, firstlngitudeValue + 0.015);
+  mapMobile.setCenter(Position);
+  mapMobile.setZoom(13);
   clearInterval(testintervalobj);
 }

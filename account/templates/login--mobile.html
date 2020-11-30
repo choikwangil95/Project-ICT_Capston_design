@@ -1,4 +1,5 @@
 {% extends './base/baseMobile.html' %}
+{% load static %}
 
 {% block title%}
 로그인
@@ -15,5 +16,6 @@
       <input type="submit" value="확인">
     </form>
   </div>
+  <button class="button__back" onclick="location.href='{% url 'home_mobile' %}'"><img src="{% static 'img/back.png' %}"></button>
 </div>
 {% endblock %}

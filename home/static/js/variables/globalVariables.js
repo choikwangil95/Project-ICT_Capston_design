@@ -36,6 +36,7 @@ let t = 0;
 
 //position.js
 let markersLength, latlngsLength;
+let flag = 0;
 
 //image.js
 let imageFile = document.getElementsByClassName("button__image")[0];

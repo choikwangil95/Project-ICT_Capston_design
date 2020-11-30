@@ -76,8 +76,10 @@ def set_zoom(request, map_id):
     lat = list(maxlat.values())[0] - list(minlat.values())[0]
     lon = list(maxlon.values())[0] - list(minlon.values())[0]
     zoom_dec = max(lat, lon)
-    zoom = round(math.log(360 / zoom_dec)/math.log(2))
-    # zoom = 15
+    if zoom_dec == 0:
+        zoom = 0
+    else:
+        zoom = round(math.log(360 / zoom_dec)/math.log(2))
 
     middlelat = (list(maxlat.values())[0] + list(minlat.values())[0])/2
     middlelon = (list(maxlon.values())[0] + list(minlon.values())[0])/2

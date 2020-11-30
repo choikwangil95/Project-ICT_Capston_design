@@ -10,7 +10,6 @@ let inputTitle = document.getElementById("title__input");
 let path;
 let lat0, lng0;
 let mapGetTitle;
-let flag = 0;
 
 // tracking.js
 let start = document.getElementsByClassName("button__start")[0];

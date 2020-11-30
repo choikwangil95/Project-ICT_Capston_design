@@ -8,7 +8,7 @@ function initMap() {
 
   initMarker = new google.maps.Marker({
     position: defaultPosition,
-    label: "Default"
+    label: "Seoul"
   });
 
   markers.push(initMarker);

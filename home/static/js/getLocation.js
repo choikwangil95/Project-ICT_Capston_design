@@ -39,6 +39,16 @@ function setMarker(lat, lng) {
     icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/library_maps.png",
   });
 
+  //start위치에서 start마커 추가
+  if (flag == 0) {
+    startMarker = new google.maps.Marker({
+      position: Position,
+      icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
+    });
+    startMarker.setMap(mapMobile)
+    flag += 1
+  }
+
   if (markers[0] != null) {
     markers[0].setMap(null);
     markers.shift();
@@ -105,11 +115,16 @@ function setZoom(title) {
       url: `setzoom/${data}/`
     }).then(function (res) {
       var data = res.data.zoom;
-      map.setZoom(data)
+      console.log(data);
+      if (data==0){
+        mapMobile.setZoom(15)
+      }else{
+        mapMobile.setZoom(data)
+      }
       var middlelat = res.data.middlelat;
       var middlelon = res.data.middlelon;
       var location = new google.maps.LatLng(middlelat, middlelon);
-      map.setCenter(location);
+      mapMobile.setCenter(location);
     }).catch(error => {
       console.log(error);
     })

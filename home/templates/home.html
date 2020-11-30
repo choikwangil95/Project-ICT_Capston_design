@@ -23,17 +23,10 @@
         <div class="new__route">
           <p>새 여행 경로 생성</p>
         </div>
-<<<<<<< HEAD
         {%if user.is_authenticated%}
         <div class="show__route" onclick=location.href="{%url 'showlist' user.username %}">
           <p>여행 경로 목록</p>
         </div>
-=======
-        <div class="show__route" onclick=location.href="{%url 'showlist' user_name=user.username %}">
-          <p>여행 경로 목록</p>
-        </div>
-        {%if user.is_authenticated%}
->>>>>>> 128f6ee03ab6a70f5e433ef88d16bd7915f8b7a4
         <div class="myid" data-value="{{user.username}}">
           {{user.username}}
         </div>

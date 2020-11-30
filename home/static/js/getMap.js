@@ -20,7 +20,7 @@ function getMapData(title){
       let Position = new google.maps.LatLng(latlngs[latlngsLength-1].lat, latlngs[latlngsLength-1].lon);
       mapMobile.setCenter(Position);
     }else{
-      let Position = new google.maps.LatLng(images[imagesLength-1].lat, images[imagesLength-1].lon);
+      let Position = new google.maps.LatLng(images[imagesLength-1].lat, images[imagesLength-1].lng);
       mapMobile.setCenter(Position);
     }
 
@@ -73,11 +73,8 @@ function getMapData(title){
 }
 
 function initMap() {
-  defaultPosition = new google.maps.LatLng(seoulLat, seoulLng);
-
   mapMobile = new google.maps.Map(document.getElementById('map--mobile'), {
     zoom: 15,
-    center: defaultPosition
   });
   getMapData(detailTitle_p);
 }
