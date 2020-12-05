@@ -10,12 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -25,7 +24,7 @@ SECRET_KEY = 'yzc#sch5&!7m_wo6$yiq&j8%e$zoqat_c)n5ny(reskd+e-qyw'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -41,6 +40,7 @@ INSTALLED_APPS = [
     'tracking.apps.TrackingConfig',
     'home.apps.HomeConfig',
     'account.apps.AccountConfig',
+    'imagekit',
 ]
 
 MIDDLEWARE = [
@@ -107,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-#커스텀 유저 모델
+# 커스텀 유저 모델
 AUTH_USER_MODEL = 'account.User'
 
 # Internationalization
@@ -123,14 +123,14 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-import os
-
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_deploy')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 SASS_PROCESSOR_ENABLED = True
 SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, 'static')

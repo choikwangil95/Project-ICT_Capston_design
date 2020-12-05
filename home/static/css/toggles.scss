@@ -1,16 +1,65 @@
+@import './setup/_variables.scss';
+@import './setup/reset.scss';
+
 .title--display{
   display: flex;
   justify-content: center;
   width: 100%;
   height: 50px;
+  background-color:white;
+
+  .title__name{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    background-color: rgb(240, 240, 240);
+    width: 147px;
+    height: 42px;
+    padding-top:8px;
+    border-right: 1px solid $border_line;
+  }
 
   .title__submit{
-    width: 200px;
+    width: 150px;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-left: 1px solid $border_line;
     font-weight: bold;
-    color: white;
+    padding-top:8px;
+    height:42px;
+
+    &:hover{
+      background-color: rgb(240, 240, 240);
+      cursor: pointer;
+    }
+
+    &:active{
+      background-color: rgb(240, 240, 240);
+      cursor: pointer;
+    }
+  }
+  
+  .title__edit{
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-left: 1px solid $border_line;
+    font-weight: bold;
+    padding-top:8px;
+    height:42px;
+
+    &:hover{
+      background-color: rgb(240, 240, 240);
+      cursor: pointer;
+    }
+
+    &:active{
+      background-color: rgb(240, 240, 240);
+      cursor: pointer;
+    }
   }
 
   .title__map{
@@ -18,9 +67,6 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    border: 3px solid rgb(84,100,138);
-    
-    border-radius: 10px;
 
     #title__input{
       margin:0px 10px;
@@ -29,24 +75,42 @@
       border: 0px;
       background-color:transparent;
       color: rgb(84,100,138);
+      font-size: 18px;
+      text-align: center;
     }
   }
 }
 
 .setTitle--display{
   display: flex;
-  justify-content: start;
+  justify-content: center;
   width: 100%;
-  height: 30px;
+  height: 50px;
 
-  .get__title{
-    width: 600px;
+  .settitle__name{
     display: flex;
-    font-size: 24px;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    background-color: rgb(240, 240, 240);
+    width: 130px;
+    height: 42px;
+    padding-top:8px;
+    border-right: 1px solid $border_line;
+  }
+
+  .settitle__set{
+    display: flex;
     justify-content: center;
     align-items: center;
-    font-weight: bold;
-    color: white;
+    width: 100%;
+    background-color: white;
+    border-bottom: 1px solid $border_line;
+
+    p{
+      font-size: 24px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
   }
 }
 
@@ -60,4 +124,20 @@
   &__setTitle{
     display:none;
   }
+}
+
+.image--uploading{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  margin:0;
+  padding:0;
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 500px;
+  height: 150px;
+  z-index: 99;
+  color:white;
+  font-size: 36px;
+  border-radius: 25px;
 }

@@ -1,0 +1,22 @@
+{% extends "./base/baseMobile.html" %}
+{% load static %}
+
+{% block title%}
+회원가입
+{% endblock %}
+
+{% block content %}
+<div class="container__signup">
+  <div class="form__container">
+    <form method="POST" action="{% url 'signup_mobile' %}">
+      {% csrf_token %}
+      <div class="signup"><p>회원가입</p></div>
+      <label for="username"><p>아이디</p></label><input type="text" name="username">
+      <label for="password"><p>비밀번호</p></label><input type="password" name="password">
+      <label for="password"><p>비밀번호 재입력</p></label><input type="password" name="confirm">
+      <input type="submit" value="확인">
+    </form>
+  </div>
+  <button class="button__back" onclick="location.href='{% url 'home_mobile' %}'"><img src="{% static 'img/back.png' %}"></button>
+</div>
+{% endblock %}

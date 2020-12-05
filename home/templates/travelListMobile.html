@@ -1,0 +1,23 @@
+{% extends "./base/baseMobile.html" %}
+{% load custom_tags %}
+{% load static %}
+
+{% block title%}
+여행 목록
+{% endblock %}
+
+{% block content %}
+<div class="container__list">
+  <div class="list__name"><p>여행 목록</p></div>
+  {% for map in maps %}
+  <div class="list__component" data-value="{{map.pk}}" onclick="location.href='{% url 'showmymapmobile' map.pk %}'">
+    <div class="travel__photo"><img src="{% get_pic map.pk %}"></div>
+    <div class="travel__info">
+      <div class="travel__title"><p>{{map.name}}</p></div>
+      <div class="travel__date"><p>{{map.datetime}}</p></div>
+    </div>
+  </div>
+  {% endfor %}
+  <button class="button__back" onclick="location.href='{% url 'home_mobile' %}'"><img src="{% static 'img/back.png' %}"></button>
+</div>
+{% endblock %}

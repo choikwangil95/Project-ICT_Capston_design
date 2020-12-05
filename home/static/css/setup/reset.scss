@@ -20,3 +20,11 @@ body {
 button{
 	all:unset;
 }
+
+input:focus {
+	outline: none;
+}
+
+a{
+	all:unset;
+}

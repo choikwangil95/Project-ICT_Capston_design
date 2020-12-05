@@ -1,12 +1,16 @@
 // Event Add
-start.addEventListener("click", confirmStart);
-end.addEventListener("click", endwatch);
+// start.addEventListener("click", confirmStart);
+// end.addEventListener("click", endwatch);
+startMobile.addEventListener("click", confirmStart);
+endMobile.addEventListener("click", endwatch);
 
 function checkBeforeStart() {
-    var notempty = IsTitleEmpty();
+    let notempty = IsTitleEmpty();
     if (notempty) {
-        start.style.display = 'none';
-        end.style.display = 'flex';
+        startMobile.style.display = 'none';
+        endMobile.classList.add("button__end--mobile--display");
+        // start.style.display = 'none';
+        // end.style.display = 'flex';
         startWatch();
     }
     else {
@@ -14,30 +18,35 @@ function checkBeforeStart() {
     }
 }
 function IsTitleEmpty() {
-    var title = document.getElementById("title__input").value;
-    if (!title) {
+    // let title = document.getElementById("title__input").value;
+    let checktitleMobile = mapTitleMobile.getElementsByTagName("p")[0]
+    if(!checktitleMobile){
+        alert("로그인을 하고 지도를 생성하세요!");
+        return false;
+    }else if (!checktitleMobile.innerHTML) {
         alert("제목을 입력하세요!");
         return false;
     }
     else return true;
 }
 function startWatch() {
-    intervalobj = setInterval(watchLocation, 1000);
+    intervalobj = setInterval(watchLocation, 10000);
 }
 function watchLocation() {
     navigator.geolocation.getCurrentPosition( function(position) {
         lngitudeValue = position.coords.longitude;
         latitudeValue = position.coords.latitude;
 
+        getAddress(latitudeValue, lngitudeValue);
         if (lastResult != result) {
             lastResult = result;
-            getAddress(latitudeValue, lngitudeValue);
-            mapGetTitle = mapSetTitle.innerText
-            postLatlng(latitudeValue, lngitudeValue, mapGetTitle);
+            let checktitleMobile = mapTitleMobile.getElementsByTagName("p")[0].innerHTML;
+            console.log(checktitleMobile);
+            if(checktitleMobile){
+                postLatlng(latitudeValue, lngitudeValue, checktitleMobile);
+            }
             setMarker(latitudeValue, lngitudeValue);
             paintLine(latitudeValue, lngitudeValue);
-            latlngsLength=latlngs.length;
-            markersLength=markers.length;
         }else{
             console.log("위치가 같음");
         }
@@ -53,7 +62,7 @@ function endwatch() {
     setEndMarker(latitudeValue, lngitudeValue);
     confirmEnd();
 }
-function confirmStart(){
+function confirmStart() {
     let cfStart = confirm('여행을 시작하시겠습니까 ?')
     if (cfStart) {
         checkBeforeStart();
@@ -62,12 +71,11 @@ function confirmStart(){
 function confirmEnd() {
     let cfEnd = confirm("여행을 종료하시겠습니까?");
     if (cfEnd) {
-        start.style.display = 'flex';
-        end.style.display = 'none';
         clearInterval(intervalobj);
+        startMobile.style.display = 'flex';
+        endMobile.classList.remove("button__end--mobile--display");
+        // end.style.display = 'none';
+        // imageFile.style.display = 'flex';
+        // newRouteButton.style.display = 'flex';
     }
 }
-/* @To do
-* 1 이동경로 종료 시 지도에 등록된 마커와 선 삭제하는 delete 함수
-* 2 DB에 저장된 위도 경도를 바탕으로 지도에 마커랑 선 표시하는 get함수
-*/

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% load static %}
+{% load sass_tags %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link href="{% sass_src 'css/mobile.scss' %}" rel="stylesheet" type="text/css" />
+    <link href="{% sass_src 'css/toggles.scss' %}" rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="service__tab--none">
+        <div class="account__container">
+          {%if user.is_authenticated%}
+            <div class="myid"><p>{{user.username}}</p></div>
+            <a class ="logout" href="{%url 'logout_mobile'%}"><p>logout</p></a>
+          {%else%}
+            <a class="signup" href="{%url 'signup_mobile' %}"><p>회원가입</p></a>
+            <a class="login" href="{%url 'login_mobile' %}"><p>로그인</p></a>
+          {%endif%}
+          <div class="close"><img src="{% static 'img/back.png' %}"></div>
+        </div>
+        <div class="pannel">
+          {%if user.is_authenticated%}
+          <button class="button__newMap" onclick="location.href='{% url 'home_mobile' %}'"><img src="{% static 'img/map.png' %}"><p>지도 생성</p></button>
+          <button class="button__start" onclick="location.href='{% url 'home_mobile' %}'"><img src="{% static 'img/travel.png' %}"><p>여행 시작</p></button>
+          <button class="button__delete" onclick="location.href='{% url 'home_mobile' %}'"><img src="{% static 'img/travel.png' %}"><p>지도 초기화</p></button>
+          <button class="button__test"><img src="{% static 'img/travel.png' %}"><p>테스트</p></button>
+          <a class="button__list" href="{% url 'showlistmobile' user.username %}"><img src="{% static 'img/travel.png' %}"><p>여행 목록</p></a>
+          <form class="filebox">
+            <label for="ex_file">
+              <img src="{% static 'img/travel.png' %}">
+              <p>사진 업로드</p>
+            </label>
+            <input type="file" id="ex_file" class="button__image" accept="image/*" multiple onchange="getImage()"/>
+          </form>
+          {%else%}
+          <button class="button__test"><img src="{% static 'img/travel.png' %}"><p>테스트</p></button>
+          <button class="button__delete" onclick="location.href='{% url 'home_mobile' %}'"><img src="{% static 'img/travel.png' %}"><p>지도 초기화</p></button>
+          {%endif%}
+        </div>
+        <div class="copyright__container">
+          <p>&copy; Like Tomato</p>
+          <div class="copyright__name">
+            <p>박규리</p>
+            <p>임유림</p>
+            <p>최광일</p>
+          </div>
+        </div>
+      </div>
+      <header>
+        <div class="header__top">
+          <div class="service" onclick="location.href='/'"><img src="{% static 'img/name.png' %}"></div>
+          <div class="service__logo"><img src="{% static 'img/logo.png' %}"></div>
+          <div class="service__container--mobile">
+            <div class="service__tab"><img src="{% static 'img/tab.png' %}"></div>
+            <div class="service__container">
+              <div class="service__logo--mobile"><img src="{% static 'img/logo.png' %}"></div>
+              <div class="service--mobile" onclick="location.href='/'">Trip Surfer</div>
+            </div>
+          </div>
+        </div>
+      </header>
+      {% block content %}
+      {% endblock%}
+    </div>
+  </body>
+  <script type="text/javascript" src="{% static 'js/variables/globalVariables.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/variables/mobileVariables.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/toggles.js' %}"></script>
+</html>
