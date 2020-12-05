@@ -9,7 +9,7 @@
 - 2 여행사진의 메타데이터를 추출하여 여행 이동 경로가 선으로 나타난 지도 위에 사진이 찍힌 장소를 표시해준다.<br/>
 - 3 지도 위에 사진을 클릭하여 여행중 느낀 감정을 기록한다
 
-![image](https://user-images.githubusercontent.com/48672212/101238854-62c08080-3726-11eb-9492-1d69fb1b4dd5.png)
+![image](https://user-images.githubusercontent.com/48672212/101238974-686a9600-3727-11eb-9ca8-96d015a06fae.png)
 
 ## 2 Teams & Role
 - 규리 : Server & Database
