@@ -1,20 +1,18 @@
 # ICT Capston Design
 
 ## 1 Objects
-#### 여행이 끝나고 남는 것은 사진 뿐이라는 말이 있다.
-실제로 여행중에 찍은 사진들은 여행이 끝나고 난 뒤, 무분별하게 사진첩에 저장된다.<br/>
-해당 문제를 해결해 주기위해 여행중 찍은 사진들이 언제, 어디서 찍었는지 한눈에 알아볼 수 있도록<br/>
+#### 실시간 여행 경로 트래킹을 기반한 여행 후기 공유 서비스 
 
-- 1 여행 이동 경로를 실시간으로 트래킹하여 지도 위에 선으로 나타내어 주고 <br/>
-- 2 여행사진의 메타데이터를 추출하여 여행 이동 경로가 선으로 나타난 지도 위에 사진이 찍힌 장소를 표시해준다.<br/>
-- 3 지도 위에 사진을 클릭하여 여행중 느낀 감정을 기록한다
+여행이 끝나고 남는 것은 사진 뿐이라는 말이 있다.<br/>
+실제로 여행중에 찍은 사진들은 여행이 끝나고 난 뒤, 무분별하게 사진첩에 저장된다.<br/>
+해당 문제를 해결해 주기위해 여행중 찍은 사진들이 언제, 어디서 찍었는지 한눈에 알아볼 수 있도록 한다.<br/>
+
+## 2 Feature
+- 1 google maps api를 사용한 지도 위 유저의 실시간 여행 경로 트래킹 기능 개발
+- 2 사진 업로드시 사진의 메타데이터를 추출하여 지도 위에 사진 표시 기능 개발
+- 3 지도 위에 사진을 클릭하여 여행중 느낀 감정을 기록하는 CRUD 기능 개발
 
 ![image](https://user-images.githubusercontent.com/48672212/101238974-686a9600-3727-11eb-9ca8-96d015a06fae.png)
-
-## 2 Teams & Role
-- 규리 : Server & Database
-- 광일 : 기능개발 & E2E Test
-- 유림 : 기능개발 
 
 ## 3 Tech Stack
 - Django
@@ -24,7 +22,12 @@
 - AWS EC2, RDS
 - PostgreDB
 
-## 4 Branch Strategy
+## 4 Teams & Role
+- 규리 : Server & Database
+- 광일 : 기능개발 & E2E Test
+- 유림 : 기능개발 
+
+## 5 Branch Strategy
 github flow에서 해당 프로젝트에 맞게 수정<br/>
 #### feature -> test -> predev - develop -> master
 - master : 배포용
@@ -33,7 +36,7 @@ github flow에서 해당 프로젝트에 맞게 수정<br/>
 - test : Test case를 통한 단위 기능의 통합테스트 코드
 - feature : 기능 개발 및 단위테스트 
 
-## 5 Progress
+## 6 Progress
 - [X] Release 1 : 실시간 이동 경로 트래킹 기능 개발 & 배포 ( 10.15-11.05 )
   - [X] 1차 Sprint : google 지도에 현재 위치 표시
   - [X] 2차 Sprint : 실시간 이동 경로를 google 지도에 선으로 표시
